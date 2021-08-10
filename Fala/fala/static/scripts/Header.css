@@ -1,0 +1,31 @@
+.Header {
+  background-color: blue;
+}
+
+.Header .heading {
+  background-color: green;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.Header .diamond-shape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  height: 12rem;
+  width: 25rem;
+  border-radius: 50%;
+}
+
+.Header .title {
+  font-family: "Brush Script MT", cursive;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  color: blue;
+
+  height: 100px;
+  width: 100px;
+}
