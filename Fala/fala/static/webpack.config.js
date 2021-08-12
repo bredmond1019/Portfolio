@@ -23,7 +23,5 @@ const config = {
       { test: /\.css$/i, use: ["style-loader", "css-loader"] },
     ],
   },
-
-  //   loaders: [{ test: /\.css$/, loader: "style-loader!css-loader" }],
 };
 module.exports = config;
