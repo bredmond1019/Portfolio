@@ -1,4 +1,5 @@
-from fala import db
+from fala import db, ma
+
 
 
 
@@ -23,3 +24,9 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User {self.email}"
+
+
+class UserSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'email')
+

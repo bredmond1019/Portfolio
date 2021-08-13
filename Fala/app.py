@@ -1,4 +1,4 @@
-from fala import create_app, db, models
+from fala import create_app, db, ma
 from fala.models import User, Role
 from flask_migrate import Migrate
 
@@ -12,4 +12,4 @@ migrate = Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, User = User, Role = Role)
+    return dict(db=db, User = User, Role = Role, ma = ma)
