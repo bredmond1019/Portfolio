@@ -1,9 +1,11 @@
-from fala import main
+
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from config import  config
+from flask_marshmallow import Marshmallow
 
 db = SQLAlchemy()
+ma = Marshmallow()
 
 
 
@@ -14,6 +16,9 @@ def create_app(config_name):
     app.config.from_pyfile("../config.py")
 
     db.init_app(app)
+    ma.init_app(app)
+
+    
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)

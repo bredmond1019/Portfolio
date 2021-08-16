@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macro.html" as macros %}
+
+{% block title %}
+    Climbr - Forum
+{% endblock title %}
+
+
+
+{% block content %}
+
+<div class="image-header" 
+style="background-image: url({{ url_for('static', filename='img/header.jpeg') }}">
+    <div class="container ">
+        <div class="make-post-container">
+            {% if current_user.can(Permission.WRITE) %}
+            {{ wtf.quick_form(form) }}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="posts-container">
+    <div class="posts-title">
+        <h3>Recent Posts</h3>
+    </div>
+    <div>
+        {% include '_posts.html' %}
+    </div>
+    {% if pagination %}
+        <div class="pagination">
+            {{ macros.pagination_widget(pagination, 'forum.index') }}
+        </div>
+    {% endif %}
+</div>
+
+
+
+  
+
+
+{% endblock content %}
+
+    
