@@ -11,7 +11,7 @@ users_schema = UserSchema(many=True)
 def get_users():
     all_users = User.query.all()
     print(all_users)
-    results = user_schema.dump(all_users)
+    results = users_schema.dump(all_users)
 
     return jsonify({"all_users": results})
     
