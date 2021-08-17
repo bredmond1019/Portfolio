@@ -1,6 +1,22 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => console.log(resp))
+      // .then((resp) => resp.json())
+      // .then((resp) => setWord(resp))
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div className="container">
       <h1 className="title">Contact</h1>

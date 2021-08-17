@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, Flask
 from . import api
 from random import choice
 import requests
@@ -23,15 +23,13 @@ def get_definition(word):
 
 
 
-@api.route('/', methods = ['GET'])
+@api.route('/', methods = ['GET', 'OPTIONS'])
 def get_word():
-    # word = get_random_word()
-    # definition = get_definition(word)
+    word = get_random_word()
+    definition = get_definition(word)
     # print(definition)
-    # print(type(definition[0]))
 
 
 
-    # return jsonify({"word": word, "definition" : definition})
+    return jsonify({"word": word, "definition" : definition})
 
-    return jsonify({"Hello": "World"})
