@@ -23,13 +23,15 @@ def get_definition(word):
 
 
 
-@api.route('/')
+@api.route('/', methods = ['GET'])
 def get_word():
-    word = get_random_word()
-    definition = get_definition(word)
-    print(definition)
-    print(type(definition[0]))
+    # word = get_random_word()
+    # definition = get_definition(word)
+    # print(definition)
+    # print(type(definition[0]))
 
 
 
-    return jsonify({"word": word, "definition" : definition})
+    # return jsonify({"word": word, "definition" : definition})
+
+    return jsonify({"Hello": "World"})
