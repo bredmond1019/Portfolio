@@ -1,24 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const RandomWord = () => {
-  const [word, setWord] = useState("");
-
+const RandomWord = (props) => {
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((resp) => setWord(resp))
-      .catch((error) => console.log(error));
+    // props && console.log(props);
+    // props.definition.map((i) => {
+    //   console.log(i);
+    // });
   }, []);
 
   return (
     <div className="container">
-      <h1>Random Word</h1>
+      <h2>Palavra do Dia</h2>
+      <h4 className="word">{props.word}</h4>
+      {props.definition &&
+        props.definition.map((def, i) => {
+          console.log(def);
+          return (
+            <div className="definition" key={i}>
+              <p>
+                <span className="class">{def.class}</span> -- {def.meanings[0]}
+              </p>
+            </div>
+          );
+        })}
     </div>
   );
 };
