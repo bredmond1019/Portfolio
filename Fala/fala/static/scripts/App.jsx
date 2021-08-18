@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "./components/Header";
-import "./css/Header.css";
+
 import "./css/Navbar.css";
+import "./css/App.css";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Lessons from "./components/Lessons";
@@ -11,18 +12,20 @@ import Navigation from "./components/Navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
-	return (
-		<div className="app">
-			<Navigation />
-			<Header />
-			<Switch>
-				<Route path="/about" component={About} />
-				<Route path="/contact" component={Contact} />
-				<Route path="/lessons" component={Lessons} />
-				<Route path="/" component={Home} />
-			</Switch>
-		</div>
-	);
+  return (
+    <div className="app">
+      <Navigation />
+      <Header />
+      <Switch>
+        <div className="App-Body">
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/lessons" component={Lessons} />
+          <Route path="/" component={Home} />
+        </div>
+      </Switch>
+    </div>
+  );
 };
 
 export default App;

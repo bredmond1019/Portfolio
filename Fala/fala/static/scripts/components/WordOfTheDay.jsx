@@ -1,21 +1,28 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import "../css/WordOfDay";
 
-const RandomWord = (props) => {
-  useEffect(() => {
-    // props && console.log(props);
-    // props.definition.map((i) => {
-    //   console.log(i);
-    // });
-  }, []);
+const WordOfTheDay = (props) => {
+  /* props = {word : "alguma_palavara", 
+      definition: 
+        0: 
+          class : type of word, 
+          etymology: some etymology
+          meaning :
+            0: meaning_0 , 
+        
+        1:
+          class :
+          ety:
+          meaning:  
+      }
+  */
 
   return (
-    <div className="container">
+    <div className="WordOfDay container">
       <h2>Palavra do Dia</h2>
       <h4 className="word">{props.word}</h4>
       {props.definition &&
         props.definition.map((def, i) => {
-          console.log(def);
           return (
             <div className="definition" key={i}>
               <p>
@@ -28,4 +35,4 @@ const RandomWord = (props) => {
   );
 };
 
-export default RandomWord;
+export default WordOfTheDay;

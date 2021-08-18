@@ -1,0 +1,18 @@
+.App-Body {
+  background-color: #0d6efd;
+  height: 100vh;
+  font-family: "Brush Script MT", cursive;
+}
+
+.Component-Body {
+  background-color: #0d6efd;
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  color: yellow;
+  padding-top: 15px;
+  font-size: 4rem;
+}

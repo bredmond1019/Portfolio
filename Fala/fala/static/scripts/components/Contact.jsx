@@ -18,7 +18,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="Component-Body container">
       <h1 className="title">Contact</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi porro

@@ -1,5 +1,5 @@
 .Header {
-  background-color: yellow;
+  background-color: green;
 }
 
 .Header .heading {
@@ -19,7 +19,7 @@
   border-radius: 50%;
 }
 
-.Header .title {
+.Header .header-title {
   font-family: "Brush Script MT", cursive;
   font-size: 5rem;
   display: flex;
