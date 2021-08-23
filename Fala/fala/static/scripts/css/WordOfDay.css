@@ -4,3 +4,8 @@
   border-width: 3px;
   border-color: greenyellow;
 }
+
+.title {
+  font-size: 3rem;
+  padding-left: 20px;
+}

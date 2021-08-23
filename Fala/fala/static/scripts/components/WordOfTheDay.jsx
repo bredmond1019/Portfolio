@@ -19,7 +19,7 @@ const WordOfTheDay = (props) => {
 
   return (
     <div className="WordOfDay container">
-      <h2>Palavra do Dia</h2>
+      <h2 className="title">Palavra do Dia</h2>
       <h4 className="word">{props.word}</h4>
       {props.definition &&
         props.definition.map((def, i) => {
