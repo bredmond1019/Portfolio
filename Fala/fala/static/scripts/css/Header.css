@@ -20,7 +20,7 @@
 }
 
 .Header .header-title {
-  font-family: "Brush Script MT", cursive;
+  font-family: "Architects Daughter", cursive;
   font-size: 5rem;
   display: flex;
   justify-content: center;
@@ -28,4 +28,7 @@
 
   height: 100px;
   width: 100px;
+
+  letter-spacing: 6px;
+  text-shadow: -0.1em 0.1em 0.1em silver;
 }
