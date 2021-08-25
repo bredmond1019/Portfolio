@@ -1,9 +1,11 @@
 .Header {
   background-color: green;
+  /* background-image: url(images/moonlight.png); */
 }
 
 .Header .heading {
-  background-color: green;
+  /* background-color: green; */
+
   padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;

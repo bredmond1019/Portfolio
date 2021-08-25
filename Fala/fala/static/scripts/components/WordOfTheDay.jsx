@@ -19,18 +19,23 @@ const WordOfTheDay = (props) => {
 
   return (
     <div className="WordOfDay container">
-      <h2 className="title">Palavra do Dia</h2>
-      <h4 className="word">
-        <strong>{props.word}</strong>
-      </h4>
-      {props.definition &&
-        props.definition.map((def, i) => {
-          return (
-            <div className="definition" key={i}>
-              <p className="meaning">{def.meanings[0]}</p>
-            </div>
-          );
-        })}
+      <h2 className="title">
+        Palavra do Dia --{" "}
+        <span className="word">
+          <strong>{props.word}</strong>
+        </span>
+      </h2>
+
+      <div className="definition">
+        {props.definition &&
+          props.definition.map((def, i) => {
+            return (
+              <p key={i} className="meaning">
+                {def.meanings[0]}
+              </p>
+            );
+          })}
+      </div>
     </div>
   );
 };

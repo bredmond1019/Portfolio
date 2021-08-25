@@ -19,12 +19,12 @@ const Navigation = () => {
               <Navbar.Brand as={Link} to="/home">
                 FALA!
               </Navbar.Brand>
-              <Nav className="me-auto">
+              <Nav className="justify-content-end">
                 <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>
                 <Nav.Link as={Link} to="/about">
-                  About Me
+                  About
                 </Nav.Link>
                 <Nav.Link as={Link} to="/contact">
                   Contact
