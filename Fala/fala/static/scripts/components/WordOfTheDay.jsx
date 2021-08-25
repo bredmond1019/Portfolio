@@ -27,10 +27,7 @@ const WordOfTheDay = (props) => {
         props.definition.map((def, i) => {
           return (
             <div className="definition" key={i}>
-              <div className="class">
-                <em>{def.class}</em>
-              </div>{" "}
-              <div className="meaning">{def.meanings[0]}</div>
+              <p className="meaning">{def.meanings[0]}</p>
             </div>
           );
         })}

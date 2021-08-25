@@ -27,28 +27,23 @@ font-family: 'Indie Flower', cursive; */
   font-family: "Amatic SC", cursive;
 }
 
+.WordOfDay {
+  padding-bottom: 1em;
+  background-color: black;
+  opacity: 0.6;
+}
+
 .word {
   font-family: "Indie Flower", cursive;
   font-size: 2rem;
   text-transform: capitalize;
-}
-
-.definition {
-  display: grid;
-  grid-template-columns: 0.1fr [class-start] 0.5fr [meaning-start] 2.5fr;
-  /* flex-direction: row;
-  font-size: 1.25rem;
-  justify-content: space-around; */
-}
-
-.class {
-  font-size: 1rem;
-  border: 1px solid;
-  grid-area: class;
-  /* Need to make the text wrap down!!!! */
+  letter-spacing: 2px;
 }
 
 .meaning {
-  border: 1px solid;
+  margin-left: 2.2rem;
   grid-area: meaning;
+  font-family: "Architects Daughter", cursive;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
 }

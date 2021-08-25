@@ -25,12 +25,7 @@ const Home = () => {
     <div className="Component-Body container ">
       <h1 className="title"></h1>
       <WordOfTheDay word={word} definition={definition} />
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi porro
-        maiores voluptate atque maxime, voluptas quis, nostrum earum neque
-        laboriosam id et recusandae repudiandae consequatur omnis eligendi eaque
-        fugiat molestiae.
-      </p>
+      <p></p>
     </div>
   );
 };

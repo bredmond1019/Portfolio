@@ -5,4 +5,8 @@
 
 #navbar-container {
   background-color: #0d6efd;
+  letter-spacing: 3px;
+  font-family: "Architects Daughter", cursive;
+  font-weight: bold;
+  text-transform: uppercase;
 }
