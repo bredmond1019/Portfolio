@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./components/Header";
 
-import "./css/Navbar.css";
-import "./css/App.css";
+// import "./css/Navbar.css";
+// import "./css/App.css";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Lessons from "./components/Lessons";
@@ -16,22 +16,22 @@ import forest from "./css/images/Forest.png";
 console.log(forest);
 
 const App = () => {
-  return (
-    <div className="app">
-      <Navigation />
-      <Header />
-      <div className="image">Bem-vindo a Fala!</div>
-      <Switch>
-        <div className="App-Body">
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/lessons" component={Lessons} />
-          <Route path="/" component={Home} />
-        </div>
-      </Switch>
-      <img src={forest} alt="" />
-    </div>
-  );
+	return (
+		<div className="app">
+			<Navigation />
+			<Header />
+			<div className="image">Bem-vindo a Fala!</div>
+			<Switch>
+				<div className="App-Body">
+					<Route path="/about" component={About} />
+					<Route path="/contact" component={Contact} />
+					<Route path="/lessons" component={Lessons} />
+					<Route path="/" component={Home} />
+				</div>
+			</Switch>
+			<img src={forest} alt="" />
+		</div>
+	);
 };
 
 export default App;
