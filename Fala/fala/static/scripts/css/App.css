@@ -31,6 +31,14 @@ font-family: 'Indie Flower', cursive; */
   padding-bottom: 1em;
   background-color: black;
   opacity: 0.6;
+  color: white;
+  border: solid;
+  border-width: 3px;
+  border-color: greenyellow;
+}
+
+.image {
+  background: url(images/Forest.png);
 }
 
 .definition {

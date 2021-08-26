@@ -11,11 +11,16 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import forest from "./css/images/Forest.png";
+
+console.log(forest);
+
 const App = () => {
   return (
     <div className="app">
       <Navigation />
       <Header />
+      <div className="image">Bem-vindo a Fala!</div>
       <Switch>
         <div className="App-Body">
           <Route path="/about" component={About} />
@@ -24,6 +29,7 @@ const App = () => {
           <Route path="/" component={Home} />
         </div>
       </Switch>
+      <img src={forest} alt="" />
     </div>
   );
 };
