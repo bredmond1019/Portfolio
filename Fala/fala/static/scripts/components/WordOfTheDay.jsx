@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/WordOfDay";
+// import "../css/WordOfDay";
 
 const WordOfTheDay = (props) => {
   /* props = {word : "alguma_palavara", 
