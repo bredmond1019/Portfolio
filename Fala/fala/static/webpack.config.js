@@ -18,10 +18,10 @@ const config = {
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js",
-    publicPath: "",
+    // publicPath: "",
   },
   resolve: {
-    extensions: [".js", ".jsx", ".css"],
+    extensions: [".js", ".jsx", ".css", ".scss"],
   },
 
   module: {
@@ -33,21 +33,24 @@ const config = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        // type: "asset/resource",
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192,
-              name: "[hash]-[name].[ext]",
-            },
-          },
-        ],
+        type: "asset/resource",
+        // use: [
+        //   {
+        //     loader: "url-loader",
+        //     options: {
+        //       limit: 8192,
+        //       name: "[hash]-[name].[ext]",
+        //     },
+        //   },
+        // ],
       },
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { publicPath: "" },
+          },
           "css-loader",
           "postcss-loader",
           "sass-loader",
