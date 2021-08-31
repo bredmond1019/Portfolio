@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js",
+    clean: true,
   },
   module: {
     rules: [
@@ -26,4 +27,6 @@ module.exports = {
       template: path.resolve(__dirname, "src", "index.html"),
     }),
   ],
+
+  devtool: "source-map",
 };
