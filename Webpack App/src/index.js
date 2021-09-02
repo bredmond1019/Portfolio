@@ -1,3 +1,5 @@
+import pup from "./images/puppy.jpeg";
+
 console.log("Interesting");
 
 class Game {
