@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./css/App.scss";
 
-console.log(forest);
+// console.log(forest);
 
 const App = () => {
   return (

@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 let mode = "development";
 let target = "web";
@@ -18,7 +19,7 @@ const config = {
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js",
-    // publicPath: "",
+    publicPath: "/dist/",
   },
   resolve: {
     extensions: [".js", ".jsx", ".css", ".scss"],
@@ -49,7 +50,7 @@ const config = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { publicPath: "" },
+            // options: { publicPath: "" },
           },
           "css-loader",
           "postcss-loader",
@@ -59,7 +60,14 @@ const config = {
     ],
   },
 
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "scripts", "index.html"),
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+  ],
 
   devtool: "source-map",
   devServer: {
