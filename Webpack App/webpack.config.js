@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -8,14 +9,25 @@ module.exports = {
     path: __dirname + "/dist",
     filename: "bundle.js",
     clean: true,
-    publicPath: "/",
+    publicPath: "",
   },
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        test: /\.(s[ac]|c)ss$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
+      // {
+      //   test: /\.scss$/,
+      //   use: ["style-loader", "css-loader", "sass-loader"],
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -32,6 +44,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
   ],
 
   devtool: "source-map",
@@ -39,22 +54,9 @@ module.exports = {
 
 /*
 
-{
-  test: /\.(s[ac]|c)ss$/i,
-  use: [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      options: { publicPath: "" },
-    },
-    "css-loader",
-    "postcss-loader",
-    "sass-loader",
-  ],
-},
-],
-},
 
-plugins: [new MiniCssExtractPlugin()],
+
+plugins: 
 
 devtool: "source-map",
 devServer: {
