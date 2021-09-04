@@ -1,4 +1,5 @@
 import pup from "./images/puppy.jpeg";
+import "./Scss/style.scss";
 
 console.log("Interesting");
 
@@ -15,3 +16,5 @@ heading.textContent = "Interesting!";
 // Append SVG and heading nodes to the DOM
 const app = document.querySelector("#root");
 app.append(heading, p);
+
+console.log(pup);

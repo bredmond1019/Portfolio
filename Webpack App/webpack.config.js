@@ -8,13 +8,14 @@ module.exports = {
     path: __dirname + "/dist",
     filename: "bundle.js",
     clean: true,
+    publicPath: "/",
   },
   module: {
     rules: [
-      // {
-      //   test: /\.scss$/,
-      //   use: ["style-loader", "css-loader", "sass-loader"]
-      // },
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -35,3 +36,30 @@ module.exports = {
 
   devtool: "source-map",
 };
+
+/*
+
+{
+  test: /\.(s[ac]|c)ss$/i,
+  use: [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: { publicPath: "" },
+    },
+    "css-loader",
+    "postcss-loader",
+    "sass-loader",
+  ],
+},
+],
+},
+
+plugins: [new MiniCssExtractPlugin()],
+
+devtool: "source-map",
+devServer: {
+// contentBase: "./dist",
+hot: true,
+},
+
+*/
