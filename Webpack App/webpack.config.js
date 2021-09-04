@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -24,10 +25,6 @@ module.exports = {
           "sass-loader",
         ],
       },
-      // {
-      //   test: /\.scss$/,
-      //   use: ["style-loader", "css-loader", "sass-loader"],
-      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -40,6 +37,11 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin()],
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
