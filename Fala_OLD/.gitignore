@@ -2,5 +2,4 @@ venv/
 config.py
 migrations/
 dist/
-node_modules/
 
