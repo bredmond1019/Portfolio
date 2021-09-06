@@ -1,5 +1,5 @@
 venv/
-config.py
+# config.py
 migrations/
 dist/
 node_modules/
