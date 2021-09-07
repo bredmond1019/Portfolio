@@ -1,20 +1,14 @@
-import pup from "./images/puppy.jpeg";
-import "./Scss/style.scss";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { BrowserRouter as Router } from "react-router-dom";
 
-console.log("Interesting");
+// import "./css/Header.css";
+// import "./css/Navbar.css";
 
-class Game {
-  name = "Violin Charades";
-}
-const myGame = new Game(); // Create paragraph node
-const p = document.createElement("p");
-p.textContent = `I like ${myGame.name}.`;
-// Create heading node
-const heading = document.createElement("h1");
-heading.textContent = "Interesting!";
-
-// Append SVG and heading nodes to the DOM
-const app = document.querySelector("#root");
-app.append(heading, p);
-
-console.log(pup);
+ReactDOM.render(
+	<Router>
+		<App />
+	</Router>,
+	document.getElementById("react-root")
+);

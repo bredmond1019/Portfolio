@@ -4,54 +4,58 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  mode: "development",
-  entry: __dirname + "/src/index.js",
-  output: {
-    path: __dirname + "/dist",
-    filename: "bundle.js",
-    clean: true,
-    publicPath: "",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(s[ac]|c)ss$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
-        ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-      // Images
-      {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: "asset/resource",
-      },
-    ],
-  },
-  optimization: {
-    minimize: true,
-    minimizer: [new CssMinimizerPlugin()],
-  },
+	mode: "development",
+	entry: __dirname + "/src/index.js",
+	output: {
+		path: __dirname + "/dist",
+		filename: "bundle.js",
+		clean: true,
+		publicPath: "",
+	},
+	resolve: {
+		extensions: [".js", ".jsx", ".css", ".scss"],
+	},
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src", "index.html"),
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
-  ],
+	module: {
+		rules: [
+			{
+				test: /\.(s[ac]|c)ss$/i,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
+					"css-loader",
+					"postcss-loader",
+					"sass-loader",
+				],
+			},
+			{
+				test: /\.(js|jsx)?/,
+				exclude: /node_modules/,
+				use: ["babel-loader"],
+			},
+			// Images
+			{
+				test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+				type: "asset/resource",
+			},
+		],
+	},
+	optimization: {
+		minimize: true,
+		minimizer: [new CssMinimizerPlugin()],
+	},
 
-  devtool: "source-map",
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, "src", "index.html"),
+		}),
+		new MiniCssExtractPlugin({
+			filename: "[name].css",
+		}),
+	],
+
+	devtool: "source-map",
 };
 
 /*
