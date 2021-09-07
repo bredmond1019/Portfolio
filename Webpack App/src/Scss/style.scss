@@ -1,5 +1,5 @@
-#root {
-  // background-color: blue;
+@use "root";
 
-  background: url("./../images/puppy.jpeg");
+h1 {
+	font-style: italic;
 }
