@@ -8,9 +8,10 @@ module.exports = {
   entry: __dirname + "/src/index.js",
   output: {
     path: __dirname + "/dist",
-    filename: "bundle.js",
+    filename: "[name].js",
     clean: true,
     publicPath: "",
+    chunkFilename: "[id].[hash:8].[ext]",
   },
   module: {
     rules: [
@@ -40,6 +41,7 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerPlugin()],
+    splitChunks: { chunks: "all" },
   },
 
   plugins: [
