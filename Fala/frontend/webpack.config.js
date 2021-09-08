@@ -1,4 +1,5 @@
 const path = require("path");
+var webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -9,7 +10,7 @@ module.exports = {
   output: {
     path: __dirname + "/dist",
     filename: "[name].js",
-    clean: true,
+    // clean: true,
     publicPath: "",
     chunkFilename: "[id].[hash:8].[ext]",
   },
@@ -55,6 +56,10 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
+    }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: path.resolve(__dirname, "dist", "vendor-manifest.json"),
     }),
   ],
 
