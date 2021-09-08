@@ -13,6 +13,11 @@ module.exports = {
     publicPath: "",
     chunkFilename: "[id].[hash:8].[ext]",
   },
+
+  resolve: {
+    extensions: [".js", ".jsx", ".css", ".scss"],
+  },
+
   module: {
     rules: [
       {
@@ -27,7 +32,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
