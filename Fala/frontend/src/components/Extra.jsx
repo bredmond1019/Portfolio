@@ -1,17 +1,17 @@
-console.log("Interesting");
+import React from "react";
 
 class Game {
   name = "Violin Charades";
 }
-const myGame = new Game(); // Create paragraph node
-const p = document.createElement("p");
-p.textContent = `I like ${myGame.name}.`;
-// Create heading node
-const heading = document.createElement("h1");
-heading.textContent = "Interesting!";
+const myGame = new Game();
 
-// Append SVG and heading nodes to the DOM
-const app = document.querySelector("#root");
-app.append(heading, p);
+function Extra() {
+  return (
+    <div>
+      <h1>Hello from the Extra Component</h1>
+      <p>{`I like ${myGame.name}.`}</p>
+    </div>
+  );
+}
 
-console.log(pup);
+export default Extra;
