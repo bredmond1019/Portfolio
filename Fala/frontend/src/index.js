@@ -1,5 +1,11 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./Scss/style";
+
+// ReactDOM.render(<h1>OH HEY!</h1>, document.getElementById("root"));
+
 import pup from "./images/puppy.jpeg";
-import "./Scss/style.scss";
 
 console.log("Interesting");
 

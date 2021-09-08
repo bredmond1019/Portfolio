@@ -8,14 +8,20 @@ module.exports = {
   entry: __dirname + "/src/index.js",
   output: {
     path: __dirname + "/dist",
-    filename: "bundle.js",
+    filename: "[name].js",
     clean: true,
     publicPath: "",
+    chunkFilename: "[id].[hash:8].js",
   },
+
+  resolve: {
+    extensions: [".js", ".jsx", ".css", ".scss"],
+  },
+
   module: {
     rules: [
       {
-        test: /\.(s[ac]|c)ss$/i,
+        test: /\.s?css$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -26,11 +32,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)?/,
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
-      // Images
+
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: "asset/resource",
@@ -40,6 +46,7 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerPlugin()],
+    splitChunks: { chunks: "all" },
   },
 
   plugins: [
@@ -52,6 +59,9 @@ module.exports = {
   ],
 
   devtool: "source-map",
+  devServer: {
+    hot: true,
+  },
 };
 
 /*
