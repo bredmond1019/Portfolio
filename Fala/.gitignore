@@ -3,4 +3,4 @@ venv/
 migrations/
 dist/
 node_modules/
-
+__pycache__/
