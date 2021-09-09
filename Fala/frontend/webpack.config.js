@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: __dirname + "/dist",
     filename: "[name].js",
-    // clean: true,
+    clean: true,
     publicPath: "",
     chunkFilename: "[id].[hash:8].[ext]",
   },
@@ -57,10 +57,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: path.resolve(__dirname, "dist", "vendor-manifest.json"),
-    }),
+    // new webpack.DllReferencePlugin({
+    //   context: __dirname,
+    //   manifest: path.resolve(__dirname, "dist", "vendor-manifest.json"),
+    // }),
   ],
 
   devtool: "source-map",
