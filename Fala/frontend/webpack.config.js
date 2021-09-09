@@ -64,9 +64,9 @@ module.exports = {
   ],
 
   devtool: "source-map",
-  devServer = {
+  devServer: {
     historyApiFallback: true,
-  }
+  },
 };
 
 /*
