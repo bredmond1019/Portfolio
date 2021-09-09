@@ -1,0 +1,39 @@
+.Header {
+  background: url("./images/Forest.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 300px;
+  width: 100vw;
+}
+
+.Header .heading {
+  /* background-color: green; */
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.Header .circle-shape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  height: 12rem;
+  width: 25rem;
+  border-radius: 50%;
+}
+
+.Header .header-title {
+  font-family: "Architects Daughter", cursive;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  color: #0d6efd;
+
+  height: 100px;
+  width: 100px;
+
+  letter-spacing: 6px;
+  text-shadow: -0.1em 0.1em 0.1em silver;
+}

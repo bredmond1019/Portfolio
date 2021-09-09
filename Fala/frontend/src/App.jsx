@@ -6,13 +6,14 @@ import Home from "./components/Home";
 import Lessons from "./components/Lessons";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Scss/App.scss";
 
 function App() {
   return (
     <div className="app">
       <Navigation />
       <Header />
-      <div className="image">Bem-vindo a Fala!</div>
+
       <Switch>
         <div className="App-Body">
           <Route path="/lessons" component={Lessons} />
