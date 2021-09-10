@@ -7,6 +7,7 @@ import Lessons from "./components/Lessons";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Scss/App.scss";
+import Review from "./components/Review";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Switch>
         <div className="App-Body">
           <Route path="/lessons" component={Lessons} />
+          <Route path="/review" component={Review} />
           <Route path="/" component={Home} />
         </div>
       </Switch>

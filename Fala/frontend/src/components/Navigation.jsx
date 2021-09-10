@@ -24,6 +24,10 @@ const Navigation = () => {
                   Home
                 </Nav.Link>
 
+                <Nav.Link as={Link} to="/review">
+                  Review
+                </Nav.Link>
+
                 <Nav.Link as={Link} to="/lessons">
                   Lessons
                 </Nav.Link>
