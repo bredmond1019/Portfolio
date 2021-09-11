@@ -19,7 +19,7 @@ export default function Review() {
     <div className="review">
       <h1 className="title">Vocab Review</h1>
       <button className="btn-success btn insert-btn" onClick={openForm}>
-        Insert Word
+        Add New Word
       </button>
 
       {editedWord ? <Form word={editedWord} insertWord={insertWord} /> : null}

@@ -30,15 +30,23 @@ font-family: 'Indie Flower', cursive; */
   font-family: "Amatic SC", cursive;
 }
 
+// REVIEW
+
+.review {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
 .insert-btn {
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-left: 1em;
   font-family: "Amatic SC", cursive;
   font-size: 2rem;
-  margin-left: 3em;
 }
 
 .form-wrapper {
-  margin-top: 1em;
+  margin-top: 15px;
   margin-left: 1em;
   font-family: "Amatic SC", cursive;
   font-size: 2rem;
@@ -51,12 +59,17 @@ font-family: 'Indie Flower', cursive; */
   width: 400px;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-label {
-  margin-left: 1em;
 }
 
 .form-control {
-  margin-left: 1em;
   width: 300px;
 }
 
