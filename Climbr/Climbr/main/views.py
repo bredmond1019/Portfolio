@@ -20,18 +20,18 @@ from ..decorators import admin_required
 '''
 Home Page
 '''
+
+
 @main.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('home.html')
 
 
-
-
-
-
 '''
 User's Page
 '''
+
+
 @main.route('/user/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
@@ -64,25 +64,23 @@ def upload_photo(username):
             db.session.rollback()
         finally:
             db.session.close
-            return  redirect(url_for('main.user', username=current_user.username))
+            return redirect(url_for('main.user', username=current_user.username))
     return render_template('user/upload_photo.html', form=form)
-
-
-
 
 
 @main.route('/user/<username>/edit-profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile(username):
     user = User.query.filter_by(username=username).first_or_404()
-    form = EditProfileForm(obj = user)
+    form = EditProfileForm(obj=user)
     if form.validate_on_submit():
         user = User.query.filter_by(username=username).first()
         try:
             for key in request.form:
                 setattr(user, key, request.form[key])
             db.session.commit()
-            flash(f"Alright, {user.first_name}, you've successfully update your profile")
+            flash(
+                f"Alright, {user.first_name}, you've successfully update your profile")
         except SQLAlchemyError as e:
             print(e)
             flash('Sorry, there was an error while updating your profile. \
@@ -97,15 +95,16 @@ def edit_profile(username):
 @main.route('/user/<username>/edit-climbing', methods=['GET', 'POST'])
 @login_required
 def edit_climbing(username):
-    user = User.query.filter_by(username=username).first_or_404() 
-    form = EditClimbingForm(obj = user)
+    user = User.query.filter_by(username=username).first_or_404()
+    form = EditClimbingForm(obj=user)
     if form.validate_on_submit():
         user = User.query.filter_by(username=username).first()
         try:
             for key in request.form:
                 setattr(user, key, request.form[key])
             db.session.commit()
-            flash(f"Alright, {user.first_name}, you've successfully update your profile")
+            flash(
+                f"Alright, {user.first_name}, you've successfully update your profile")
         except SQLAlchemyError as e:
             print(e)
             flash('Sorry, there was an error while updating your profile. \
@@ -117,25 +116,27 @@ def edit_climbing(username):
     return render_template('user/edit_climbing.html', form=form)
 
 
-@main.route('/edit-profile/<int:id>', methods = ['GET', 'POST'])
+@main.route('/edit-profile/<int:id>', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def edit_profile_admin(id):
     user = User.query.get_or_404(id)
-    form = EditProfileAdminForm(user=user, obj = user)
+    form = EditProfileAdminForm(user=user, obj=user)
     print(request.form)
     print(form.validate_on_submit())
     if form.validate_on_submit():
         try:
             for key in request.form:
                 if key == 'confirmed':
-                    setattr(user, key, True if request.form[key]=='y' else False)
+                    setattr(
+                        user, key, True if request.form[key] == 'y' else False)
                 elif key == 'role':
                     setattr(user, key, Role.query.get(int(request.form[key])))
                 else:
                     setattr(user, key, request.form[key])
             db.session.commit()
-            flash(f"Alright, {current_user.first_name}, you've successfully updated {user.first_name}'s profile")
+            flash(
+                f"Alright, {current_user.first_name}, you've successfully updated {user.first_name}'s profile")
         except SQLAlchemyError as e:
             print(e)
             flash('Sorry, there was an error while updating your profile. \
@@ -147,25 +148,9 @@ def edit_profile_admin(id):
     return render_template('user/edit_profile_admin.html', form=form, user=user)
 
 
-
-
-
-
 '''
 Find Partner
 '''
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 '''
@@ -191,5 +176,5 @@ Forum
 #             db.session.close()
 #         return redirect(url_for('main.forum'))
 #     posts = Post.query.order_by(Post.timestamp.desc()).all()
-    
+
 #     return render_template('forum/forum.html', form=form, posts=posts)

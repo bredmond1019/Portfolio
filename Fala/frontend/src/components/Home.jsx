@@ -7,7 +7,7 @@ const Home = () => {
   const [definition, setDefinition] = useState();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/", {
+    fetch("http://127.0.0.1:5000/api/v1/word_of_the_day", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
