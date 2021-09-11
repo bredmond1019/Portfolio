@@ -20,7 +20,7 @@ const Navigation = () => {
                 FALA!
               </Navbar.Brand>
               <Nav className="justify-content-end">
-                <Nav.Link as={Link} to="/">
+                <Nav.Link as={Link} to="/home">
                   Home
                 </Nav.Link>
 

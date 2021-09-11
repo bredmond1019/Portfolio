@@ -4,11 +4,11 @@ export default function Form(props) {
   const [review_word, setWord] = useState("");
 
   return (
-    <div>
+    <div className="form-wrapper">
       {props.word ? (
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
-            Vocab Word
+            Enter A Word
           </label>
 
           <input

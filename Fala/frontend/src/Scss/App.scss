@@ -30,6 +30,36 @@ font-family: 'Indie Flower', cursive; */
   font-family: "Amatic SC", cursive;
 }
 
+.insert-btn {
+  margin-top: 20px;
+  font-family: "Amatic SC", cursive;
+  font-size: 2rem;
+  margin-left: 3em;
+}
+
+.form-wrapper {
+  margin-top: 1em;
+  margin-left: 1em;
+  font-family: "Amatic SC", cursive;
+  font-size: 2rem;
+  background-color: black;
+  opacity: 0.6;
+  color: white;
+  border: solid;
+  border-width: 3px;
+  border-color: greenyellow;
+  width: 400px;
+}
+
+.form-label {
+  margin-left: 1em;
+}
+
+.form-control {
+  margin-left: 1em;
+  width: 300px;
+}
+
 .WordOfDay {
   padding-bottom: 1em;
   background-color: black;

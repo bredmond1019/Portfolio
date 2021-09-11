@@ -11,16 +11,10 @@ export default function Review() {
 
   return (
     <div className="review">
-      <div className="row">
-        <div className="col">
-          <h1 className="title">Vocab Review</h1>
-        </div>
-        <div className="row">
-          <button className="btn-success btn" onClick={openForm}>
-            Insert Article
-          </button>
-        </div>
-      </div>
+      <h1 className="title">Vocab Review</h1>
+      <button className="btn-success btn insert-btn" onClick={openForm}>
+        Insert Word
+      </button>
 
       {editedWord ? <Form word={editedWord} /> : null}
     </div>

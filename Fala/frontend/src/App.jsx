@@ -19,7 +19,7 @@ function App() {
         <div className="App-Body">
           <Route path="/lessons" component={Lessons} />
           <Route path="/review" component={Review} />
-          <Route path="/" component={Home} />
+          <Route path="/home" component={Home} />
         </div>
       </Switch>
     </div>
