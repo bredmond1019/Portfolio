@@ -18,6 +18,13 @@ export default function Form(props) {
             value={review_word}
             onChange={(e) => setWord(e.target.value)}
           />
+
+          <button
+            className="btn btn-success mt-3"
+            onClick={() => props.insertWord(review_word)}
+          >
+            Insert
+          </button>
         </div>
       ) : null}
     </div>

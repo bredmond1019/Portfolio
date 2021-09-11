@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form from "./Form";
+import Words from "./Words";
 
 export default function Review() {
   const [words, setWords] = useState([]);
@@ -9,6 +10,11 @@ export default function Review() {
     setEditedWord({ word: "" });
   };
 
+  const insertWord = (word) => {
+    const new_words = [...words, word];
+    setWords(new_words);
+  };
+
   return (
     <div className="review">
       <h1 className="title">Vocab Review</h1>
@@ -16,7 +22,9 @@ export default function Review() {
         Insert Word
       </button>
 
-      {editedWord ? <Form word={editedWord} /> : null}
+      {editedWord ? <Form word={editedWord} insertWord={insertWord} /> : null}
+
+      <Words words={words} />
     </div>
   );
 }
