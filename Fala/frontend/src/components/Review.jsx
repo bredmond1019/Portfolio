@@ -16,14 +16,15 @@ export default function Review() {
   };
 
   return (
-    <div className="review">
-      <h1 className="title">Vocab Review</h1>
-      <button className="btn-success btn insert-btn" onClick={openForm}>
-        Add New Word
-      </button>
+    <div className="review-container">
+      <div className="review">
+        <h1 className="title">Vocab Review</h1>
+        <button className="btn-success btn insert-btn" onClick={openForm}>
+          Add New Word
+        </button>
 
-      {editedWord ? <Form word={editedWord} insertWord={insertWord} /> : null}
-
+        {editedWord ? <Form word={editedWord} insertWord={insertWord} /> : null}
+      </div>
       <Words words={words} />
     </div>
   );

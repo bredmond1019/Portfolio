@@ -1,0 +1,41 @@
+// REVIEW
+.review-container {
+  font-family: "Amatic SC", cursive;
+}
+
+.review {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.insert-btn {
+  margin-top: 15px;
+  margin-left: 1em;
+
+  font-size: 2rem;
+}
+
+.form-wrapper {
+  margin-top: 15px;
+  margin-left: 1em;
+  font-size: 2rem;
+  background-color: black;
+  opacity: 0.6;
+  color: white;
+  border: solid;
+  border-width: 3px;
+  border-color: greenyellow;
+  width: 400px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control {
+  width: 300px;
+}

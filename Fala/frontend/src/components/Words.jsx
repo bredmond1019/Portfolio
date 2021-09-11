@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Words(props) {
   return (
-    <div className="words">
+    <div className="word-tiles">
       {props.words &&
         props.words.map((word) => {
           return (

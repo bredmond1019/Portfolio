@@ -6,6 +6,9 @@ font-family: 'Indie Flower', cursive; */
 
 @use "header";
 @use "navbar";
+@use "review";
+@use "wordoftheday";
+@use "words";
 
 .App-Body {
   background-color: #0d6efd;
@@ -28,79 +31,4 @@ font-family: 'Indie Flower', cursive; */
   font-size: 3rem;
   letter-spacing: 8px;
   font-family: "Amatic SC", cursive;
-}
-
-// REVIEW
-
-.review {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-}
-
-.insert-btn {
-  margin-top: 15px;
-  margin-left: 1em;
-  font-family: "Amatic SC", cursive;
-  font-size: 2rem;
-}
-
-.form-wrapper {
-  margin-top: 15px;
-  margin-left: 1em;
-  font-family: "Amatic SC", cursive;
-  font-size: 2rem;
-  background-color: black;
-  opacity: 0.6;
-  color: white;
-  border: solid;
-  border-width: 3px;
-  border-color: greenyellow;
-  width: 400px;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.form-label {
-}
-
-.form-control {
-  width: 300px;
-}
-
-.WordOfDay {
-  padding-bottom: 1em;
-  background-color: black;
-  opacity: 0.6;
-  color: white;
-  border: solid;
-  border-width: 3px;
-  border-color: greenyellow;
-}
-
-.definition {
-  margin-left: 5em;
-}
-
-.word {
-  /* font-family: "Indie Flower", cursive; */
-  font-size: 2.8rem;
-  text-transform: capitalize;
-  letter-spacing: 10px;
-  color: yellow;
-  font-style: italic;
-  text-shadow: -0.01em 0.01em 0.1em green;
-}
-
-.meaning {
-  margin-left: 3em;
-  grid-area: meaning;
-  font-family: "Architects Daughter", cursive;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
 }
