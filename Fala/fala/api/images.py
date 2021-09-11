@@ -1,6 +1,9 @@
 from google_images_search import GoogleImagesSearch
 from flask import jsonify, Flask
 from . import api
+from googleapiclient.discovery import build
+
+
 import requests
 
 import os
@@ -13,24 +16,25 @@ import os
 GCS_DEVELOPER_KEY = "AIzaSyAJ5jrgwgAZ7wrwm8a5F0ZLsZ1DM1bQrZc"
 GCS_CX = "b693edbf3dc61b523"
 
-gis = GoogleImagesSearch(
-    GCS_DEVELOPER_KEY,
-    GCS_CX,
-)
+# gis = GoogleImagesSearch(
+#     GCS_DEVELOPER_KEY,
+#     GCS_CX,
+# )
 
 
 @api.route("/<word>", methods=["GET"])
 def search_word(word):
-    _search_params = {
-        "q": f"{word}",
-        "num": 1,
-        # "imgSize": "SMALL",
-    }
+    service = build(
+        "customsearch",
+        "v1",
+        developerKey=GCS_DEVELOPER_KEY)
 
-    result = gis.search(
-        search_params=_search_params,
-        width=300,
-        height=300)
-    print(result)
+    res = service.cse().list(
+        q=word,
+        cx=GCS_CX,
+        num=10,
+        searchType="image",
+        lr="lang_pt"
+    ).execute()
 
-    return jsonify(result)
+    return jsonify(res)
