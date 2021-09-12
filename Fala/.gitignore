@@ -1,7 +1,9 @@
 venv/
-# config.py
+config.py
 migrations/
 dist/
 node_modules/
 __pycache__/
 .env
+image-search-fala-e814665d8941.json
+variables.py
