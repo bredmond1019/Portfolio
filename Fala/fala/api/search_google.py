@@ -1,6 +1,6 @@
 from flask import jsonify, Flask
 from . import api
-from variables import GCS_CX, GCS_DEVELOPER_KEY
+from .variables import GCS_CX, GCS_DEVELOPER_KEY
 
 from googleapiclient.discovery import build
 

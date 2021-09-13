@@ -1,3 +1,3 @@
 from flask import Blueprint
 api = Blueprint('api', __name__)
-from . import dictionary, errors, translate, search_google
+from . import dictionary, errors, translate, search_google, image_loader
