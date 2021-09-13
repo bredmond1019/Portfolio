@@ -20,16 +20,9 @@ def get_unsplash_image(term):
         "client_id": clientID
     }
 
-    for k, v in params.items():
-        url_prefix += f"{k}={v}&"
-
-    print(url_prefix)
-    print(url_prefix[:-1])
-
     response = requests.get(
-        url_prefix[:-1])
-
-    print(response.json())
+        url_prefix,
+        params=params)
 
     return response.json()[
         'results'][0]['urls']['small']
