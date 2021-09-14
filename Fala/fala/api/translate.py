@@ -32,7 +32,9 @@ def translate(word):
 
     translated = response.translations[0].translated_text
 
-    return {word: translated}
+    return {"word": word,
+            "translation": translated
+            }
 
     # # Display the translation for each input text provided
     # for translation in response.translations:

@@ -10,9 +10,39 @@ export default function Review() {
     setEditedWord({ word: "" });
   };
 
-  const insertWord = (word) => {
-    const new_words = [...words, word];
-    setWords(new_words);
+  const insertWord = (expression) => {
+    
+    fetch(`http://127.0.0.1:5000/api/v1/translate/${expression}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+    },
+  })
+  .then(resp => (resp.json()))
+  .then(resp => {
+    const { word, translation } = resp
+    
+
+    fetch(`http://127.0.0.1:5000/api/v1/image/${translation}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+    },
+    })
+    .then(resp => resp.json())
+    .then(resp => {
+      const image = resp.thumb
+      console.log(image)
+      const new_words = [...words, {word, translation, image}];
+      setWords(new_words);
+
+    })
+    .catch(error => console.log(error))
+  })
+  .catch(error => console.log(error))
+
+  
+    
   };
 
   return (

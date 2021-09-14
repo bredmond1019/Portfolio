@@ -25,7 +25,8 @@ def get_unsplash_image(term):
         params=params)
 
     return response.json()[
-        'results'][0]['urls']['small']
+        'results'][0]['urls']
+        # ['small']
 
 
 # f"https://api.unsplash.com/search/photos?page=1&query=${term}&client_id=${clientID}"
