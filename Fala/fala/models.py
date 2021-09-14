@@ -23,10 +23,27 @@ class User(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     def __repr__(self):
-        return f"<User {self.email}"
+        return f"<User {self.email}>"
 
 
 class UserSchema(ma.Schema):
     class Meta:
         fields = ('id', 'email')
 
+
+
+
+class Words(db.Model):
+    __tablename__ = 'words'
+    id = db.Column(db.Integer, primary_key=True)
+    expression = db.Column(db.String(100), unique = True)
+    url = db.Column(db.String(200))
+    translation = db.Column(db.String(100))
+
+    def __repr__(self):
+        return f"<Word: expression: {self.expression}, translation: {self.translation}, url: {self.url} >"
+    
+
+class WordSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'word', 'url', 'translation')
