@@ -26,3 +26,12 @@ def add_word():
     db.session.commit()
     return word_schema.jsonify(word)
 
+
+
+@api.route('/word/delete/<int:id>', methods = ['DELETE'])
+def delete_word(id):
+    word = Words.query.get_or_404(id)
+    db.session.delete(word)
+    db.session.commit()
+
+    return jsonify({ 'success' : True })

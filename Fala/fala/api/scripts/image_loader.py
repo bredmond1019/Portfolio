@@ -29,15 +29,3 @@ def get_unsplash_image(term):
         # ['small']
 
 
-
-
-
-'''
-This is how to send JSON back and forth
-'''
-
-# @api.route('/test', methods=['POST'])
-# def test():
-#     print(request.get_json())
-
-#     return {"Hello": "World"}

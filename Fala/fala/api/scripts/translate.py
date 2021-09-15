@@ -22,8 +22,6 @@ def translate(word):
         request={
             "parent": parent,
             "contents": [word],
-            # mime types: text/plain,
-            # text/html
             "mime_type": "text/plain",
             "source_language_code": "pt",
             "target_language_code": "en-US",
@@ -36,6 +34,4 @@ def translate(word):
             "translation": translated
             }
 
-    # # Display the translation for each input text provided
-    # for translation in response.translations:
-    #     print("Translated text: {}".format(translation.translated_text))
+ 

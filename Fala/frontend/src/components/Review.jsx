@@ -8,13 +8,7 @@ export default function Review() {
   const [editedWord, setEditedWord] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/word/get", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
+    APIService.GetWords()
       .then((resp) => setWords(resp))
       .catch((errors) => console.log(errors));
   }, []);
@@ -49,6 +43,17 @@ export default function Review() {
       .catch((error) => console.log(error));
   };
 
+  const deleteWord = (word) => {
+    const new_words = words.filter((my_word) => {
+      if (my_word.id === word.id) {
+        return false;
+      }
+      return true;
+    });
+    setWords(new_words);
+    APIService.DeleteWord(word.id);
+  };
+
   return (
     <div className="review-container">
       <div className="review">
@@ -64,7 +69,7 @@ export default function Review() {
           <Form word={editedWord} insertWord={insertWord} />
         ) : null}
       </div>
-      <Words words={words} />
+      <Words words={words} deleteWord={deleteWord} />
     </div>
   );
 }
