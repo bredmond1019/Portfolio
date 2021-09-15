@@ -1,5 +1,5 @@
 from flask import jsonify, Flask
-from . import api
+from .. import api
 from random import choice
 import requests
 

@@ -37,8 +37,14 @@ class Words(db.Model):
     __tablename__ = 'words'
     id = db.Column(db.Integer, primary_key=True)
     expression = db.Column(db.String(100), unique = True)
-    url = db.Column(db.String(200))
+    url = db.Column(db.String(400))
     translation = db.Column(db.String(100))
+
+
+    def __init__(self, expression, url, translation):
+        self.expression = expression
+        self.url = url
+        self.translation = translation
 
     def __repr__(self):
         return f"<Word: expression: {self.expression}, translation: {self.translation}, url: {self.url} >"
@@ -46,4 +52,4 @@ class Words(db.Model):
 
 class WordSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'word', 'url', 'translation')
+        fields = ('id', 'expression', 'url', 'translation')

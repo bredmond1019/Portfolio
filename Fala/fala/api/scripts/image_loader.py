@@ -1,6 +1,6 @@
 import os
 from flask import jsonify, Flask, request
-from . import api
+from .. import api
 import requests
 
 
@@ -29,7 +29,7 @@ def get_unsplash_image(term):
         # ['small']
 
 
-# f"https://api.unsplash.com/search/photos?page=1&query=${term}&client_id=${clientID}"
+
 
 
 '''

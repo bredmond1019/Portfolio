@@ -1,6 +1,7 @@
 from fala import create_app, db, ma
-from fala.models import User, Role, Words
+from fala.models import User, Role, Words, WordSchema, UserSchema
 from flask_migrate import Migrate
+
 
 
 

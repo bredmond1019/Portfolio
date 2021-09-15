@@ -1,5 +1,5 @@
 from flask import jsonify, Flask
-from . import api
+from .. import api
 from .variables import GCS_DEVELOPER_KEY, GCS_CX, PROJECT
 
 from google.cloud import translate
