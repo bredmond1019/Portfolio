@@ -32,7 +32,7 @@ def translate(word):
 
     translated = response.translations[0].translated_text
 
-    return {"word": word,
+    return {"expression": word,
             "translation": translated
             }
 

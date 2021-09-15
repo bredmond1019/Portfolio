@@ -1,5 +1,4 @@
-from flask import Flask, jsonify
-from flask import request
+from flask import Flask, jsonify, request
 from fala import db
 from fala.models import User, Role, Words, WordSchema, UserSchema
 from . import api

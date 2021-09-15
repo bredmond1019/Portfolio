@@ -7,7 +7,10 @@ export default function Form(props) {
     <div className="form-wrapper">
       {props.word ? (
         <div className="mb-3 form-container">
-          <label htmlFor="title" className="form-label">
+          <label
+            htmlFor="title"
+            className="form-label"
+          >
             Enter A Word
           </label>
 
@@ -21,7 +24,9 @@ export default function Form(props) {
           <div>
             <button
               className="btn btn-success mt-3"
-              onClick={() => props.insertWord(review_word)}
+              onClick={() =>
+                props.insertWord(review_word)
+              }
             >
               Insert
             </button>

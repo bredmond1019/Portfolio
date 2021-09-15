@@ -7,9 +7,17 @@ export default function Words(props) {
         props.words.map((word, i) => {
           return (
             <div className="word-tile" key={i}>
-              <h2 className='expression'>{word.word}</h2>
-              <h3 className="translation">{word.translation}</h3>
-              <img src={word.image} alt="" className="expression-image"/>
+              <h2 className="expression">
+                {word.expression}
+              </h2>
+              <h3 className="translation">
+                {word.translation}
+              </h3>
+              <img
+                src={word.url}
+                alt=""
+                className="expression-image"
+              />
             </div>
           );
         })}
