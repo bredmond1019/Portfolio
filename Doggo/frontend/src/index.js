@@ -1,10 +1,10 @@
-import pup from "./images/puppy.jpeg";
-import "./Scss/style.scss";
+import { BrowserRouter as Router } from "react-router-dom";
+import ReactDOM from "react-dom";
 import App from "./App";
-import square from "../vendor";
 
-import { render } from "react-dom";
-
-render(<App />, document.getElementById("root"));
-
-console.log(square(7));
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById("root")
+);
