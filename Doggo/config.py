@@ -1,3 +1,7 @@
+import os
+# from variables import DEV_DATABASE_URL
+
+
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -5,8 +9,21 @@ class Config:
     def init_app(app):
         pass
 
-class DevelopmentConfig(Config):
-    DEBUG=True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://bredmond1019:flask@localhost:5432/fala'
 
-config = {'development' : DevelopmentConfig}
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        "DEV_DATABASE_URL")
+
+
+class TestingConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        "TEST_DATABASE_URL")
+
+
+config = {
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+
+    'default': DevelopmentConfig}
