@@ -2,7 +2,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = (props) => {
   return (
     <div id="navbar-container">
       <div className="container" id="navbar">
@@ -24,13 +24,23 @@ const Navigation = () => {
                   Home
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/profile">
-                  Profile
-                </Nav.Link>
+                {!props.token ? (
+                  <>
+                    <Nav.Link as={Link} to="/login">
+                      Login
+                    </Nav.Link>
+                  </>
+                ) : (
+                  <>
+                    <Nav.Link as={Link} to="/profile">
+                      Profile
+                    </Nav.Link>
 
-                <Nav.Link as={Link} to="/dashboard">
-                  Dashboard
-                </Nav.Link>
+                    <Nav.Link as={Link} to="/dashboard">
+                      Dashboard
+                    </Nav.Link>
+                  </>
+                )}
               </Nav>
             </Navbar.Collapse>
           </Container>
