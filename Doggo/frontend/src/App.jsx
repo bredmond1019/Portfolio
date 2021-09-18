@@ -27,6 +27,7 @@ function App() {
             />
           ) : (
             <>
+              {console.log(token)}
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/profile" component={Profile} />
             </>

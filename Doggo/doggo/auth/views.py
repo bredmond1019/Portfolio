@@ -5,6 +5,7 @@ from flask_login import logout_user, login_required
 
 @auth.route('/login', methods=['POST'])
 def login():
+    print(request)
     return jsonify({"token": "SecretCodeGoesHere"})
 
 
