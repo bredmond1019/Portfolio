@@ -4,6 +4,7 @@ import os
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.getenv("SECRET_KEY", 'does not exist')
 
     @staticmethod
     def init_app(app):
@@ -17,6 +18,7 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
+    DEBUG = True
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "TEST_DATABASE_URL")

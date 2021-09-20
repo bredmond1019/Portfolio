@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+
+// Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
 
 async function loginUser(credentials) {
