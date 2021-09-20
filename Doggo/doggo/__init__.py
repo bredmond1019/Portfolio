@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 from flask_marshmallow import Marshmallow
@@ -8,6 +9,7 @@ from flask_login import LoginManager
 
 db = SQLAlchemy()
 ma = Marshmallow()
+mail = Mail()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 
@@ -20,6 +22,7 @@ def create_app(config_name):
 
     db.init_app(app)
     ma.init_app(app)
+    mail.init_app(app)
     login_manager.init_app(app)
 
     CORS(app)
@@ -28,9 +31,11 @@ def create_app(config_name):
     app.register_blueprint(main_blueprint)
 
     from .api import api as api_blueprint
-    app.register_blueprint(api_blueprint, url_prefix='/api/v1/')
+    app.register_blueprint(
+        api_blueprint, url_prefix='/api/v1/')
 
     from .auth import auth as auth_bluerint
-    app.register_blueprint(auth_bluerint, url_prefix='/auth')
+    app.register_blueprint(
+        auth_bluerint, url_prefix='/auth')
 
     return app
