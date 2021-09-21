@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, redirect, url_for
 from . import auth
 from flask_login import logout_user, login_required, login_user
 from doggo.models import User
@@ -59,5 +59,17 @@ def register():
 
 @auth.route('/confirm/<token>', methods=['GET'])
 def confirm(token):
-    print("Hello from Confirm")
-    return jsonify({"confirmed": True})
+
+    response = User.decode_auth_token(token)
+    if isinstance(response, int):
+        user_id = response
+        user = User.query.filter_by(id=user_id).first()
+        if not user.confirmed:
+            user.confirmed = True
+            db.session.commit()
+            data = {"confirmed": True,
+                    "error": None}
+        return redirect("http://localhost:8080/")
+    data = {"error": response,
+            "confirmed": False}
+    return redirect("http://localhost:8080/")
