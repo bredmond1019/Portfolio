@@ -3,6 +3,7 @@ from . import auth
 from flask_login import logout_user, login_required, login_user
 from doggo.models import User
 from doggo import db
+from doggo.emails import send_email
 
 
 @auth.route('/login', methods=['POST'])
@@ -30,12 +31,15 @@ def logout():
 @auth.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    user = User(
-        email=data['email'],
-        password=data['password']
-    )
-    db.session.add(user)
-    db.session.commit()
+    # user = User(
+    #     email=data['email'],
+    #     password=data['password']
+    # )
+    # db.session.add(user)
+    # db.session.commit()
+
+    user = User.query.filter_by(
+        email=data['email']).first()
 
     auth_token = user.encode_auth_token(
         user.id, new_user=True)
@@ -53,7 +57,7 @@ def register():
         {"message": "A confirmation email has been sent to you by email"})
 
 
-@auth.route('/confirm/<token>')
+@auth.route('/confirm/<token>', methods=['GET'])
 def confirm(token):
     print("Hello from Confirm")
     return jsonify({"confirmed": True})

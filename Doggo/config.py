@@ -6,21 +6,32 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.getenv(
         "SECRET_KEY", 'does not exist')
-    MAIL_SERVER = os.environ.get(
-        "MAIL_SERVER", 'smtp.gmail.com')
-    MAIL_PORT = int(
-        os.environ.get('MAIL_PORT', '465'))
-    MAIL_USE_TLS = os.environ.get(
-        'MAIL_USE_TLS', 'false')
-    MAIL_USE_SSL = os.environ.get(
-        "MAIL_USE_SSL", 'true')
-    MAIL_USERNAME = os.environ.get(
-        "MAIL_USERNAME")
-    MAIL_PASSWORD = os.environ.get(
-        'MAIL_PASSWORD')
+
+    # SERVER_NAME = 'localhost:5000'
+
+    # FLASK MAIL SETTINGS
+
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USERNAME = 'bj.redmond19@gmail.com'
+    MAIL_PASSWORD = "r#L$t!v1ty"
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+    # MAIL_PORT = int(
+    #     os.environ.get('MAIL_PORT', '465'))
+    # MAIL_USE_TLS = os.environ.get(
+    #     'MAIL_USE_TLS', 'true')
+    # MAIL_USE_SSL = os.environ.get(
+    #     "MAIL_USE_SSL", 'true')
+    # MAIL_USERNAME = os.environ.get(
+    #     "MAIL_USERNAME")
+    # MAIL_PASSWORD = os.environ.get(
+    #     'MAIL_PASSWORD')
     DOGGO_MAIL_SUBJECT_PREFIX = '[Doggo]'
     DOGGO_MAIL_SENDER = 'Doggo Admin <bj.redmond19@gmail.com>'
-    DOGGO = os.environ.get('DOGGO_ADMIN')
+    MAIL_DEBUG = True
+
+    DOGGO_ADMIN = os.environ.get('DOGGO_ADMIN')
 
     @staticmethod
     def init_app(app):
