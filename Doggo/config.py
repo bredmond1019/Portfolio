@@ -7,8 +7,6 @@ class Config:
     SECRET_KEY = os.getenv(
         "SECRET_KEY", 'does not exist')
 
-    # SERVER_NAME = 'localhost:5000'
-
     # FLASK MAIL SETTINGS
 
     MAIL_SERVER = 'smtp.gmail.com'
