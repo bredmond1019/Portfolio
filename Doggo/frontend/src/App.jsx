@@ -9,9 +9,10 @@ import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
+import useToken from "./components/useToken";
 
 function App() {
-  const [token, setToken] = useState(false);
+  const { token, setToken } = useToken();
 
   return (
     <div className="app">
@@ -23,12 +24,17 @@ function App() {
           {!token ? (
             <Route
               path="/login"
-              render={(props) => <Login {...props} setToken={setToken} />}
+              render={(props) => (
+                <Login {...props} setToken={setToken} />
+              )}
             />
           ) : (
             <>
               {console.log(token)}
-              <Route path="/dashboard" component={Dashboard} />
+              <Route
+                path="/dashboard"
+                component={Dashboard}
+              />
               <Route path="/profile" component={Profile} />
             </>
           )}

@@ -72,4 +72,9 @@ def confirm(token):
         return redirect("http://localhost:8080/")
     data = {"error": response,
             "confirmed": False}
-    return redirect("http://localhost:8080/")
+
+    #
+    # TODO: Build out this view
+    #
+
+    return redirect(url_for('auth.errors'), data=data)
