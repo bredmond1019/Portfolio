@@ -55,7 +55,3 @@ export default function Login(props) {
     </div>
   );
 }
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};

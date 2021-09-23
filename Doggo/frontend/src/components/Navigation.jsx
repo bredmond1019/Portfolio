@@ -1,8 +1,11 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useToken } from "./TokenProvider";
 
 const Navigation = (props) => {
+  const { token } = useToken();
+
   return (
     <div id="navbar-container">
       <div className="container" id="navbar">
@@ -24,7 +27,7 @@ const Navigation = (props) => {
                   Home
                 </Nav.Link>
 
-                {!props.token ? (
+                {!token ? (
                   <>
                     <Nav.Link as={Link} to="/login">
                       Login
