@@ -9,7 +9,8 @@ import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
-import useToken from "./components/useToken";
+import { useToken } from "./components/TokenProvider";
+import Logout from "./components/Logout";
 
 function App() {
   const { token, setToken } = useToken();
@@ -24,9 +25,9 @@ function App() {
           {!token ? (
             <Route
               path="/login"
-              render={(props) => (
-                <Login {...props} setToken={setToken} />
-              )}
+              component={Login}
+              // render={(props) => (
+              //   <Login {...props} setToken={setToken} />)}
             />
           ) : (
             <>
@@ -36,6 +37,7 @@ function App() {
                 component={Dashboard}
               />
               <Route path="/profile" component={Profile} />
+              <Route path="/logout" component={Logout} />
             </>
           )}
         </div>

@@ -39,6 +39,9 @@ const Navigation = (props) => {
                     <Nav.Link as={Link} to="/dashboard">
                       Dashboard
                     </Nav.Link>
+                    <Nav.Link as={Link} to="/logout">
+                      Log Out
+                    </Nav.Link>
                   </>
                 )}
               </Nav>

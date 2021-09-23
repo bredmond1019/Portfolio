@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
+import { useToken } from "./TokenProvider";
 
 async function loginUser(credentials) {
   return fetch("http://localhost:5000/auth/login", {
@@ -16,6 +17,7 @@ async function loginUser(credentials) {
 }
 
 export default function Login(props) {
+  const { token, saveToken } = useToken();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,7 +27,7 @@ export default function Login(props) {
       email,
       password,
     });
-    props.setToken(token);
+    saveToken(token);
   };
 
   return (
@@ -34,7 +36,10 @@ export default function Login(props) {
       <form onSubmit={handleSubmit}>
         <label>
           <p>Email:</p>
-          <input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </label>
         <label>
           <p>Password:</p>

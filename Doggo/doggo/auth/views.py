@@ -1,6 +1,6 @@
-from flask import render_template, jsonify, request, redirect, url_for
+from flask import render_template, jsonify, request, redirect, url_for, session
 from . import auth
-from flask_login import logout_user, login_required, login_user
+from flask_login import logout_user, login_required, login_user, current_user
 from doggo.models import User
 from doggo import db
 from doggo.emails import send_email
@@ -12,20 +12,24 @@ def login():
     user = User.query.filter_by(
         email=data['email']).first()
     if user is not None and user.verify_password(data['password']):
-        login_user(user)
+        # login_user(user)
         auth_token = user.encode_auth_token(
             user.id)
-
+        # print(current_user.id)
         return jsonify({"token": auth_token})
 
     return jsonify({"error": "Invalid email address or password"})
 
+# DECIDED I DIDNT NEED FLASK TO LOGOUT, CAN HANDLE ON FRONTEND
 
-@auth.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return jsonify({"logout": True})
+# @auth.route('/logout', methods=['POST'])
+# @login_required
+# def logout():
+#     # print(current_user)
+
+#     logout_user()
+
+#     return jsonify({"logout": True})
 
 
 @auth.route('/register', methods=['POST'])
