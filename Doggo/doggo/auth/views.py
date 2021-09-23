@@ -35,12 +35,17 @@ def login():
 @auth.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    # user = User(
-    #     email=data['email'],
-    #     password=data['password']
-    # )
-    # db.session.add(user)
-    # db.session.commit()
+
+    #
+    # TODO: NEED TO VALIDATE NOT ALREADY A USER
+    #
+
+    user = User(
+        email=data['email'],
+        password=data['password']
+    )
+    db.session.add(user)
+    db.session.commit()
 
     user = User.query.filter_by(
         email=data['email']).first()
@@ -48,7 +53,6 @@ def register():
     auth_token = user.encode_auth_token(
         user.id, new_user=True)
 
-    # NEED TO WRITE THIS FUNCTION STILL
     send_email(
         user.email,
         "Confirm Your Account",
