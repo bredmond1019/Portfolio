@@ -14,7 +14,7 @@ def load_user(user_id):
 
 """
 Type of Role each User can have
-    
+
     Administrator | User
 
 """
@@ -47,9 +47,9 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     confirmed = db.Column(db.Boolean, default=False)
 
-    #
-    # HASH the password
-    #
+    """
+    HASH PASSWORD
+    """
 
     @property
     def password(self):
@@ -64,8 +64,12 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    """
+    ENCODE AUTH TOKEN
+    """
+
     #
-    # ENCODE Auth Token
+    # TODO: MAKE IT SO IT GENERATES DIFFERENT TOKENS PERIODICALLY
     #
 
     def encode_auth_token(self, user_id, new_user=False):
@@ -87,9 +91,9 @@ class User(UserMixin, db.Model):
         except Exception as e:
             return e
 
-    #
-    # DECODE auth token
-    #
+    """
+    DECODE auth token
+    """
 
     @staticmethod
     def decode_auth_token(auth_token):

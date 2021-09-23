@@ -18,23 +18,17 @@ def login():
         # print(current_user.id)
         return jsonify({"token": auth_token})
 
+    # TODO: HANDLE ERROR ON THE FRONT END
+
     return jsonify({"error": "Invalid email address or password"})
-
-# DECIDED I DIDNT NEED FLASK TO LOGOUT, CAN HANDLE ON FRONTEND
-
-# @auth.route('/logout', methods=['POST'])
-# @login_required
-# def logout():
-#     # print(current_user)
-
-#     logout_user()
-
-#     return jsonify({"logout": True})
 
 
 @auth.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
+
+    # TODO: REGISTER NEW USERS TO DATABASE
+
     # user = User(
     #     email=data['email'],
     #     password=data['password']
@@ -82,3 +76,15 @@ def confirm(token):
     #
 
     return redirect(url_for('auth.errors'), data=data)
+
+
+# DECIDED I DIDNT NEED FLASK TO LOGOUT, CAN HANDLE ON FRONTEND
+
+# @auth.route('/logout', methods=['POST'])
+# @login_required
+# def logout():
+#     # print(current_user)
+
+#     logout_user()
+
+#     return jsonify({"logout": True})

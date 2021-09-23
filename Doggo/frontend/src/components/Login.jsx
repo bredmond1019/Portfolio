@@ -1,6 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import PropTypes from "prop-types";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Card,
+  Button,
+} from "react-bootstrap";
 
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
@@ -17,7 +23,7 @@ async function loginUser(credentials) {
 }
 
 export default function Login(props) {
-  const { token, saveToken } = useToken();
+  const { saveToken } = useToken();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -55,7 +61,3 @@ export default function Login(props) {
     </div>
   );
 }
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};

@@ -29,5 +29,3 @@ export default function TokenProvider({ children }) {
     </TokenContext.Provider>
   );
 }
-
-// Not sure if I'm going to use this or just he custom hook useToken

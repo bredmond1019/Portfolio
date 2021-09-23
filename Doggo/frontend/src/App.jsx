@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navigation token={token} />
+      <Navigation />
 
       <Switch>
         <div className="App-Body">
