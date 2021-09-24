@@ -6,38 +6,40 @@ import { Redirect } from "react-router";
 import regeneratorRuntime from "regenerator-runtime";
 import { useToken } from "./TokenProvider";
 import { Button, Card, Nav } from "react-bootstrap";
+import { APIService } from "./APIService";
 
 async function loginUser(request, credentials) {
-  return fetch(`http://localhost:5000/auth/${request}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
+  APIService.SignIn(request, credentials);
 }
 
-export default function Login(props) {
+export default function Login() {
   const { saveToken } = useToken();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [confirmPassword, setConfirmPassword] =
+    useState("");
   const [request, setRequest] = useState("login");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (request === "register" && password !== password2) {
+    if (
+      request === "register" &&
+      password !== confirmPassword
+    ) {
       alert("Please make sure your passwords match");
     } else {
       const response = await loginUser(request, {
         email,
         password,
       });
+
       if (request === "register") {
         alert(response.message);
         return <Redirect to="/" push={true} />;
       } else {
-        saveToken(response);
+        response.token
+          ? saveToken(response)
+          : alert(response.error);
       }
     }
   };
@@ -100,13 +102,15 @@ export default function Login(props) {
                   }
                 />
               </label>
+
+              {/* CHECK IF REGISTERING OR LOGGING IN */}
               {request === "register" ? (
                 <label>
-                  <p>Please Enter your Password again:</p>
+                  <p>Confirm Password:</p>
                   <input
                     type="password"
                     onChange={(e) =>
-                      setPassword2(e.target.value)
+                      setConfirmPassword(e.target.value)
                     }
                   />
                 </label>

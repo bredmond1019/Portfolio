@@ -15,21 +15,9 @@ def login():
         # login_user(user)
         auth_token = user.encode_auth_token(
             user.id)
-        # print(current_user.id)
         return jsonify({"token": auth_token})
 
     return jsonify({"error": "Invalid email address or password"})
-
-# DECIDED I DIDNT NEED FLASK TO LOGOUT, CAN HANDLE ON FRONTEND
-
-# @auth.route('/logout', methods=['POST'])
-# @login_required
-# def logout():
-#     # print(current_user)
-
-#     logout_user()
-
-#     return jsonify({"logout": True})
 
 
 @auth.route('/register', methods=['POST'])
@@ -39,6 +27,14 @@ def register():
     #
     # TODO: NEED TO VALIDATE NOT ALREADY A USER
     #
+
+    already_registered = User.query.filter_by(
+        email=data['email']).first()
+
+    if already_registered:
+        return jsonify(
+            {"message": "This email address is already registered."}
+        )
 
     user = User(
         email=data['email'],
@@ -86,3 +82,15 @@ def confirm(token):
     #
 
     return redirect(url_for('auth.errors'), data=data)
+
+
+# DECIDED I DIDNT NEED FLASK TO LOGOUT, CAN HANDLE ON FRONTEND
+
+# @auth.route('/logout', methods=['POST'])
+# @login_required
+# def logout():
+#     # print(current_user)
+
+#     logout_user()
+
+#     return jsonify({"logout": True})
