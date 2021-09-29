@@ -52,7 +52,14 @@ def register():
 
 @api.route('/users/<int:id>', methods=['PUT'])
 def update_user(id):
-    pass
+    user = User.query.get_or_404(id)
+    data = request.get_json() or {}
+    print(data)
+    if 'email' in data and data['email'] != user.email and User.query.filter_by(email=data['email']).first():
+        return bad_request('Please use a different email address')
+    user.from_dict(data, new_user=False)
+    db.session.commit()
+    return jsonify(user.to_dict())
 
 
 @api.route('/users/delete/<int:id>', methods=['DELETE'])
