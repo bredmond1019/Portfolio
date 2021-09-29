@@ -1,11 +1,13 @@
-from flask.helpers import url_for
 from doggo import db, ma
+from flask import current_app, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+
 from datetime import datetime, timedelta
 import jwt
-from flask import current_app
+import os
+import base64
 
 
 @login_manager.user_loader
@@ -68,19 +70,12 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
         db.DateTime, nullable=False, default=datetime.now())
     password_hash = db.Column(db.String(128), nullable=False)
     confirmed = db.Column(db.Boolean, default=False)
-    token = db.Column(db.String(32), index=True, unique=True)
+    token = db.Column(db.String(140), index=True, unique=True)
     token_exp = db.Column(db.DateTime)
 
-    #
-    # HASH the password
-    #
+    def __repr__(self):
+        return f"<User {self.email}>"
 
-    # @property
-    # def password(self):
-    #     raise AttributeError(
-    #         'password is not a readable attribute')
-
-    # @password.setter
     def set_password(self, password):
         self.password_hash = generate_password_hash(
             password)
@@ -110,62 +105,17 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
                 self.set_password(data['password'])
 
     #
-    # ENCODE Auth Token
-    #
-
-    def encode_auth_token(self, user_id, expires_in=3600):
-        now = datetime.utcnow()
-        try:
-            payload = {
-
-                'exp': now + timedelta(  # Expiration of token
-                    days=0,
-                    seconds=expires_in
-                ),
-                'iat': now,  # Time token is generated
-                'sub': user_id   # User the token is for
-            }
-            self.token = jwt.encode(
-                payload,
-                current_app.config.get(
-                    'SECRET_KEY'),
-                algorithm='HS256'
-            )
-
-            return self.token
-        except Exception as e:
-            return e
-
-    #
-    # DECODE auth token
-    #
-
-    @staticmethod
-    def decode_auth_token(auth_token):
-        try:
-            payload = jwt.decode(
-                auth_token,
-                current_app.config.get(
-                    'SECRET_KEY'),
-                algorithms="HS256"
-            )
-            return payload['sub']
-        except jwt.ExpiredSignatureError:
-            return 'Signature expired. Please log in again.'
-        except jwt.InvalidTokenError:
-            return 'Invalid token. Please log in again.'
-
-    #
     # HANDLE AUTH TOKENS
     #
 
-    def get_token(self, confirmation=False):
+    def get_token(self, expires_in=3600):
         now = datetime.utcnow()
         if self.token and self.token_exp > now + timedelta(seconds=60):
             return self.token
-        self.token = self.encode_auth_token(self.id)
-        if not confirmation:
-            db.session.add(self)
+        self.token = base64.b64encode(os.urandom(24)).decode('utf-8')
+        self.token_exp = now + timedelta(seconds=expires_in)
+
+        db.session.add(self)
         return self.token
 
     def revoke_token(self):
@@ -178,8 +128,62 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
             return None
         return user
 
-    def __repr__(self):
-        return f"<User {self.email}>"
+    #
+    # ENCODE Auth Token -- STOPED USING
+    #
+
+    # def encode_auth_token(self, user_id, expires_in=3600):
+    #     now = datetime.utcnow()
+    #     try:
+    #         payload = {
+
+    #             'exp': now + timedelta(  # Expiration of token
+    #                 days=0,
+    #                 seconds=expires_in
+    #             ),
+    #             'iat': now,  # Time token is generated
+    #             'sub': user_id   # User the token is for
+    #         }
+    #         self.token = jwt.encode(
+    #             payload,
+    #             current_app.config.get(
+    #                 'SECRET_KEY'),
+    #             algorithm='HS256'
+    #         )
+
+    #         return self.token
+    #     except Exception as e:
+    #         return e
+
+    # #
+    # # DECODE auth token
+    # #
+
+    # @staticmethod
+    # def decode_auth_token(auth_token):
+    #     try:
+    #         payload = jwt.decode(
+    #             auth_token,
+    #             current_app.config.get(
+    #                 'SECRET_KEY'),
+    #             algorithms="HS256"
+    #         )
+    #         return payload['sub']
+    #     except jwt.ExpiredSignatureError:
+    #         return 'Signature expired. Please log in again.'
+    #     except jwt.InvalidTokenError:
+    #         return 'Invalid token. Please log in again.'
+
+     #
+    # HASH the password
+    #
+
+    # @property
+    # def password(self):
+    #     raise AttributeError(
+    #         'password is not a readable attribute')
+
+    # @password.setter
 
 
 """

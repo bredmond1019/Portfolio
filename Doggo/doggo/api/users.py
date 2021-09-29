@@ -34,7 +34,8 @@ def register():
     user = User.query.filter_by(
         email=data['email']).first()
 
-    auth_token = user.get_token(confirmation=True)
+    auth_token = user.get_token()
+    db.session.commit()
 
     send_email(
         user.email,
@@ -48,6 +49,17 @@ def register():
     response.status_code = 201
     response.headers['Location'] = url_for('api.get_user', id=user.id)
     return response
+
+
+@api.route('/confirm/<token>', methods=['GET'])
+def confirm_token(token):
+    user = User.check_token(token)
+    if user:
+        user.confirmed = True
+        db.session.commit()
+        data = {"confirmed": True,
+                "error": None}
+        return data
 
 
 @api.route('/users/<int:id>', methods=['PUT'])

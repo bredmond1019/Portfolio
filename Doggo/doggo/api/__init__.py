@@ -1,7 +1,6 @@
 from flask import Blueprint
 
-api = Blueprint('api', __name__)
+api = Blueprint('api', __name__,
+                template_folder='templates')
 
 from . import dictionary, errors, users, tokens
-
-#, tokens
