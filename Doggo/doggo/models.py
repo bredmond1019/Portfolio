@@ -1,3 +1,4 @@
+from flask.helpers import url_for
 from doggo import db, ma
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -30,6 +31,27 @@ class Role(db.Model):
         return f'<Role {self.name}>'
 
 
+class PaginatedAPIMixin(object):
+    @staticmethod
+    def to_collection_dict(query, page, per_page, endpoint, **kwargs):
+        resources = query.paginate(page, per_page, False)
+        data = {
+            'items': [item.to_dict() for item in resources.items],
+            '_meta': {
+                'page': page,
+                'per_page': per_page,
+                'total_pages': resources.pages,
+                'total_items': resources.total
+            },
+            '_links': {
+                'self': url_for(endpoint, page=page, per_page=per_page, **kwargs),
+                'next': url_for(endpoint, page=page + 1, per_page=per_page, **kwargs) if resources.has_next else None,
+                'prev': url_for(endpoint, page=page - 1, per_page=per_page, **kwargs) if resources.has_prev else None
+            }
+        }
+        return data
+
+
 """
 Individual User Role
 
@@ -37,7 +59,7 @@ Individual User Role
 """
 
 
-class User(UserMixin, db.Model):
+class User(PaginatedAPIMixin, UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True, nullable=False)
@@ -67,6 +89,27 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     #
+    # JSONIFY USER INFO
+    #
+
+    def to_dict(self):
+        data = {
+            'id': self.id,
+            'email': self.email,
+            '_links': {
+                'self': url_for('api.get_user', id=self.id),
+            }
+        }
+        return data
+
+    def from_dict(self, data, new_user=False):
+        for field in ['email']:
+            if field in data:
+                setattr(self, field, data[field])
+            if new_user and 'password' in data:
+                self.password(data['password'])
+
+    #
     # ENCODE Auth Token
     #
 
@@ -88,7 +131,7 @@ class User(UserMixin, db.Model):
                     'SECRET_KEY'),
                 algorithm='HS256'
             )
-            db.session.add(self)
+
             return self.token
         except Exception as e:
             return e
@@ -120,6 +163,9 @@ class User(UserMixin, db.Model):
         now = datetime.utcnow()
         if self.token and self.token_exp > now + timedelta(seconds=60):
             return self.token
+        self.token = self.encode_auth_token(self.id)
+        db.session.add(self)
+        return self.token
 
     def revoke_token(self):
         self.token_exp = datetime.utcnow() - timedelta(second=1)
@@ -146,4 +192,4 @@ class UserSchema(ma.Schema):
 
 
 # To import these into the flask shell:
-# from app import User, Role
+# from app import User, Role, UserSchema
