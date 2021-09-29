@@ -2,7 +2,7 @@ from doggo import db, ma
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-import datetime
+from datetime import datetime, timedelta
 import jwt
 from flask import current_app
 
@@ -43,9 +43,11 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), unique=True, index=True, nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     registered_on = db.Column(
-        db.DateTime, nullable=False, default=datetime.datetime.now())
+        db.DateTime, nullable=False, default=datetime.now())
     password_hash = db.Column(db.String(128), nullable=False)
     confirmed = db.Column(db.Boolean, default=False)
+    token = db.Column(db.String(32), index=True, unique=True)
+    token_exp = db.Column(db.DateTime)
 
     #
     # HASH the password
@@ -68,22 +70,26 @@ class User(UserMixin, db.Model):
     # ENCODE Auth Token
     #
 
-    def encode_auth_token(self, user_id, new_user=False):
+    def encode_auth_token(self, user_id, expires_in=3600):
+        now = datetime.utcnow()
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(
+
+                'exp': now + timedelta(  # Expiration of token
                     days=0,
-                    seconds=3600 if new_user else 5
+                    seconds=expires_in
                 ),
-                'iat': datetime.datetime.utcnow(),
-                'sub': user_id
+                'iat': now,  # Time token is generated
+                'sub': user_id   # User the token is for
             }
-            return jwt.encode(
+            self.token = jwt.encode(
                 payload,
                 current_app.config.get(
                     'SECRET_KEY'),
                 algorithm='HS256'
             )
+            db.session.add(self)
+            return self.token
         except Exception as e:
             return e
 
@@ -105,6 +111,25 @@ class User(UserMixin, db.Model):
             return 'Signature expired. Please log in again.'
         except jwt.InvalidTokenError:
             return 'Invalid token. Please log in again.'
+
+    #
+    # HANDLE AUTH TOKENS
+    #
+
+    def get_token(self):
+        now = datetime.utcnow()
+        if self.token and self.token_exp > now + timedelta(seconds=60):
+            return self.token
+
+    def revoke_token(self):
+        self.token_exp = datetime.utcnow() - timedelta(second=1)
+
+    @staticmethod
+    def check_token(token):
+        user = User.query.filter_by(token=token).first()
+        if user is None or user.token_exp < datetime.utcnow():
+            return None
+        return user
 
     def __repr__(self):
         return f"<User {self.email}>"

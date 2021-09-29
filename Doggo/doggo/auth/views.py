@@ -24,10 +24,6 @@ def login():
 def register():
     data = request.get_json()
 
-    #
-    # TODO: NEED TO VALIDATE NOT ALREADY A USER
-    #
-
     already_registered = User.query.filter_by(
         email=data['email']).first()
 
@@ -47,7 +43,7 @@ def register():
         email=data['email']).first()
 
     auth_token = user.encode_auth_token(
-        user.id, new_user=True)
+        user.id)
 
     send_email(
         user.email,

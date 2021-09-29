@@ -1,5 +1,5 @@
 export class APIService {
-  static SignIn(request) {
+  static SignIn(request, credentials) {
     return fetch(`http://localhost:5000/auth/${request}`, {
       method: "POST",
       headers: {
