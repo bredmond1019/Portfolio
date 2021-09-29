@@ -1,17 +1,26 @@
 from doggo.api.errors import bad_request
 from . import api
-from flask import json, jsonify, request, url_for
+from flask import json, jsonify, request, url_for, abort
 from doggo.models import User
 from doggo.emails import send_email
 from app import db
+from doggo.api.auth import token_auth
+
+
+'''
+To access these routes, you must have in the headers:
+        "Authorization:Bearer <token>"
+'''
 
 
 @api.route('/users/<int:id>', methods=['GET'])
+@token_auth.login_required
 def get_user(id):
     return jsonify(User.query.get_or_404(id).to_dict())
 
 
 @api.route('/users', methods=['GET'])
+@token_auth.login_required
 def get_users():
     page = request.args.get('page', 1, type=int)
     per_page = min(request.args.get('per_page', 10, type=int), 100)
@@ -52,6 +61,7 @@ def register():
 
 
 @api.route('/confirm/<token>', methods=['GET'])
+@token_auth.login_required
 def confirm_token(token):
     user = User.check_token(token)
     if user:
@@ -63,7 +73,10 @@ def confirm_token(token):
 
 
 @api.route('/users/<int:id>', methods=['PUT'])
+@token_auth.login_required
 def update_user(id):
+    if token_auth.current_user().id != id:
+        abort(403)
     user = User.query.get_or_404(id)
     data = request.get_json() or {}
     print(data)
@@ -75,7 +88,10 @@ def update_user(id):
 
 
 @api.route('/users/delete/<int:id>', methods=['DELETE'])
+@token_auth.login_required
 def delete_user(id):
+    if token_auth.current_user().id != id:
+        abort(403)
     user = User.query.filter_by(id=id).first()
     db.session.delete(user)
     db.session.commit()
