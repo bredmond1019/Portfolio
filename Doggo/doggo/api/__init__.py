@@ -2,6 +2,6 @@ from flask import Blueprint
 
 api = Blueprint('api', __name__)
 
-from . import dictionary, errors, users
+from . import dictionary, errors, users, auth
 
-#, users, tokens#, auth
+#, tokens

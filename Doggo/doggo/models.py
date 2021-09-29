@@ -75,13 +75,13 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     # HASH the password
     #
 
-    @property
-    def password(self):
-        raise AttributeError(
-            'password is not a readable attribute')
+    # @property
+    # def password(self):
+    #     raise AttributeError(
+    #         'password is not a readable attribute')
 
-    @password.setter
-    def password(self, password):
+    # @password.setter
+    def set_password(self, password):
         self.password_hash = generate_password_hash(
             password)
 
@@ -107,7 +107,7 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
             if field in data:
                 setattr(self, field, data[field])
             if new_user and 'password' in data:
-                self.password(data['password'])
+                self.set_password(data['password'])
 
     #
     # ENCODE Auth Token
@@ -159,12 +159,13 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     # HANDLE AUTH TOKENS
     #
 
-    def get_token(self):
+    def get_token(self, confirmation=False):
         now = datetime.utcnow()
         if self.token and self.token_exp > now + timedelta(seconds=60):
             return self.token
         self.token = self.encode_auth_token(self.id)
-        db.session.add(self)
+        if not confirmation:
+            db.session.add(self)
         return self.token
 
     def revoke_token(self):
