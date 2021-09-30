@@ -11,7 +11,7 @@ export default function TokenProvider({ children }) {
     return storedData;
   };
 
-  const [token, setToken] = useState(getToken()?.token);
+  const [token, setToken] = useState(getToken()?.userToken);
   const [tokenExpirationTime, setTokenExpirationTime] = useState(
     getToken()?.expirationTime &&
       new Date(getToken().expirationTime) > new Date()
@@ -19,8 +19,12 @@ export default function TokenProvider({ children }) {
       : null
   );
 
-  const saveToken = (userToken) => {
-    const expiration = new Date(new Date().getTime() + 1000 * 60 * 60);
+  const saveToken = (userToken, expirationTime) => {
+    const expiration =
+      expirationTime || new Date(new Date().getTime() + 1000 * 60 * 60);
+    setToken(userToken);
+    setTokenExpirationTime(expiration);
+
     localStorage.setItem(
       "userData",
       JSON.stringify({
@@ -28,9 +32,6 @@ export default function TokenProvider({ children }) {
         expirationTime: expiration.toISOString(),
       })
     );
-    setToken(userToken.token);
-
-    setTokenExpirationTime(expiration);
   };
 
   return (

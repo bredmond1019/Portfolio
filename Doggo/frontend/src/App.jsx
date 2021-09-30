@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Scss/App";
@@ -13,7 +13,18 @@ import { useToken } from "./components/TokenProvider";
 import Logout from "./components/Logout";
 
 function App() {
-  const { isLoggedIn } = useToken();
+  const { isLoggedIn, saveToken } = useToken();
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (
+      storedData &&
+      storedData.userToken &&
+      new Date(storedData.expirationTime) > new Date()
+    ) {
+      saveToken(storedData.userToken, new Date(storedData.expirationTime));
+    }
+  }, []);
 
   return (
     <div className="app">

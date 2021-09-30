@@ -36,7 +36,7 @@ export default function Login() {
         return <Redirect to="/" push={true} />;
       } else {
         response.token
-          ? saveToken(response)
+          ? saveToken(response.token)
           : alert("Invalid Email or Password");
       }
     }

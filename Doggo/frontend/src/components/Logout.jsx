@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router";
+import { useState, useEffect } from "react";
 
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
@@ -23,15 +24,15 @@ export default function Logout() {
   // useEffect hook to set the timer if
   // the expiration time is in future otherwise
   // we clear the timer here
-  // useEffect(() => {
-  //   if (token && tokenExpirationTime) {
-  //     const remainingTime =
-  //       tokenExpirationTime.getTime() - new Date().getTime();
-  //     logoutTimer = setTimeout(logout, remainingTime);
-  //   } else {
-  //     clearTimeout(logoutTimer);
-  //   }
-  // }, [token, logout, tokenExpirationTime]);
+  useEffect(() => {
+    if (token && tokenExpirationTime) {
+      const remainingTime =
+        tokenExpirationTime.getTime() - new Date().getTime();
+      const logoutTimer = setTimeout(logout, remainingTime);
+    } else {
+      clearTimeout(logoutTimer);
+    }
+  }, [token, logout, tokenExpirationTime]);
 
   if (isLoggedIn) {
     return (

@@ -1,5 +1,8 @@
 import base64 from "base-64";
 
+// To access these other API routes, must have in the headers:
+//         "Authorization:Bearer <token>"
+
 export class APIService {
   static SignIn(credentials) {
     return fetch("http://localhost:5000/api/v1/register", {
