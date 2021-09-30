@@ -64,13 +64,17 @@ Individual User Role
 class User(PaginatedAPIMixin, UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(64), unique=True, index=True, nullable=False)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    email = db.Column(
+        db.String(64), unique=True, index=True, nullable=False)
+    role_id = db.Column(
+        db.Integer, db.ForeignKey('roles.id'))
     registered_on = db.Column(
         db.DateTime, nullable=False, default=datetime.now())
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(
+        db.String(128), nullable=False)
     confirmed = db.Column(db.Boolean, default=False)
-    token = db.Column(db.String(140), index=True, unique=True)
+    token = db.Column(
+        db.String(140), index=True, unique=True)
     token_exp = db.Column(db.DateTime)
 
     def __repr__(self):
@@ -112,7 +116,8 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
         now = datetime.utcnow()
         if self.token and self.token_exp > now + timedelta(seconds=60):
             return self.token
-        self.token = base64.b64encode(os.urandom(24)).decode('utf-8')
+        self.token = base64.b64encode(
+            os.urandom(24)).decode('utf-8')
         self.token_exp = now + timedelta(seconds=expires_in)
 
         db.session.add(self)

@@ -1,15 +1,24 @@
-from flask import render_template, url_for, Flask, jsonify, request
-from . import main
-from ..models import User, Role, UserSchema
-
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
+from flask import render_template, request
+from app import db
+from doggo.errors import errors
+from doggo.api.errors import error_response as api_error_response
 
 
-@main.route('/', methods=['GET'])
-def get_users():
-    all_users = User.query.all()
-    print(all_users)
-    results = users_schema.dump(all_users)
+def wants_json_response():
+    return request.accept_mimetypes['application/json'] >= \
+        request.accept_mimetypes['text/html']
 
-    return jsonify({"all_users": results})
+
+@errors.app_errorhandler(404)
+def not_found_error(error):
+    if wants_json_response():
+        return api_error_response(404)
+    return render_template('404.html'), 404
+
+
+@errors.app_errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    if wants_json_response():
+        return api_error_response(500)
+    return render_template('500.html'), 500

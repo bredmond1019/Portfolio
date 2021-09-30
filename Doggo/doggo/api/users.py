@@ -23,8 +23,10 @@ def get_user(id):
 @token_auth.login_required
 def get_users():
     page = request.args.get('page', 1, type=int)
-    per_page = min(request.args.get('per_page', 10, type=int), 100)
-    data = User.to_collection_dict(User.query, page, per_page, 'api.get_users')
+    per_page = min(request.args.get(
+        'per_page', 10, type=int), 100)
+    data = User.to_collection_dict(
+        User.query, page, per_page, 'api.get_users')
     return jsonify(data)
 
 
@@ -32,9 +34,13 @@ def get_users():
 def register():
     data = request.get_json() or {}
     if 'email' not in data or 'password' not in data:
-        return bad_request('must include email and password fields')
+        # return bad_request('must include email and password fields')
+        return jsonify('must include email and password fields')
     if User.query.filter_by(email=data['email']).first():
-        return bad_request('Please use a different email address')
+        # return bad_request('Please use a different email address')
+        return jsonify(
+            'This email address is already registered. \
+                Please try a different email address.')
     user = User()
     user.from_dict(data, new_user=True)
     db.session.add(user)
@@ -54,14 +60,18 @@ def register():
         token=auth_token
     )
 
-    response = jsonify(user.to_dict())
-    response.status_code = 201
-    response.headers['Location'] = url_for('api.get_user', id=user.id)
-    return response
+    return jsonify(
+        {"message": "A confirmation email has been sent to you by email"})
+
+    # response = jsonify(user.to_dict())
+    # response.status_code = 201
+    # response.headers['Location'] = url_for(
+    #     'api.get_user', id=user.id)
+    # return response
 
 
 @api.route('/confirm/<token>', methods=['GET'])
-@token_auth.login_required
+# @token_auth.login_required
 def confirm_token(token):
     user = User.check_token(token)
     if user:
@@ -90,6 +100,9 @@ def update_user(id):
 @api.route('/users/delete/<int:id>', methods=['DELETE'])
 @token_auth.login_required
 def delete_user(id):
+    #
+    # TODO: Make this an Administrator Only Task
+    #
     if token_auth.current_user().id != id:
         abort(403)
     user = User.query.filter_by(id=id).first()

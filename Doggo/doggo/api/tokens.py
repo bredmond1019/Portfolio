@@ -9,4 +9,5 @@ from doggo.api.auth import basic_auth
 def get_token():
     token = basic_auth.current_user().get_token()
     db.session.commit()
+    print(token)
     return jsonify({'token': token})

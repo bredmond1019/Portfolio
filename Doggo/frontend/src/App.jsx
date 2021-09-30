@@ -13,7 +13,7 @@ import { useToken } from "./components/TokenProvider";
 import Logout from "./components/Logout";
 
 function App() {
-  const { token, setToken } = useToken();
+  const { isLoggedIn } = useToken();
 
   return (
     <div className="app">
@@ -22,20 +22,12 @@ function App() {
       <Switch>
         <div className="App-Body">
           <Route path="/home" component={Home} />
-          {!token ? (
-            <Route
-              path="/login"
-              component={Login}
-              // render={(props) => (
-              //   <Login {...props} setToken={setToken} />)}
-            />
+          {!isLoggedIn ? (
+            <Route path="/login" component={Login} />
           ) : (
             <>
-              {console.log(token)}
-              <Route
-                path="/dashboard"
-                component={Dashboard}
-              />
+              {console.log(isLoggedIn)}
+              <Route path="/dashboard" component={Dashboard} />
               <Route path="/profile" component={Profile} />
               <Route path="/logout" component={Logout} />
             </>

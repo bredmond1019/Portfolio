@@ -9,23 +9,21 @@ import { Button, Card, Nav } from "react-bootstrap";
 import { APIService } from "./APIService";
 
 async function loginUser(request, credentials) {
-  APIService.SignIn(request, credentials);
+  return request === "register"
+    ? APIService.SignIn(credentials)
+    : APIService.LogIn(credentials);
 }
 
 export default function Login() {
   const { saveToken } = useToken();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] =
-    useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [request, setRequest] = useState("login");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      request === "register" &&
-      password !== confirmPassword
-    ) {
+    if (request === "register" && password !== confirmPassword) {
       alert("Please make sure your passwords match");
     } else {
       const response = await loginUser(request, {
@@ -39,7 +37,7 @@ export default function Login() {
       } else {
         response.token
           ? saveToken(response)
-          : alert(response.error);
+          : alert("Invalid Email or Password");
       }
     }
   };
@@ -58,12 +56,10 @@ export default function Login() {
             }}
           >
             <Nav.Item>
-              <Nav.Link eventKey="login">Log In</Nav.Link>
+              <Nav.Link eventKey="tokens">Log In</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="register">
-                Register
-              </Nav.Link>
+              <Nav.Link eventKey="register">Register</Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
@@ -72,15 +68,12 @@ export default function Login() {
             {request === "register" ? (
               <>
                 <span>
-                  Please Enter a valid Email Address and
-                  Create a Password.
+                  Please Enter a valid Email Address and Create a Password.
                 </span>
               </>
             ) : (
               <>
-                <span>
-                  Please Enter your Username and Password.
-                </span>
+                <span>Please Enter your Username and Password.</span>
               </>
             )}
           </Card.Title>
@@ -88,18 +81,13 @@ export default function Login() {
             <form onSubmit={handleSubmit}>
               <label>
                 <p>Email:</p>
-                <input
-                  type="text"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <input type="text" onChange={(e) => setEmail(e.target.value)} />
               </label>
               <label>
                 <p>Password:</p>
                 <input
                   type="password"
-                  onChange={(e) =>
-                    setPassword(e.target.value)
-                  }
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
 
@@ -109,9 +97,7 @@ export default function Login() {
                   <p>Confirm Password:</p>
                   <input
                     type="password"
-                    onChange={(e) =>
-                      setConfirmPassword(e.target.value)
-                    }
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </label>
               ) : null}

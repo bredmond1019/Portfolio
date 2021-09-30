@@ -4,11 +4,11 @@ Welcome to Doggo!
 
 To confirm your account please click on the following link:
 
-
+{{ url_for('api.confirm_token', token=token, _external=True) }}
 
 Sincerely, 
 
-The Doggo __tablename__
+The Doggo Team
 
 
 

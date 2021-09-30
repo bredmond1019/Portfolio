@@ -3,4 +3,4 @@ from flask import Blueprint
 api = Blueprint('api', __name__,
                 template_folder='templates')
 
-from . import dictionary, errors, users, tokens
+from . import errors, users, tokens

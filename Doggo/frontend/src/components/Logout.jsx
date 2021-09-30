@@ -6,14 +6,34 @@ import regeneratorRuntime from "regenerator-runtime";
 import { useToken } from "./TokenProvider";
 
 export default function Logout() {
-  const { token, setToken } = useToken();
+  const {
+    isLoggedIn,
+    setToken,
+    setTokenExpirationTime,
+    tokenExpirationTime,
+    token,
+  } = useToken();
 
   const logout = () => {
-    localStorage.clear("token");
+    localStorage.clear("userData");
     setToken(false);
+    setTokenExpirationTime(null);
   };
 
-  if (token) {
+  // useEffect hook to set the timer if
+  // the expiration time is in future otherwise
+  // we clear the timer here
+  // useEffect(() => {
+  //   if (token && tokenExpirationTime) {
+  //     const remainingTime =
+  //       tokenExpirationTime.getTime() - new Date().getTime();
+  //     logoutTimer = setTimeout(logout, remainingTime);
+  //   } else {
+  //     clearTimeout(logoutTimer);
+  //   }
+  // }, [token, logout, tokenExpirationTime]);
+
+  if (isLoggedIn) {
     return (
       <div>
         <h2>Press LOG OUT to completely log out.</h2>
