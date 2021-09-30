@@ -38,4 +38,7 @@ def create_app(config_name):
     app.register_blueprint(
         auth_bluerint, url_prefix='/auth')
 
+    from .errors import errors as errors_blueprint
+    app.register_blueprint(errors_blueprint)
+
     return app
