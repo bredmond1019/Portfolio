@@ -13,40 +13,70 @@ import { useToken } from "./components/TokenProvider";
 import Logout from "./components/Logout";
 
 function App() {
-  const { isLoggedIn, saveToken } = useToken();
+	const {
+		isLoggedIn,
+		saveToken,
+		setToken,
+		setTokenExpirationTime,
+		logout,
+		token,
+		tokenExpirationTime,
+	} = useToken();
 
-  useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (
-      storedData &&
-      storedData.userToken &&
-      new Date(storedData.expirationTime) > new Date()
-    ) {
-      saveToken(storedData.userToken, new Date(storedData.expirationTime));
-    }
-  }, []);
+	useEffect(() => {
+		const storedData = JSON.parse(localStorage.getItem("userData"));
+		if (
+			storedData &&
+			storedData.userToken &&
+			new Date(storedData.expirationTime) > new Date()
+		) {
+			saveToken(storedData.userToken, new Date(storedData.expirationTime));
+		} else {
+			localStorage.clear("userData");
+			setToken(false);
+			setTokenExpirationTime(null);
+		}
+	}, []);
 
-  return (
-    <div className="app">
-      <Navigation />
+	//
+	// TODO: FIX THIS
+	//
 
-      <Switch>
-        <div className="App-Body">
-          <Route path="/home" component={Home} />
-          {!isLoggedIn ? (
-            <Route path="/login" component={Login} />
-          ) : (
-            <>
-              {console.log(isLoggedIn)}
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/logout" component={Logout} />
-            </>
-          )}
-        </div>
-      </Switch>
-    </div>
-  );
+	// useEffect hook to set the timer if
+	// the expiration time is in future otherwise
+	// we clear the timer here
+	useEffect(() => {
+		let logoutTimer = (f) => f;
+		if (token && tokenExpirationTime) {
+			const remainingTime =
+				tokenExpirationTime.getTime() - new Date().getTime();
+			logoutTimer = setTimeout(logout, remainingTime);
+			console.log(logoutTimer);
+		} else {
+			clearTimeout(logoutTimer);
+		}
+	}, [token, logout, tokenExpirationTime]);
+
+	return (
+		<div className="app">
+			<Navigation />
+
+			<Switch>
+				<div className="App-Body">
+					<Route path="/home" component={Home} />
+					{!isLoggedIn ? (
+						<Route path="/login" component={Login} />
+					) : (
+						<>
+							<Route path="/dashboard" component={Dashboard} />
+							<Route path="/profile" component={Profile} />
+							<Route path="/logout" component={Logout} />
+						</>
+					)}
+				</div>
+			</Switch>
+		</div>
+	);
 }
 
 export default App;

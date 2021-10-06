@@ -34,6 +34,12 @@ export default function TokenProvider({ children }) {
     );
   };
 
+  const logout = () => {
+    localStorage.clear("userData");
+    setToken(false);
+    setTokenExpirationTime(null);
+  };
+
   return (
     <TokenContext.Provider
       value={{
@@ -43,6 +49,7 @@ export default function TokenProvider({ children }) {
         isLoggedIn: !!token,
         setTokenExpirationTime,
         tokenExpirationTime,
+        logout,
       }}
     >
       {children}
