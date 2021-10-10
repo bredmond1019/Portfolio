@@ -7,35 +7,23 @@ import { useToken } from "./TokenProvider";
 export default function GoogleAuth(props) {
   const { saveToken } = useToken();
 
-  const onSuccess = async (res) => {
+  const onSuccess = async (googleData) => {
     const credentials = {
-      email: res.profileObj.email,
-      token: res.accessToken,
-      password: res.profileObj.googleId,
+      email: googleData.profileObj.email,
+      token: googleData.accessToken,
+      password: googleData.profileObj.googleId,
       google: true,
     };
-    if (props.request === "register") {
-      const response = await APIService.SignUp(credentials);
-      if (!response.success) {
-        return alert(
-          "There was an error. The administrators have been notified. Please try again later."
-        );
-      }
-    }
+
+    const response = await APIService.GoogleLogIn(credentials);
+    console.log(response);
     saveToken(credentials.token);
 
-    console.log("[Login Success] currentUser:", res.profileObj);
+    console.log("[Login Success] currentUser:", googleData.profileObj);
   };
 
   const onFailure = (res) => {
     console.log("[Login Failed] res:", res);
-  };
-
-  const googleResponse = (res) => {
-    console.log(res);
-    console.log(res.accessToken);
-    console.log(res.profileObj.email);
-    console.log(res.profileObj.googleId);
   };
 
   return (
@@ -44,7 +32,7 @@ export default function GoogleAuth(props) {
         clientId={process.env.GOOGLE_CLIENT_ID}
         buttonText="Log in with Google"
         onSuccess={onSuccess}
-        onFailure={googleResponse}
+        onFailure={onFailure}
         cookiePolicy={"single_host_origin"}
       />
     </div>

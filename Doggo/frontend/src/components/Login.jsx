@@ -18,11 +18,13 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     let response;
     const credentials = {
       email,
       password,
     };
+
     if (request === "register") {
       if (password !== confirmPassword) {
         return alert("Please make sure your passwords match");
@@ -104,7 +106,9 @@ export default function Login() {
               </Button>
             </form>
           </Card.Text>
-          <GoogleAuthLogin />
+
+          {/* HERE IS THE GOOGLE AUTH LOGIN COMPONENT */}
+          <GoogleAuthLogin handleSubmit={handleSubmit} />
         </Card.Body>
       </Card>
     </div>

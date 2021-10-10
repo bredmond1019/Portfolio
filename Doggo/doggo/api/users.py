@@ -34,8 +34,22 @@ def get_users():
 @api.route('/google_login', methods=['POST'])
 def google_login():
     data = request.get_json()
-    if User.query.filter_by(email=data['email']).first():
-        pass
+    data['token_exp'] = datetime.utcnow() + timedelta(seconds=3600)
+    user = User.query.filter_by(email=data['email']).first()
+    if user:
+        data.pop('email')
+        user.from_dict(data)
+    else:
+        user = User()
+        user.from_dict(data, new_user=True)
+        db.session.add(user)
+
+    db.session.commit()
+
+    response = jsonify(user.to_dict())
+    response.status_code = 201
+    response.headers['Location'] = url_for('api.get_user', id=user.id)
+    return response
 
 
 @api.route('/register', methods=['POST'])
@@ -49,8 +63,6 @@ def register():
         return jsonify(
             'This email address is already registered. \
                 Please try a different email address.')
-    if data['google']:
-        data['token_exp'] = datetime.utcnow() + timedelta(seconds=3600)
 
     user = User()
     user.from_dict(data, new_user=True)
@@ -59,13 +71,6 @@ def register():
 
     user = User.query.filter_by(
         email=data['email']).first()
-
-    if data['google']:
-        return jsonify({"success": True})
-        # response = jsonify(user.to_dict())
-        # response.status_code = 201
-        # response.headers['Location'] = url_for('api.get_user', id=user.id)
-        # return response
 
     auth_token = user.get_token()
     db.session.commit()
