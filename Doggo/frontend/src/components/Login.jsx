@@ -64,51 +64,48 @@ export default function Login() {
         </Card.Header>
         <Card.Body>
           <Card.Title>
-            {request === "register" ? (
-              <>
-                <span>
-                  Please Enter a valid Email Address and Create a Password.
-                </span>
-              </>
-            ) : (
-              <>
-                <span>Please Enter your Username and Password.</span>
-              </>
-            )}
+            <span>Please Enter your Username and Password.</span>
           </Card.Title>
           <Card.Text>
             <form onSubmit={handleSubmit}>
-              <label>
-                <p>Email:</p>
-                <input type="text" onChange={(e) => setEmail(e.target.value)} />
-              </label>
-              <label>
-                <p>Password:</p>
-                <input
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </label>
-
-              {/* CHECK IF REGISTERING OR LOGGING IN */}
-              {request === "register" ? (
-                <label>
-                  <p>Confirm Password:</p>
+              <div className="form-wrapper">
+                <label className="input">
+                  <p className="input-title">Email:</p>
                   <input
-                    type="password"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    type="text"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
-              ) : null}
+                <label className="input">
+                  <p className="input-title">Password:</p>
+                  <input
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </label>
 
-              <Button variant="primary" type="submit">
-                SUBMIT
-              </Button>
+                {/* CHECK IF REGISTERING OR LOGGING IN */}
+                {request === "register" ? (
+                  <label className="input">
+                    <p className="input-title">Confirm Password:</p>
+                    <input
+                      type="password"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                  </label>
+                ) : null}
+
+                <Button variant="primary" type="submit">
+                  SUBMIT
+                </Button>
+              </div>
             </form>
+            <hr />
+            {/* HERE IS THE GOOGLE AUTH LOGIN COMPONENT */}
+            <div className="google-auth-wrapper">
+              <GoogleAuthLogin handleSubmit={handleSubmit} />
+            </div>
           </Card.Text>
-
-          {/* HERE IS THE GOOGLE AUTH LOGIN COMPONENT */}
-          <GoogleAuthLogin handleSubmit={handleSubmit} />
         </Card.Body>
       </Card>
     </div>
