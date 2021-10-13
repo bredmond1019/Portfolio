@@ -8,7 +8,7 @@ const Navigation = (props) => {
 
   return (
     <div id="navbar-container">
-      <div className="container" id="navbar">
+      <div id="navbar">
         <Navbar
           collapseOnSelect
           sticky="top"

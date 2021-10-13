@@ -6,6 +6,7 @@ from doggo.emails import send_email
 from app import db
 from doggo.api.auth import token_auth
 from datetime import datetime, timedelta
+import requests
 
 
 '''
@@ -34,7 +35,8 @@ def get_users():
 @api.route('/google_login', methods=['POST'])
 def google_login():
     data = request.get_json()
-    data['token_exp'] = datetime.utcnow() + timedelta(seconds=3600)
+    data['token_exp'] = datetime.utcnow() + \
+        timedelta(seconds=3600)
     user = User.query.filter_by(email=data['email']).first()
     if user:
         data.pop('email')
@@ -48,7 +50,8 @@ def google_login():
 
     response = jsonify(user.to_dict())
     response.status_code = 201
-    response.headers['Location'] = url_for('api.get_user', id=user.id)
+    response.headers['Location'] = url_for(
+        'api.get_user', id=user.id)
     return response
 
 
@@ -126,3 +129,15 @@ def delete_user(id):
     db.session.delete(user)
     db.session.commit()
     return jsonify({"message": "User has been deleted"})
+
+
+@api.route('/dog_pic', methods=['GET'])
+def get_dog_image():
+    url_prefix = "https://dog.ceo/api/breeds/image/random"
+
+    params = {}
+
+    response = requests.get(url_prefix)
+
+    print(response.json())
+    return response.json()

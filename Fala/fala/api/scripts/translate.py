@@ -8,8 +8,7 @@ from google.cloud import translate
 client = translate.TranslationServiceClient()
 
 
-@api.route("/translate/<word>",
-           methods=["GET"])
+@api.route("/translate/<word>", methods=["GET"])
 def translate(word):
 
     location = "global"
@@ -33,5 +32,3 @@ def translate(word):
     return {"expression": word,
             "translation": translated
             }
-
- 

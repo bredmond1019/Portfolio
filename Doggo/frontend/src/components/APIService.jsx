@@ -37,4 +37,14 @@ export class APIService {
     });
     return await data.json();
   }
+
+  static async GetDogPhoto() {
+    const photo = await fetch("http://localhost:5000/api/v1/dog_pic", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await photo.json();
+  }
 }
