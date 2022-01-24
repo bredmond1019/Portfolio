@@ -12,9 +12,8 @@ function App() {
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/home" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
       </Routes>
-      <Landing />
     </div>
   );
 }

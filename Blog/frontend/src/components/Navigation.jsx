@@ -8,17 +8,21 @@ const Navigation = () => {
       <div id="navbar">
         <Navbar
           collapseOnSelect
-          sticky="top"
+          fixed="top"
           expand="sm"
-          bg="primary"
-          variant="dark"
+          // bg="primary"
+          // variant="dark"
         >
           <Container>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Navbar.Brand as={Link} to="/home"></Navbar.Brand>
+              <Navbar.Brand as={Link} to="/"></Navbar.Brand>
 
               <Nav className="justify-content-end">
+                <Nav.Link as={Link} to="/">
+                  Home
+                </Nav.Link>
+
                 <Nav.Link as={Link} to="/about">
                   About
                 </Nav.Link>

@@ -39,7 +39,7 @@ module.exports = {
       },
       // Images
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
         type: "asset/resource",
       },
     ],
@@ -64,6 +64,9 @@ module.exports = {
   ],
 
   devtool: "source-map",
+  devServer: {
+    historyApiFallback: true,
+  },
 };
 
 /*
