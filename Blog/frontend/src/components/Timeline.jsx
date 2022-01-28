@@ -1,12 +1,12 @@
 import React from "react";
 
-import puppy from "./../images/puppy.jpeg";
 import math1 from "./../images/math1.jpg";
 import math_masters from "./../images/math_masters.jpg";
 import classroom from "./../images/classroom.jpg";
 import uber from "./../images/uber.svg";
 import software_developer from "./../images/software_developer.png";
 import math_teacher2 from "./../images/math_teacher2.jpg";
+import mountain from "./../images/mountain2.jpg";
 
 function Timeline() {
   return (
@@ -123,6 +123,13 @@ function Timeline() {
                 <h1 className="tile-title">2020 - Present</h1>
                 <p className="tile-detail">Software Developer</p>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="final-image-wrapper">
+          <div className="memory-image">
+            <div className="image-container">
+              <img src={mountain} alt="" className="image-style" />
             </div>
           </div>
         </div>
