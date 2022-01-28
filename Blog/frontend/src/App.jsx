@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 import Landing from "./components/Landing";
-import About from "./components/About";
+import AboutPage from "./components/AboutPage";
 import Blog from "./components/Blog";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div>
       <Navigation />
       <Routes>
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/" element={<Landing />} />
       </Routes>
