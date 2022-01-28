@@ -1,0 +1,74 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 85px 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.timeline-header {
+  padding-bottom: 40px;
+}
+
+.timeline-items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: center;
+  width: 300px;
+  height: 200px;
+}
+
+.timeline-item:nth-child(even) {
+  margin-left: 50%;
+}
+.timeline-item:nth-child(odd) {
+  margin-right: 50%;
+}
+
+.memory-image {
+  position: absolute;
+
+  left: 45%;
+  width: 120px;
+  height: 120px;
+  //   margin-right: -60px;
+}
+
+.image-container {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.image-style {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 1;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item::before {
+  left: calc(50% - 10px);
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e4e4e4;
+}

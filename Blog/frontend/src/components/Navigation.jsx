@@ -30,6 +30,10 @@ const Navigation = () => {
                 <Nav.Link as={Link} to="/blog">
                   Blog
                 </Nav.Link>
+
+                <Nav.Link as={Link} to="/blog">
+                  Projects
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

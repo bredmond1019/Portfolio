@@ -1,0 +1,46 @@
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  //   min-height: 100vh;
+  padding: 150px 100px;
+  background: black;
+  font-family: "Fira Mono", monospace;
+  height: 1000px;
+}
+
+// .about {
+//   width: 100%;
+//   height: 100vh;
+//   display: grid;
+//   grid-template-columns: 30% 65%;
+//   grid-gap: 40px;
+//   color: white;
+//   margin-bottom: 40px;
+// }
+
+.about {
+  display: flex;
+  color: white;
+}
+
+.about-info {
+  text-align: center;
+  max-height: 100vh;
+  padding-left: 100px;
+}
+
+.about-info-text {
+  opacity: 0.8;
+  font-size: 1.2rem;
+  line-height: 40px;
+  opacity: 0.8;
+}
+
+.about-img {
+  width: 300px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 20px;
+}
