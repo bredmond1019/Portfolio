@@ -1,12 +1,12 @@
 import React from "react";
 
-import math1 from "./../images/math1.jpg";
-import math_masters from "./../images/math_masters.jpg";
-import classroom from "./../images/classroom.jpg";
-import uber from "./../images/uber.svg";
-import software_developer from "./../images/software_developer.png";
-import math_teacher2 from "./../images/math_teacher2.jpg";
-import mountain from "./../images/mountain2.jpg";
+import math1 from "./../images/time_line/math1.jpg";
+import math_masters from "./../images/time_line/math_masters.jpg";
+import classroom from "./../images/time_line/classroom.jpg";
+import uber from "./../images/time_line/uber.svg";
+import software_developer from "./../images/time_line/software_developer.png";
+import math_teacher2 from "./../images/time_line/math_teacher2.jpg";
+import mountain from "./../images/time_line/mountain2.jpg";
 
 function Timeline() {
   return (

@@ -1,10 +1,90 @@
+// .tech-stack {
+//   background-color: #00c853;
+//   border-bottom: 2px solid #0d6efd;
+//   height: 600px;
+
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+// }
+
 .tech-stack {
-  background-color: #00c853;
+  position: relative;
+  background-color: #734ae8;
+  background-image: linear-gradient(315deg, #734ae8 0%, #89d4cf 74%);
+
   border-bottom: 2px solid #0d6efd;
   height: 600px;
+  padding: 85px 200px;
+  color: white;
 
+  // font-family: "Viga", sans-serif;
+  font-family: "Fira Mono", monospace;
+  // font-family: "Cuprum", sans-serif;
+  // font-family: "Architects Daughter", cursive;
+  // text-transform: uppercase;
+
+  display: grid;
+  grid-template-rows: [header-start] 1fr [description-start] 1fr [icon-start] 2fr [footer-start] 2fr;
+  grid-template-columns: [icon1] 1fr [icon2] 1fr [icon3] 1fr [icon4] 1fr;
+  grid-template-areas:
+    "header header header header"
+    "description description description description"
+    "icon1 icon2 icon3 icon4"
+    "footer footer footer footer";
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tech-stack-header {
+  grid-area: header;
+  opacity: 1;
+}
+.description {
+  // text-transform: uppercase;
+  opacity: 0.8;
+  grid-area: description;
+  margin-bottom: 60px;
+}
+.python {
+  grid-area: icon1;
+}
+.flask {
+  grid-area: icon2;
+}
+.react {
+  grid-area: icon3;
+}
+.javascript {
+  grid-area: icon4;
+}
+
+.icon-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.tech-stack-title {
+  font-size: 3rem;
+}
+
+.icon-title {
+  opacity: 0.8;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.icon-img-container {
+  width: 100px;
+  height: 100px;
+}
+
+.icon-img {
+  width: 100%;
+  height: 100%;
 }

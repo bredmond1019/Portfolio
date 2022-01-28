@@ -1,10 +1,10 @@
 import React from "react";
 
-import profile_pic from "./../images/profile_pic.png";
-import github from "./../images/github.svg";
-import linkedin from "./../images/linkedin.svg";
-import insta from "./../images/insta.svg";
-import email from "./../images/email.svg";
+import profile_pic from "./../images/contact_info/profile_pic.png";
+import github from "./../images/contact_info/github.svg";
+import linkedin from "./../images/contact_info/linkedin.svg";
+import insta from "./../images/contact_info/insta.svg";
+import email from "./../images/contact_info/email.svg";
 
 function Contact_Info() {
   return (

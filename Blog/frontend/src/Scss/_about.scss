@@ -7,7 +7,8 @@
   padding: 150px 100px;
   background: black;
   font-family: "Fira Mono", monospace;
-  height: 1000px;
+  // height: 1000px;
+  height: 100vh;
   border-bottom: 2px solid #0d6efd;
 }
 
@@ -34,7 +35,7 @@
 
 .about-info-text {
   opacity: 0.8;
-  font-size: 1.2rem;
+  font-size: 1.2em;
   line-height: 40px;
   opacity: 0.8;
 }
