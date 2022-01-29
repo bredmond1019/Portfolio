@@ -1,0 +1,74 @@
+.blog-page-wrapper {
+  display: flex;
+  justify-content: center;
+  //   background:
+  //     // #0d6efd,
+  //     linear-gradient(rgba(13, 110, 253, 0.98), rgba(13, 110, 253, 0.98)),
+  //     url("./../images/geometric.jpg");
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   color: white;
+  //   background-color: #0d6efd;
+  min-height: 100vh;
+}
+
+.blog-main-title-wrapper {
+  font-family: "Architects Daughter", cursive;
+  font-weight: bold;
+  //   font-size: 48px;
+  text-transform: uppercase;
+  //   color: #fff;
+  //   text-shadow: -0.01em 0.01em 0.1em black;
+  //   background-color: #0d6efd;
+}
+
+.blog-main-page {
+  display: flex;
+  flex-direction: column;
+  max-width: 960px;
+  padding: 85px 20px;
+}
+
+.blog-articles-info-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-article-box-wrapper {
+  display: flex;
+  margin-bottom: 30px;
+  padding: 20px 15px;
+  font-family: "Cuprum", sans-serif;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.blog-article-box-wrapper:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+.blog-article-image-wrapper {
+  width: 250px;
+  height: 200px;
+  margin-right: 30px;
+}
+
+.blog-article-image {
+  width: 100%;
+  height: 100%;
+}
+
+.blog-article-title {
+  font-family: "Cuprum", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+.blog-article-description {
+  font-size: 1.15rem;
+}
+
+.blog-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+}

@@ -1,3 +1,10 @@
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  justify-content: center;
+}
+
 .about-section {
   display: flex;
   flex-direction: column;
@@ -10,6 +17,13 @@
   // height: 1000px;
   height: 100vh;
   border-bottom: 2px solid #0d6efd;
+
+  // background:
+  // // #0d6efd,
+  //   linear-gradient(rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.9)),
+  //   url("./../images/geometric.jpg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
 }
 
 // .about {
@@ -31,6 +45,9 @@
   text-align: center;
   max-height: 100vh;
   padding-left: 100px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
 }
 
 .about-info-text {
