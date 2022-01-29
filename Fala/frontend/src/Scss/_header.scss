@@ -1,9 +1,15 @@
 .Header {
-  background: url("./images/Forest.png");
+  background: url("./../images/Forest.png");
   background-size: cover;
   background-position: center;
   min-height: 300px;
   width: 100vw;
+  height: 60vh;
+  max-height: 800px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .Header .heading {

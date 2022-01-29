@@ -9,13 +9,7 @@ font-family: 'Indie Flower', cursive; */
 @use "review";
 @use "wordoftheday";
 @use "words";
-
-.App-Body {
-  background-color: #0d6efd;
-  height: 100vh;
-  background-size: cover;
-  font-family: "Brush Script MT", cursive;
-}
+@use "home";
 
 .Component-Body {
   background-color: #0d6efd;

@@ -1,6 +1,7 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 
 const Navigation = () => {
   return (
@@ -8,23 +9,21 @@ const Navigation = () => {
       <div className="container" id="navbar">
         <Navbar
           collapseOnSelect
-          sticky="top"
+          fixed="top"
           expand="sm"
-          bg="primary"
-          variant="dark"
+          // bg="primary"
+          // variant="dark"
         >
           <Container>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Navbar.Brand as={Link} to="/home">
-                FALA!
-              </Navbar.Brand>
+              <Navbar.Brand as={Link} to="/"></Navbar.Brand>
               <Nav className="justify-content-end">
-                <Nav.Link as={Link} to="/home">
+                <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/review">
+                <Nav.Link as={NavHashLink} to="/#review">
                   Review
                 </Nav.Link>
 
