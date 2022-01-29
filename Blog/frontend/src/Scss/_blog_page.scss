@@ -1,32 +1,29 @@
 .blog-page-wrapper {
   display: flex;
   justify-content: center;
-  //   background:
-  //     // #0d6efd,
-  //     linear-gradient(rgba(13, 110, 253, 0.98), rgba(13, 110, 253, 0.98)),
-  //     url("./../images/geometric.jpg");
-  //   background-repeat: no-repeat;
-  //   background-size: cover;
-  //   color: white;
-  //   background-color: #0d6efd;
+
+  color: #00c853;
   min-height: 100vh;
+  background:
+      // #0d6efd,
+    linear-gradient(rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.98)),
+    url("./../images/geometric.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .blog-main-title-wrapper {
   font-family: "Architects Daughter", cursive;
   font-weight: bold;
-  //   font-size: 48px;
+
   text-transform: uppercase;
-  //   color: #fff;
-  //   text-shadow: -0.01em 0.01em 0.1em black;
-  //   background-color: #0d6efd;
 }
 
 .blog-main-page {
   display: flex;
   flex-direction: column;
-  max-width: 960px;
-  padding: 85px 20px;
+  max-width: 1260px;
+  padding: 85px 40px;
 }
 
 .blog-articles-info-wrapper {
@@ -39,11 +36,11 @@
   margin-bottom: 30px;
   padding: 20px 15px;
   font-family: "Cuprum", sans-serif;
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px solid #0d6efd;
 }
 
 .blog-article-box-wrapper:hover {
-  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  box-shadow: 0 0 11px #ffad05;
 }
 
 .blog-article-image-wrapper {
@@ -71,4 +68,21 @@
   display: flex;
   flex-direction: column;
   flex: 1 1;
+}
+
+.blog-articles-wrapper {
+  display: flex;
+}
+
+.side-panel {
+  margin-left: 40px;
+
+  width: 200px;
+  height: calc(100% - 30px);
+  background:
+      // #0d6efd,
+    linear-gradient(rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.9)),
+    url("./../images/geometric.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

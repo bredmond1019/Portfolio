@@ -12,18 +12,18 @@
   width: 100%;
   //   min-height: 100vh;
   padding: 150px 100px;
-  background: black;
+  // background: black;
   font-family: "Fira Mono", monospace;
   // height: 1000px;
   height: 100vh;
   border-bottom: 2px solid #0d6efd;
 
-  // background:
-  // // #0d6efd,
-  //   linear-gradient(rgba(13, 110, 253, 0.9), rgba(13, 110, 253, 0.9)),
-  //   url("./../images/geometric.jpg");
-  // background-repeat: no-repeat;
-  // background-size: cover;
+  background:
+      // #0d6efd,
+    linear-gradient(rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.98)),
+    url("./../images/geometric.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 // .about {
