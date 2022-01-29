@@ -5,7 +5,7 @@ import Contact_Info from "./Contact_Info";
 export default function Landing() {
   return (
     <div>
-      <div className="landing-wrapper">
+      <div id="landing-wrapper" className="landing-wrapper">
         <div className="landing-page">
           <h1 className="title">Brandon Redmond</h1>
           <h2 className="title-description">

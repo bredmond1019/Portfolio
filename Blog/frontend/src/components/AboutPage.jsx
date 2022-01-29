@@ -4,7 +4,7 @@ import TechStack from "./TechStack";
 
 function AboutPage() {
   return (
-    <div className="about-wrapper">
+    <div id="about-wrapper" className="about-wrapper">
       <About />
       <TechStack />
       <Timeline />

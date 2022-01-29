@@ -3,7 +3,7 @@ import Brandon from "./../images/Brandon2.jpeg";
 
 function About() {
   return (
-    <div className="about-section">
+    <div id="about-section" className="about-section">
       <div className="about">
         <div className="about-img-container">
           <img src={Brandon} className="about-img" alt="" />

@@ -1,8 +1,11 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 
-const Navigation = () => {
+const Navigation = (props) => {
+  const location = useLocation();
+
   return (
     <div id="navbar-container">
       <div id="navbar">
@@ -18,20 +21,20 @@ const Navigation = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Navbar.Brand as={Link} to="/"></Navbar.Brand>
 
-              <Nav className="justify-content-end">
-                <Nav.Link as={Link} to="/">
+              <Nav className="justify-content-end" activeKey={location}>
+                <Nav.Link as={NavHashLink} to="/#landing-wrapper">
                   Home
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/about">
+                <Nav.Link as={NavHashLink} to="/about#about-wrapper">
                   About
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/blog">
+                <Nav.Link as={NavHashLink} to="/blog">
                   Blog
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/blog">
+                <Nav.Link as={NavHashLink} to="/projects">
                   Projects
                 </Nav.Link>
               </Nav>
