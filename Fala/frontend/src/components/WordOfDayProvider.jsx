@@ -54,6 +54,7 @@ export default function WordOfDayProvider({ children }) {
     }
   }, []);
 
+  // Store Word of Day in Local Storage
   useEffect(() => {
     if (isWord) {
       localStorage.setItem(
@@ -66,7 +67,7 @@ export default function WordOfDayProvider({ children }) {
         })
       );
     }
-  }, [isWord]);
+  }, [isWord, wordExpiration]);
 
   return (
     <WordContext.Provider
