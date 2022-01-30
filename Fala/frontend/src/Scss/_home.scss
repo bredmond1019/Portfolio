@@ -13,7 +13,7 @@
 .home-wrapper::after {
   content: "";
   border-bottom: 1px solid #00c853;
-  width: 70%;
+  width: 75%;
   margin-top: 20px;
 }
 
@@ -43,6 +43,7 @@
   flex-direction: column;
   border: 1px solid yellow;
   //   max-height: 432px;
+  border-radius: 5%;
   margin-right: 5vw;
   background-color: #00c853;
   justify-content: space-around;

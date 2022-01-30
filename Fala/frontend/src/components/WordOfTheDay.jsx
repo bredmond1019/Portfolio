@@ -1,13 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { useWordOfDay } from "./WordOfDayProvider";
+import { useWordContext } from "./WordContextProvider";
+
+import coffee_shop from "./../images/coffee_shop.jpg";
 
 function WordOfTheDay(props) {
-  const { word, definition, wordTranslation, wordExpiration } = useWordOfDay();
+  const { wordOfDay, wordTranslation } = useWordContext();
+  const [seeTranslation, setSeeTranslation] = useState(false);
+
+  const openTranslation = () => {
+    setSeeTranslation(true);
+  };
+
   return (
-    <div>
-      <h1>{word}</h1>
-      <h2>{wordTranslation}</h2>
+    <div className="word-of-day-container">
+      <div className="word-of-day-image-wrapper">
+        <img src={coffee_shop} alt="" className="word-of-day-image" />
+      </div>
+
+      <div className="word-of-day-title-wrapper">
+        <h1 className="word-of-day-title">A Palavra Do Dia</h1>
+
+        <h1 className="word-of-day">{wordOfDay}</h1>
+        <div className="word-of-day-translation-wrapper">
+          <h1 className="translation-title">Do You Know It?</h1>
+          {seeTranslation ? (
+            <h1
+              className={`word-of-day-translation word-of-day ${
+                seeTranslation ? "grow" : ""
+              } `}
+            >
+              {wordTranslation}
+            </h1>
+          ) : (
+            <button
+              className="btn-primary btn insert-btn translation-btn"
+              onClick={openTranslation}
+            >
+              See Translation
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default WordOfTheDay;
+
+{
+  /* <h2>{wordTranslation}</h2>
       <h3>{wordExpiration}</h3>
       <div>
         {definition &&
@@ -18,9 +60,5 @@ function WordOfTheDay(props) {
               </p>
             );
           })}
-      </div>
-    </div>
-  );
+      </div> */
 }
-
-export default WordOfTheDay;

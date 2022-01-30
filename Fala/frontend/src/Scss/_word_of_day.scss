@@ -1,0 +1,117 @@
+.word-of-the-day-wrapper {
+  display: flex;
+  flex-direction: column;
+  // justify-content: flex-start;
+  background-color: #0d6efd;
+  width: 100vw;
+  min-height: 60vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.word-of-the-day-wrapper::after {
+  content: "";
+  border-bottom: 1px solid #00c853;
+  width: 75%;
+  margin-top: 20px;
+  //   margin-left: 10vw;
+  align-self: center;
+}
+
+.word-of-day-container {
+  display: flex;
+  padding: 80px 85px;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.word-of-day-image-wrapper {
+  //   height: 400px;
+  width: 35vw;
+}
+
+.word-of-day-image {
+  width: 100%;
+  border-radius: 20%;
+}
+
+.word-of-day-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 30vw;
+  padding: 20px;
+
+  //   background-color: yellow;
+  border: 1px solid yellow;
+  border-radius: 5%;
+
+  //   color: #00c853;
+  color: #0d6efd;
+  font-family: "Amatic SC", cursive;
+  letter-spacing: 3px;
+  //   font-family: "Architects Daughter", cursive;
+
+  background:
+      // #0d6efd,
+    linear-gradient(rgba(255, 255, 0, 0.95), rgba(255, 255, 0, 0.95)),
+    url("./../images/circles1.jpg");
+}
+
+.word-of-day-title {
+  font-size: 4rem;
+}
+
+.word-of-day {
+  //   font-family: "Indie Flower", cursive;
+  font-family: "Architects Daughter", cursive;
+  color: #00c853;
+  text-transform: uppercase;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  text-shadow: -0.05em 0.05em 0.05em silver;
+}
+
+.word-of-day-translation-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  transform: scale(0.8);
+}
+
+.insert-btn {
+  border-radius: 20%;
+  background-color: #00c853 !important ;
+  border-color: #00c853;
+  color: white;
+  margin-right: 30px;
+}
+
+.translation-btn {
+  transform: scale(1.5);
+}
+
+@keyframes growAndShrink {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5) translateY(10px);
+  }
+}
+
+.translation-title {
+  font-family: "Architects Daughter", cursive;
+  text-transform: uppercase;
+  font-size: 3.5rem;
+}
+
+.word-of-day-translation.grow {
+  animation: growAndShrink 0.7s linear 2 alternate;
+}
