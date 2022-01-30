@@ -23,25 +23,24 @@ export default function Review() {
           <h2 className="review-subtitle">
             Here's Where You Can Review Your Vocab Words
           </h2>
-
-          {/* {addWord ? (
-            <Form
-              word={editedWord}
-              insertWord={insertWord}
-              setAddWord={setAddWord}
-            />
-          ) : (
-            <button
-              className="btn-primary btn insert-btn-review"
-              onClick={openForm}
-            >
-              Add New Word
-            </button>
-          )} */}
         </div>
         <div className="review-image-wrapper"></div>
       </div>
       <div className="word-tiles-wrapper">
+        {addWord ? (
+          <Form
+            word={editedWord}
+            insertWord={insertWord}
+            setAddWord={setAddWord}
+          />
+        ) : (
+          <button
+            className="btn-primary btn insert-btn-review"
+            onClick={openForm}
+          >
+            Add New Word
+          </button>
+        )}
         <Words words={words} deleteWord={deleteWord} />
       </div>
     </div>
