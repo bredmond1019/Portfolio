@@ -1,42 +1,109 @@
 // REVIEW
 .review-container {
   font-family: "Amatic SC", cursive;
-  background-color: #0d6efd;
-}
-
-.review {
+  background-color: rgb(0, 200, 83);
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
+  flex-direction: column;
+  // align-items: center;
 }
 
-.insert-btn {
-  margin-top: 15px;
-  margin-left: 1em;
+.review-header {
+  display: flex;
+  justify-content: space-around;
+  margin: 10vh 0;
+  max-height: 800px;
+}
 
-  font-size: 2rem;
+//
+// REVIEW TITLE
+//
+
+.review-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background: linear-gradient(rgba(255, 255, 0, 0.95), rgba(255, 255, 0, 0.95)),
+    url("./../images/circles1.jpg");
+  border-radius: 10%;
+
+  width: 30vw;
+  color: #0d6efd;
+  padding: 40px;
+  // Flip Background Upside Down
+  transform: scaleX(-1) translateY(-15%);
+}
+
+// Then flip all CHILDREN ELEMENTS back
+.review-title-wrapper * {
+  transform: scaleX(-1);
+}
+
+.review-title {
+  font-size: 4rem;
+  letter-spacing: 4px;
+}
+
+.review-subtitle {
+  color: rgba(0, 200, 83, 1);
+  font-family: "Architects Daughter", cursive;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  text-shadow: -0.05em 0.05em 0.05em silver;
+}
+
+//
+// REVIEW IMAGE FOR HEADER
+//
+.review-image-wrapper {
+  width: 40vw;
+  min-height: 500px;
+
+  background:
+      // #0d6efd,
+    linear-gradient(rgba(13, 110, 253, 0.1), rgba(13, 110, 253, 0.1)),
+    url("./../images/man_woman_talking.jpg");
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 20%;
+  border: 3px solid yellow;
+
+  transform: translateY(15%);
+}
+
+//
+// FORM FOR ADDING A NEW WORD
+//
+.insert-btn-review {
+  margin: 30px;
+  font-size: 2rem !important;
 }
 
 .form-wrapper {
-  margin-top: 15px;
-  margin-left: 1em;
+  margin: 1em;
+  padding: 20px;
+  // margin-left: 1em;
   font-size: 2rem;
-  background-color: black;
-  opacity: 0.6;
-  color: white;
+  background: linear-gradient(rgba(0, 200, 83, 0.1), rgba(0, 200, 83, 0.1));
+  color: rgba(13, 110, 253, 1);
   border: solid;
-  border-width: 3px;
-  border-color: greenyellow;
-  width: 400px;
+  border-width: 1px;
+  border-radius: 5%;
+  border-color: rgba(0, 200, 83, 1);
+  width: 80%;
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  transform: scaleX(-1.3);
 }
 
 .form-control {
-  width: 300px;
+  width: 60%;
 }

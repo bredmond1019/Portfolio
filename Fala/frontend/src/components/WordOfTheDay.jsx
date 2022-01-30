@@ -34,7 +34,7 @@ function WordOfTheDay(props) {
             </h1>
           ) : (
             <button
-              className="btn-primary btn insert-btn translation-btn"
+              className="btn-primary btn insert-btn-word-day translation-btn"
               onClick={openTranslation}
             >
               See Translation

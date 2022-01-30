@@ -8,22 +8,42 @@ export default function Review() {
   const { words, insertWord, deleteWord } = useWordContext();
 
   const [editedWord, setEditedWord] = useState(null);
+  const [addWord, setAddWord] = useState(false);
 
   const openForm = () => {
+    setAddWord(true);
     setEditedWord({ word: "" });
   };
 
   return (
     <div className="review-container">
-      <div className="review">
-        <h1 className="title">Vocab Review</h1>
-        <button className="btn-success btn insert-btn" onClick={openForm}>
-          Add New Word
-        </button>
+      <div className="review-header">
+        <div className="review-title-wrapper">
+          <h1 className="review-title">Vocab Review</h1>
+          <h2 className="review-subtitle">
+            Here's Where You Can Review Your Vocab Words
+          </h2>
 
-        {editedWord ? <Form word={editedWord} insertWord={insertWord} /> : null}
+          {/* {addWord ? (
+            <Form
+              word={editedWord}
+              insertWord={insertWord}
+              setAddWord={setAddWord}
+            />
+          ) : (
+            <button
+              className="btn-primary btn insert-btn-review"
+              onClick={openForm}
+            >
+              Add New Word
+            </button>
+          )} */}
+        </div>
+        <div className="review-image-wrapper"></div>
       </div>
-      <Words words={words} deleteWord={deleteWord} />
+      <div className="word-tiles-wrapper">
+        <Words words={words} deleteWord={deleteWord} />
+      </div>
     </div>
   );
 }

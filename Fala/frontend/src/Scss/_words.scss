@@ -1,3 +1,12 @@
+.word-tiles-wrapper {
+  background: 
+  // #0d6efd,
+    linear-gradient(rgba(13, 110, 253, 0.7), rgba(13, 110, 253, 0.7)),
+    url("./../images/moonlight.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .word-tiles {
   display: flex;
   flex-direction: row;
