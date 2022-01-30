@@ -11,24 +11,6 @@ import "./Scss/App.scss";
 import Review from "./components/Review";
 
 function App() {
-  const [word, setWord] = useState("");
-  const [definition, setDefinition] = useState();
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/word_of_the_day", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((resp) => {
-        setWord(resp.word);
-        setDefinition(resp.definition);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   return (
     <div className="app">
       <Navigation />
@@ -36,10 +18,7 @@ function App() {
       <Routes>
         {/* <Route path="/lessons" element={<Lessons />} />
         <Route path="/review" element={<Review />} /> */}
-        <Route
-          path="/"
-          element={<Home word={word} definition={definition} />}
-        />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );

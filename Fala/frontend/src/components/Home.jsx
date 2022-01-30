@@ -6,7 +6,7 @@ import WordOfTheDay from "./WordOfTheDay";
 
 import two_people from "./../images/two_people.jpg";
 
-function Home(props) {
+function Home() {
   return (
     <div className="app-body">
       <div className="home-wrapper">
@@ -24,7 +24,7 @@ function Home(props) {
         </div>
       </div>
       <div className="word-of-the-day-wrapper">
-        <WordOfTheDay word={props.word} definition={props.definition} />
+        <WordOfTheDay />
       </div>
       <div id="review" className="review-wrapper">
         <Review />
