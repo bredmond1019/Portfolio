@@ -1,6 +1,6 @@
 // REVIEW
 .review-container {
-  font-family: "Amatic SC", cursive;
+  font-family: "Architects Daughter", cursive;
   background-color: rgb(0, 200, 83);
   display: flex;
   flex-direction: column;
@@ -43,6 +43,8 @@
 .review-title {
   font-size: 4rem;
   letter-spacing: 4px;
+  text-align: center;
+  text-shadow: -0.05em 0.05em 0.05em silver;
 }
 
 .review-subtitle {

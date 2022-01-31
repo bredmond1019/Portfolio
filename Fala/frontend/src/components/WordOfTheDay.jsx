@@ -19,7 +19,7 @@ function WordOfTheDay(props) {
       </div>
 
       <div className="word-of-day-title-wrapper">
-        <h1 className="word-of-day-title">A Palavra Do Dia</h1>
+        <h1 className="word-of-day-title">Palavra Do Dia</h1>
 
         <h1 className="word-of-day">{wordOfDay}</h1>
         <div className="word-of-day-translation-wrapper">
