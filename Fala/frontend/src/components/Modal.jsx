@@ -19,10 +19,13 @@ function Modal({ children, isOpen, handleClose }) {
       >
         <div className="modal" ref={nodeRef}>
           <div className="modal-content">
-            <button onClick={handleClose} className="close-btn">
+            {children}
+            <button
+              onClick={handleClose}
+              className="close-btn btn-danger insert-btn-review"
+            >
               CLOSE
             </button>
-            {children}
           </div>
         </div>
       </CSSTransition>

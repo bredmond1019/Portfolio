@@ -38,20 +38,6 @@ export default function Review() {
         </div>
       </div>
       <div className="word-tiles-wrapper">
-        {/* {addWord ? (
-          <Form
-            word={editedWord}
-            insertWord={insertWord}
-            setAddWord={setAddWord}
-          />
-        ) : (
-          <button
-            className="btn-primary btn insert-btn-review"
-            onClick={openForm}
-          >
-            Add New Word
-          </button>
-        )} */}
         <button
           className="modal-btn btn-primary btn insert-btn-review"
           onClick={openModal}
@@ -66,7 +52,7 @@ export default function Review() {
             setIsOpen={setIsOpen}
           />
         </Modal>
-        <Words words={words} deleteWord={deleteWord} />
+        <Words />
       </div>
     </div>
   );
