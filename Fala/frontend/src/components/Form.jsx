@@ -23,7 +23,7 @@ export default function Form(props) {
             className="btn btn-primary mt-3"
             onClick={() => {
               props.insertWord(review_word);
-              props.setAddWord(false);
+              props.setIsOpen(false);
             }}
           >
             Insert

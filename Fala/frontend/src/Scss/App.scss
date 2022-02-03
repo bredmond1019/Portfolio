@@ -10,6 +10,7 @@ font-family: 'Indie Flower', cursive; */
 @use "word_of_day";
 @use "words";
 @use "home";
+@use "modal";
 
 .Component-Body {
   background-color: #0d6efd;
