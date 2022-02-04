@@ -12,14 +12,21 @@ export default function Words({ showWordTile, setShowWordTile }) {
   const { words, deleteWord } = useWordContext();
 
   const [currentWord, setCurrentWord] = useState("");
+  const [currentImage, setCurrentImage] = useState("");
+  const [currentTranslation, setCurrentTranslation] = useState("");
   const [tileNumber, setTileNumber] = useState(0);
+  const [seeCurrentTranslation, setSeeCurrentTranslation] = useState(false);
 
   useEffect(() => {
-    words && setCurrentWord(words[0]?.expression);
+    setCurrentWord(words[0]?.expression);
+    setCurrentImage(words[0]?.url);
+    setCurrentTranslation(words[0]?.translation);
   }, [words]);
 
   useEffect(() => {
     setCurrentWord(words[tileNumber]?.expression);
+    setCurrentImage(words[tileNumber]?.url);
+    setCurrentTranslation(words[tileNumber]?.translation);
     console.log(tileNumber);
   }, [tileNumber]);
 
@@ -44,17 +51,21 @@ export default function Words({ showWordTile, setShowWordTile }) {
       unmountOnExit
     >
       <div className="words-wrapper">
-        <div className="btn-tile-left-wrapper">
-          <button
-            className="btn-primary btn insert-btn-review"
-            onClick={decreaseTiles}
-          >
-            {" "}
-            {"<"}{" "}
-          </button>
+        <div className="words-header">
+          <h1 className="word-tiles-title">Do you Know the Word?</h1>
+          {/* <h3 className="word-tiles-subtitle">Click to Translate</h3> */}
         </div>
-
         <div className="word-tile-wrapper">
+          <div className="btn-tile-left-wrapper">
+            <button
+              className="btn-primary btn insert-btn-review"
+              onClick={decreaseTiles}
+            >
+              {" "}
+              {"<"}{" "}
+            </button>
+          </div>
+
           {console.log(showWordTile)}
           <SwitchTransition mode="out-in">
             <CSSTransition
@@ -69,48 +80,36 @@ export default function Words({ showWordTile, setShowWordTile }) {
                 <div className="word-tile-title">
                   <h2 className="word-tile-expression">{currentWord}</h2>
                 </div>
+
+                <div className="word-tile-img-wrapper">
+                  <img src={currentImage} alt="" className="expression-image" />
+                </div>
+                {seeCurrentTranslation ? (
+                  <h1 className="word-tile-current-translation">
+                    {currentTranslation}
+                  </h1>
+                ) : (
+                  <button
+                    className="btn-primary btn btn-current-translation"
+                    onClick={() => setSeeCurrentTranslation(true)}
+                  >
+                    See Translation
+                  </button>
+                )}
               </div>
             </CSSTransition>
           </SwitchTransition>
-        </div>
-
-        <div className="btn-tile-left-wrapper">
-          <button
-            className="btn-primary btn insert-btn-review"
-            onClick={increaseTiles}
-          >
-            {" "}
-            {">"}{" "}
-          </button>
+          <div className="btn-tile-left-wrapper">
+            <button
+              className="btn-primary btn insert-btn-review"
+              onClick={increaseTiles}
+            >
+              {" "}
+              {">"}{" "}
+            </button>
+          </div>
         </div>
       </div>
     </CSSTransition>
   );
-}
-
-{
-  /* 
-// <div className="word-tiles">
-//       {words &&
-//         words.map((word, i) => {
-//           return (
-//             <div className="word-tile" key={i}>
-//               <div className="word-tile-title">
-//                 <h2 className="word-tile-expression">{word.expression}</h2>
-//                 <button
-//                   className="btn-danger btn word-btn"
-//                   onClick={() => deleteWord(word)}
-//                 >
-//                   {" "}
-//                   <strong className="word-tile-delete-btn">x</strong>
-//                 </button>
-//               </div>
-//               <h3 className="word-tile-translation">{word.translation}</h3>
-//               <div className="word-tile-img-wrapper">
-//                 <img src={word.url} alt="" className="expression-image" />
-//               </div>
-//             </div>
-//           );
-//         })}
-//     </div> */
 }
