@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { CSSTransition } from "react-transition-group";
+import {
+  SwitchTransition,
+  TransitionGroup,
+  CSSTransition,
+} from "react-transition-group";
+import "animate.css";
 
 import { useWordContext } from "./WordContextProvider";
 
@@ -8,6 +13,8 @@ export default function Words() {
 
   const [currentWord, setCurrentWord] = useState("");
   const [tileNumber, setTileNumber] = useState(1);
+
+  const [showWordTile, setShowWordTile] = useState(false);
 
   useEffect(() => {
     words && setCurrentWord(words[0]?.expression);
@@ -27,11 +34,33 @@ export default function Words() {
   return (
     <div className="word-tile-wrapper">
       <button onClick={cycleTiles}>+</button>
-      <div className="word-tile">
-        <div className="word-tile-title">
-          <h2 className="word-tile-expression">{currentWord}</h2>
-        </div>
-      </div>
+      <CSSTransition
+        in={showWordTile}
+        timeout={{ enter: 300, exit: 300 }}
+        classNames="word-tile"
+        unmountOnExit
+      >
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={tileNumber}
+            timeout={{ enter: 300, exit: 300 }}
+            classNames={{
+              enterActive: "animate__bounceIn",
+              exitActive: "animate__bounceOut",
+            }}
+          >
+            <div className="word-tile">
+              <div className="word-tile-title">
+                <h2 className="word-tile-expression">{currentWord}</h2>
+              </div>
+            </div>
+          </CSSTransition>
+        </SwitchTransition>
+      </CSSTransition>
+      <button onClick={() => setShowWordTile(!showWordTile)}>
+        {console.log(showWordTile)}
+        Show Word Tile
+      </button>
     </div>
   );
 }
