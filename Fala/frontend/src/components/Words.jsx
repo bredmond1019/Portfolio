@@ -27,6 +27,7 @@ export default function Words({ showWordTile, setShowWordTile }) {
     setCurrentWord(words[tileNumber]?.expression);
     setCurrentImage(words[tileNumber]?.url);
     setCurrentTranslation(words[tileNumber]?.translation);
+    setSeeCurrentTranslation(false);
     console.log(tileNumber);
   }, [tileNumber]);
 
@@ -84,11 +85,18 @@ export default function Words({ showWordTile, setShowWordTile }) {
                 <div className="word-tile-img-wrapper">
                   <img src={currentImage} alt="" className="expression-image" />
                 </div>
-                {seeCurrentTranslation ? (
+
+                <CSSTransition
+                  in={seeCurrentTranslation}
+                  timeout={300}
+                  classNames="word-tile-current-translation"
+                  unmountOnExit
+                >
                   <h1 className="word-tile-current-translation">
                     {currentTranslation}
                   </h1>
-                ) : (
+                </CSSTransition>
+                {!seeCurrentTranslation && (
                   <button
                     className="btn-primary btn btn-current-translation"
                     onClick={() => setSeeCurrentTranslation(true)}

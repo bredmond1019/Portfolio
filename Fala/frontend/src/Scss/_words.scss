@@ -1,3 +1,5 @@
+// WHOLE WORD TILES SECTION
+
 .word-tiles-wrapper {
   display: flex;
 
@@ -17,6 +19,9 @@
   background-size: cover;
   background-position: center;
 }
+//
+// WORD TILES MENU
+//
 
 .word-tiles-menu {
   display: flex;
@@ -32,7 +37,6 @@
   width: 30vw;
   padding: 20px 10px;
 
-  // color: #0d6efd;
   color: yellow;
   font-size: 3rem;
   letter-spacing: 4px;
@@ -40,6 +44,10 @@
   text-transform: capitalize;
   text-shadow: -0.05em 0.05em 0.05em black;
 }
+
+//
+// WORD TILE AND BUTTONS
+//
 
 .words-wrapper {
   display: flex;
@@ -62,6 +70,10 @@
 .word-tiles-title {
   font-size: 3rem;
 }
+
+//
+// WORD TILE
+//
 
 .word-tile {
   display: flex;
@@ -112,14 +124,20 @@
 .expression-image {
   width: 100%;
   height: 100%;
-
-  // border: 1px solid white;
   border-radius: 25%;
+}
+.word-tile-current-translation {
+  color: yellow;
+  text-transform: capitalize;
 }
 
 .btn-current-translation {
   background-color: rgba(0, 200, 83, 1) !important;
 }
+
+//
+// ANIMATIONS FOR WORD TILES
+//
 
 .word-tile-enter {
   opacity: 0.01;
@@ -133,4 +151,15 @@
 .word-tile-exit-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
+}
+
+.word-tile-current-translation-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.word-tile-current-translation-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
 }
