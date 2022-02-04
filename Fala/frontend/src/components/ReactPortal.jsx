@@ -24,7 +24,6 @@ function ReactPortal({ children, wrapperId = "react-portal-wrapper" }) {
 
     return () => {
       if (systemCreated && element.parentNode) {
-        console.log(systemCreated);
         element.parentNode.removeChild(element);
       }
     };

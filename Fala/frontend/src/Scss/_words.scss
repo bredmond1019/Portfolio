@@ -1,24 +1,54 @@
 .word-tiles-wrapper {
-}
-
-.word-tiles {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+  min-height: 800px;
+
+  margin-top: 20px;
+  padding: 20px 60px;
 
   background: 
   // #0d6efd,
-    linear-gradient(rgba(0, 200, 83, 0.9), rgba(0, 200, 83, 0.9)),
+    linear-gradient(rgba(255, 255, 0, 0.9), rgba(255, 255, 0, 0.9)),
     url("./../images/circles2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 100vw;
+}
+
+.word-tiles-menu {
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(0, 200, 83, 1);
+  border: 1px solid rgb(13, 110, 253);
+  border-radius: 10%;
+  margin-right: 40px;
+}
+
+.word-tiles-menu-title {
+  width: 30vw;
+  padding: 20px 10px;
+
+  // color: #0d6efd;
+  color: yellow;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  text-align: center;
+  text-transform: capitalize;
+  text-shadow: -0.05em 0.05em 0.05em black;
+}
+
+.words-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 10vw;
 }
 
 .word-tile {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,20 +65,32 @@
   border-color: greenyellow;
   border-radius: 20%;
 
-  background-color: black;
-  // opacity: 0.6;
+  background: linear-gradient(
+      rgba(13, 110, 253, 0.95),
+      rgba(13, 110, 253, 0.95)
+    ),
+    url("./../images/circles1.jpg");
 }
 
-.word-tile-title {
+// .word-tile-title {
+//   display: flex;
+//   align-items: center;
+//   justify-content: baseline;
+// }
+
+.word-tile-wrapper {
   display: flex;
+  height: 700px;
+  justify-content: center;
   align-items: center;
-  justify-content: baseline;
 }
 
 .word-tile-expression {
-  font-size: 4rem;
-  color: yellow;
   margin-right: 20%;
+
+  font-size: 4rem;
+  color: rgba(255, 255, 0, 1);
+  text-shadow: -0.05em 0.05em 0.05em black;
   text-transform: capitalize;
 }
 
@@ -73,11 +115,6 @@
 
   border: 1px solid yellow;
   border-radius: 50%;
-}
-
-.word-tile-wrapper {
-  display: flex;
-  height: 700px;
 }
 
 .word-tile-enter {

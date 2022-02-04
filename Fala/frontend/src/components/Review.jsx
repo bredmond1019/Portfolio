@@ -11,13 +11,8 @@ export default function Review() {
   const { words, insertWord, deleteWord } = useWordContext();
 
   const [editedWord, setEditedWord] = useState(null);
-  const [addWord, setAddWord] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const openForm = () => {
-    setAddWord(true);
-    setEditedWord({ word: "" });
-  };
+  const [showWordTile, setShowWordTile] = useState(false);
 
   const openModal = () => {
     setEditedWord({ word: "" });
@@ -37,23 +32,35 @@ export default function Review() {
           <div className="review-image-wrapper"></div>
         </div>
       </div>
+
       <div className="word-tiles-wrapper">
-        <button
-          className="modal-btn btn-primary btn insert-btn-review"
-          onClick={openModal}
-        >
-          Add New Word
-        </button>
-        <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-          <Form
-            word={editedWord}
-            insertWord={insertWord}
-            // setAddWord={setAddWord}
-            setIsOpen={setIsOpen}
-          />
-        </Modal>
-        <Words />
+        <div className="word-tiles-menu">
+          <h1 className="word-tiles-menu-title">What would you like to do?</h1>
+          <button
+            className="modal-btn btn-primary btn insert-btn-review"
+            onClick={openModal}
+          >
+            Add New Word
+          </button>
+          <button
+            className="btn-primary btn insert-btn-review"
+            onClick={(f) => f}
+          >
+            Review List of Words
+          </button>
+          <button
+            className="btn-primary btn insert-btn-review"
+            onClick={() => setShowWordTile(!showWordTile)}
+          >
+            {showWordTile ? "Close" : "Show"} Word Tiles
+          </button>
+        </div>
+
+        <Words showWordTile={showWordTile} setShowWordTile={setShowWordTile} />
       </div>
+      <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
+        <Form word={editedWord} insertWord={insertWord} setIsOpen={setIsOpen} />
+      </Modal>
     </div>
   );
 }
