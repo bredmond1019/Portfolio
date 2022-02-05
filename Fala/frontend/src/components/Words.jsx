@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  SwitchTransition,
-  TransitionGroup,
-  CSSTransition,
-} from "react-transition-group";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import "animate.css";
 
 import { useWordContext } from "./WordContextProvider";
 
 export default function Words({ showWordTile, setShowWordTile }) {
   const { words, deleteWord } = useWordContext();
+  console.log(words);
 
   const [currentWord, setCurrentWord] = useState("");
   const [currentImage, setCurrentImage] = useState("");
@@ -67,7 +64,6 @@ export default function Words({ showWordTile, setShowWordTile }) {
             </button>
           </div>
 
-          {console.log(showWordTile)}
           <SwitchTransition mode="out-in">
             <CSSTransition
               key={tileNumber}

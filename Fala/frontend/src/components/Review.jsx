@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 import Form from "./Form";
 import Words from "./Words";
-import APIService from "./APIService";
+import ListOfWords from "./ListOfWords";
+import "animate.css";
+
 import { useWordContext } from "./WordContextProvider";
 
 import Modal from "./Modal";
@@ -13,6 +16,8 @@ export default function Review() {
   const [editedWord, setEditedWord] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showWordTile, setShowWordTile] = useState(false);
+  const [showVocabList, setShowVocabList] = useState(false);
+  const [display, setDisplay] = useState(0);
 
   const openModal = () => {
     setEditedWord({ word: "" });
@@ -44,19 +49,32 @@ export default function Review() {
           </button>
           <button
             className="btn-primary btn insert-btn-review"
-            onClick={(f) => f}
+            onClick={() => {
+              setShowVocabList(!showVocabList);
+              setShowWordTile(false);
+              setDisplay(2);
+            }}
           >
             Review List of Words
           </button>
           <button
             className="btn-primary btn insert-btn-review"
-            onClick={() => setShowWordTile(!showWordTile)}
+            onClick={() => {
+              setShowWordTile(!showWordTile);
+              setShowVocabList(false);
+              setDisplay(1);
+            }}
           >
             {showWordTile ? "Close" : "Show"} Word Tiles
           </button>
         </div>
 
         <Words showWordTile={showWordTile} setShowWordTile={setShowWordTile} />
+
+        <ListOfWords
+          showVocabList={showVocabList}
+          setShowVocabList={setShowVocabList}
+        />
       </div>
       <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
         <Form word={editedWord} insertWord={insertWord} setIsOpen={setIsOpen} />
