@@ -1,0 +1,10 @@
+@use "variables";
+
+.Title {
+  background-color: variables.$bg;
+  color: var(--text);
+}
+
+// #root {
+//   background: url("./../images/puppy.jpeg");
+// }

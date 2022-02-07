@@ -1,0 +1,8 @@
+venv/
+# config.py
+migrations/
+dist/
+node_modules/
+__pycache__/
+.env
+database_restart.py
