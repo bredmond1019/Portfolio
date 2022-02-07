@@ -16,11 +16,11 @@ class Config:
     MAIL_PORT = int(os.environ.get('MAIL_PORT'))
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    DOGGO_MAIL_SUBJECT_PREFIX = '[Doggo]'
-    DOGGO_MAIL_SENDER = 'Doggo Admin <bj.redmond19@gmail.com>'
+    CLIMBR_MAIL_SUBJECT_PREFIX = '[Climbr]'
+    CLIMBR_MAIL_SENDER = 'Climbr Admin <bj.redmond19@gmail.com>'
     MAIL_DEBUG = True
 
-    DOGGO_ADMIN = os.environ.get('DOGGO_ADMIN')
+    CLIMBR_ADMIN = os.environ.get('CLIMBR_ADMIN')
 
     @staticmethod
     def init_app(app):

@@ -1,13 +1,10 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import ReactDOM from "react-dom";
+import pup from "./images/puppy.jpeg";
+import "./Scss/style.scss";
 import App from "./App";
-import TokenProvider from "./components/TokenProvider";
+import square from "../vendor";
 
-ReactDOM.render(
-  <TokenProvider>
-    <Router>
-      <App />
-    </Router>
-  </TokenProvider>,
-  document.getElementById("root")
-);
+import { render } from "react-dom";
+
+render(<App />, document.getElementById("root"));
+
+console.log(square(7));

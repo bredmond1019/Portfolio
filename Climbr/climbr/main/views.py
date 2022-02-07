@@ -6,10 +6,13 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 
-@main.route('/', methods=['GET'])
+
+@main.route('/', methods = ['GET'])
 def get_users():
     all_users = User.query.all()
     print(all_users)
     results = users_schema.dump(all_users)
 
     return jsonify({"all_users": results})
+    
+    
