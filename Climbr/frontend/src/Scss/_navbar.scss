@@ -1,0 +1,46 @@
+@use "variables" as var;
+
+#navbar-container {
+	background-color: black;
+	letter-spacing: 3px;
+	font-family: "Architects Daughter", cursive;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#navbar {
+	background-color: var.$dark-background;
+	height: 60px;
+}
+
+.nav-link {
+	color: rgb(182, 12, 182) !important;
+}
+
+.nav-link.active {
+	color: rgb(236, 102, 236) !important;
+}
+
+.navbar-brand {
+	margin-right: auto !important;
+	height: 40px;
+	width: 40px;
+
+	border-radius: 50%;
+
+	background: linear-gradient(var.$purple-rgba, var.$purple-rgba),
+		url("./../images/logo2.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+// .navbar-toggler {
+// 	// color: #00c853 !important;
+// 	background-color: #00c853 !important;
+// }
+
+// .img-brand {
+// 	width: 100%;
+// 	border-radius: 50%;
+// }

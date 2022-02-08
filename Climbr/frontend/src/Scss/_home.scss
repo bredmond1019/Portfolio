@@ -1,25 +1,43 @@
+@use "variables" as var;
+
 .home-wrapper {
-  height: 100vh;
+	height: 100vh;
 
-  background: url("./../images/mountaineering.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+	background: linear-gradient(var.$dark-rgba, var.$dark-rgba),
+		url("./../images/mountaineering.png");
+	background-repeat: no-repeat;
+	background-size: cover;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
 
-  color: white;
-  font-family: "Fira Sans", sans-serif;
+	color: var.$light-purple;
+	// font-family: "Amatic SC", cursive;
+	font-family: "Cuprum", sans-serif;
 }
 
 .home-title {
-  font-size: 4rem;
-  transform: translateX(15%);
+	font-size: 5.5rem;
+	transform: translateX(15%);
+	text-shadow: -0.01em 0.01em 0.1em var.$blue;
+
+	// margin-bottom: 10vh;
 }
 
 .home-sub-title {
-  font-size: 3rem;
-  transform: translateX(-15%);
+	font-size: 3.5rem;
+	transform: translateX(-15%);
+
+	text-shadow: -0.01em 0.01em 0.1em var.$blue;
+}
+
+.home-wrapper .second {
+	font-size: 2.5rem;
+	margin-bottom: 5vh;
+	margin-left: auto;
+
+	color: var.$purple;
+	text-shadow: -0.01em 0.01em 0.1em var.$light-blue;
 }
