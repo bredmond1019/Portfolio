@@ -1,10 +1,11 @@
-import Extra from "./components/Extra";
+import "./Scss/app.scss";
+
+import Home from "./components/Home";
 
 function App() {
   return (
-    <div>
-      <h1>Oh HAI, REACT</h1>
-      <Extra />
+    <div className="app-wrapper">
+      <Home />
     </div>
   );
 }

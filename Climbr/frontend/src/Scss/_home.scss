@@ -1,0 +1,25 @@
+.home-wrapper {
+  height: 100vh;
+
+  background: url("./../images/mountaineering.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  color: white;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.home-title {
+  font-size: 4rem;
+  transform: translateX(15%);
+}
+
+.home-sub-title {
+  font-size: 3rem;
+  transform: translateX(-15%);
+}
