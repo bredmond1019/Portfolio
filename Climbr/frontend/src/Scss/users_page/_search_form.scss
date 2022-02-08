@@ -1,7 +1,8 @@
 .user-search-form {
   width: 60vw;
+  font-family: "Righteous", cursive !important;
 }
 
-.floating-label option {
-  font-family: "Righteous", cursive !important;
+.custom-floating-label {
+  font-family: initial;
 }

@@ -53,10 +53,10 @@ function UserSearchForm() {
           >
             <Form.Select
               aria-label="Floating label select"
-              className="floating-label"
+              className="custom-floating-label"
             >
               <option>Choose a style:</option>
-              <option className="floating-label" value="1">
+              <option className="custom-floating-label" value="1">
                 Trad
               </option>
               <option className="floating-label" value="2">
