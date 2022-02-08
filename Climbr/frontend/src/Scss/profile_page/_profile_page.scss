@@ -1,0 +1,19 @@
+@use "../variables" as var;
+@use "bio";
+@use "./home_crag";
+
+.profile-wrapper {
+  display: flex;
+  justify-content: space-around;
+
+  width: 100vw;
+  height: 100vh;
+
+  padding: 5vh 5vw;
+
+  background: linear-gradient(var.$dark-rgba, var.$dark-rgba),
+    url("./../images/girl_climber_outside.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  background-size: cover;
+}

@@ -2,10 +2,10 @@ import "./Scss/app.scss";
 
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./components/Home";
+import Home from "./components/LandingPage/Home";
 import Navigation from "./components/NavBar";
-import ProfilePage from "./components/ProfilePage";
-import Users from "./components/Users";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
+import Users from "./components/UsersPage/Users";
 
 function App() {
   return (
