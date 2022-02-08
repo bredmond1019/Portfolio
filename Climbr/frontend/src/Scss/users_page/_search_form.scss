@@ -1,8 +1,29 @@
+@use "../variables" as var;
+
 .user-search-form {
   width: 60vw;
-  font-family: "Righteous", cursive !important;
+
+  font-family: "Fira Sans", sans-serif !important;
+  // color: black;
+  color: var.$blue;
 }
 
-.custom-floating-label {
-  font-family: initial;
+.form-floating label {
+  color: var.$blue;
+}
+
+.form-floating select {
+  color: var.$dark-rgba;
+}
+
+// .form-check-label label {
+//   color: var.$blue !important;
+// }
+
+.form-floating {
+  height: 100% !important;
+}
+
+.dropdown {
+  height: 100% !important;
 }
