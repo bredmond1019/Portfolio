@@ -6,7 +6,7 @@ function Users() {
   return (
     <div className="users-page-wrapper">
       <div className="users-page-header">
-        <h1 className="users-page-title">Who's Your Next Partner?</h1>
+        <h1 className="users-page-title">Find Your Next Partner</h1>
         <UserSearchForm />
       </div>
     </div>
