@@ -1,0 +1,124 @@
+@use "variables" as var;
+
+.profile-wrapper {
+  display: flex;
+  justify-content: space-around;
+
+  width: 100vw;
+  height: 100vh;
+
+  padding: 5vh 10vw;
+
+  background: linear-gradient(var.$dark-rgba, var.$dark-rgba),
+    url("./../images/climber_water.webp");
+  background-repeat: no-repeat;
+  background-size: 100vw;
+}
+
+.profile-bio-wrapper {
+  width: 20vw;
+  height: max(500px, 20vh);
+  background-color: var.$blue-rgba;
+
+  border: 1px solid var.$blue;
+  border-radius: 5%;
+
+  color: var.$dark-background;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 10px;
+}
+
+.profile-pic-wrapper {
+  height: 200px;
+  width: 200px;
+}
+
+.profile-pic {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.bio-wrapper {
+  padding: 10px;
+  margin-top: 10px;
+  height: 90%;
+  width: 100%;
+
+  background-color: var.$light-blue-rgba;
+
+  border: solid 1px var.$blue;
+  border-radius: 5%;
+
+  font-family: "Righteous", cursive;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  margin-bottom: 15%;
+}
+
+.profile-style-title {
+  font-size: 1.1rem;
+  color: var.$dark-rgba;
+}
+
+.profile-style-climbing {
+  font-size: 1rem;
+  color: var.$dark-rgba;
+
+  padding-left: 10px;
+}
+
+.home-crag-wrapper {
+  width: 50vw;
+}
+
+.home-crag {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+
+  padding: 10px 20px;
+
+  background-color: var.$purple;
+  color: var.$light-blue;
+  border: 1px solid var.$blue;
+  text-shadow: -0.01em 0.01em 0.1em var.$dark-background;
+
+  //   font-family: "Rowdies", cursive;
+  font-family: "Bebas Neue", cursive;
+  letter-spacing: 2px;
+}
+
+.gym-logo-wrapper {
+  height: 120px;
+  width: 120px;
+}
+
+.gym-logo {
+  width: 100%;
+}
+
+.card-body {
+  padding-left: 20px;
+}
+
+.card-text {
+  margin-top: 10px;
+  font-size: 1.25rem;
+  text-shadow: -0.01em 0.01em 0.1em var.$dark-background !important;
+}
+
+.card-title {
+  font-size: 2rem;
+  text-shadow: -0.01em 0.01em 0.1em var.$dark-background;
+}
+
+.card-subtitle {
+  color: var.$dark-background;
+  text-shadow: -0.01em 0.01em 0.1em var.$blue;
+}
