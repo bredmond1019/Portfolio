@@ -25,6 +25,6 @@ class User(db.Model):
         return f"<User {self.email}"
 
 
-class UserSchema(ma.Schema):
-    class Meta:
-        fields = ('id', 'email')
+# class UserSchema(ma.Schema):
+#     class Meta:
+#         fields = ('id', 'email')

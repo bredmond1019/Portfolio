@@ -3,7 +3,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 from flask_marshmallow import Marshmallow
-from flask_cors import CORS
+# from flask_cors import CORS
+
+from flask_graphql import GraphQLView
 
 # from climbr.schema import schema
 
@@ -20,7 +22,17 @@ def create_app(config_name):
     db.init_app(app)
     ma.init_app(app)
 
-    CORS(app)
+    from .schema import schema
+    app.add_url_rule(
+        '/graphql',
+        view_func=GraphQLView.as_view(
+            'graphql',
+            schema=schema,
+            graphiql=True  # for having the GraphiQL interface
+        )
+    )
+
+    # CORS(app)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
