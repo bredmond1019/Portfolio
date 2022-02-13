@@ -7,7 +7,6 @@ from flask_marshmallow import Marshmallow
 
 from flask_graphql import GraphQLView
 
-# from climbr.schema import schema
 
 db = SQLAlchemy()
 ma = Marshmallow()
@@ -23,6 +22,7 @@ def create_app(config_name):
     ma.init_app(app)
 
     from .schema import schema
+
     app.add_url_rule(
         '/graphql',
         view_func=GraphQLView.as_view(
