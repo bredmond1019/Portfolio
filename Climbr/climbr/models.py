@@ -1,3 +1,4 @@
+from enum import unique
 from climbr import db, ma
 
 
@@ -10,7 +11,7 @@ class Role(db.Model):
         "User", backref='role', lazy='dynamic')
 
     def __repr__(self):
-        return f'<Role {self.name}>'
+        return f'<Role {self.name} >'
 
 
 class User(db.Model):
@@ -21,6 +22,42 @@ class User(db.Model):
 
     role_id = db.Column(
         db.Integer, db.ForeignKey('roles.id'))
+    profile_id = db.Column(
+        db.Integer, db.ForeignKey('profiles.id'))
+    profile = db.relationship("Profile")
 
     def __repr__(self):
-        return f"<User {self.email}"
+        return f"<User {self.email} >"
+
+
+class Profile(db.Model):
+    __tablename__ = 'profiles'
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(20), nullable=False)
+    last_name = db.Column(db.String(20), nullable=False)
+
+    preferred_style_climbing = db.Column(
+        db.String(20), default="Top Rope")
+    skills = db.relationship("Skill")
+
+    def __repr__(self):
+        return f"<Profile {self.first_name} {self.last_name}: #{self.id} >"
+
+
+class Skill(db.Model):
+    __tablename__ = 'skills'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), unique=True,
+                     index=True, nullable=False)
+
+    # Flag for if this skill is the user's favorite
+    preferred_skill = db.Column(
+        db.Boolean, server_default='false')
+    # Can the user lead climb this specific skill?
+    can_lead = db.Column(db.Boolean, server_default='false')
+
+    profile_id = db.Column(
+        db.Integer, db.ForeignKey('profiles.id'))
+
+    def __repr__(self):
+        return f"<Skill {self.name} of Profile: #{self.profile_id} >"
