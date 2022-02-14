@@ -24,7 +24,7 @@ class Query(graphene.ObjectType):
     )
 
     profiles = graphene.List(
-        lambda: Profile, first_name=graphene.String()
+        lambda: Profile, id=graphene.Int()
     )
 
     def resolve_users(self, info, email=None):
@@ -41,12 +41,12 @@ class Query(graphene.ObjectType):
             query = query.filter(RoleModel.name == name)
         return query.all()
 
-    def resolve_profiles(self, info, first_name=None):
+    def resolve_profiles(self, info, id=None):
         query = Profile.get_query(info)
 
-        if first_name:
+        if id:
             query = query.filter(
-                ProfileModel.first_name == first_name)
+                ProfileModel.id == id)
         return query.all()
 
     all_users = SQLAlchemyConnectionField(User.connection)

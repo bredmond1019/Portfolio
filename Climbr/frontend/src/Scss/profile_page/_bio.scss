@@ -2,7 +2,7 @@
 
 .profile-bio-wrapper {
   width: 30vw;
-  height: max(500px, 20vh);
+  height: max(600px, 20vh);
   background-color: var.$blue-rgba;
 
   border: 1px solid var.$blue;
@@ -29,8 +29,8 @@
 
 .bio-wrapper {
   padding: 10px;
-  margin-top: 10px;
-  height: 90%;
+  margin-top: 50px;
+  height: min(90%, 300px);
   width: 100%;
 
   background-color: var.$light-blue-rgba;

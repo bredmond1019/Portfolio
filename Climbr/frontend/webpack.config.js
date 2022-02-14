@@ -63,7 +63,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     proxy: {
-      "/api": {
+      "/graphql": {
         target: "http://localhost:8080",
         router: () => "http://localhost:5000",
         logLevel: "debug" /*optional*/,
