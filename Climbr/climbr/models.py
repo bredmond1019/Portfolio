@@ -1,4 +1,4 @@
-from enum import unique
+
 from climbr import db, ma
 
 
@@ -24,7 +24,8 @@ class User(db.Model):
         db.Integer, db.ForeignKey('roles.id'))
     profile_id = db.Column(
         db.Integer, db.ForeignKey('profiles.id'))
-    profile = db.relationship("Profile")
+    profile = db.relationship(
+        "Profile", backref='profile')
 
     def __repr__(self):
         return f"<User {self.email} >"
@@ -33,12 +34,16 @@ class User(db.Model):
 class Profile(db.Model):
     __tablename__ = 'profiles'
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(20), nullable=False)
-    last_name = db.Column(db.String(20), nullable=False)
+    first_name = db.Column(db.String(20))
+    last_name = db.Column(db.String(20))
 
+    # Prefer Trad, Sport, or Top Rope Climbing
     preferred_style_climbing = db.Column(
         db.String(20), default="Top Rope")
     skills = db.relationship("Skill")
+
+    # Prefer to climb: Morning, Afternoon, Evening
+    preferred_time_climb = db.Column(db.String(20))
 
     def __repr__(self):
         return f"<Profile {self.first_name} {self.last_name}: #{self.id} >"
@@ -60,4 +65,4 @@ class Skill(db.Model):
         db.Integer, db.ForeignKey('profiles.id'))
 
     def __repr__(self):
-        return f"<Skill {self.name} of Profile: #{self.profile_id} >"
+        return f"<Skill {self.name} of Profile: >"

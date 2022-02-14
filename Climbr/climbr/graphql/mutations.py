@@ -1,8 +1,10 @@
+
+import profile
 import graphene
 
 from climbr import db
-from ..graphql.objects import UserObject as User
-from ..models import User as UserModel
+from ..graphql.objects import UserObject as User, ProfileObject as Profile, SkillInput
+from ..models import User as UserModel, Profile as ProfileModel, Skill as SkillModel
 
 
 class UserMutation(graphene.Mutation):
@@ -20,5 +22,35 @@ class UserMutation(graphene.Mutation):
         return UserMutation(user=user)
 
 
+class ProfileMutation(graphene.Mutation):
+    class Arguments:
+        first_name = graphene.String(required=True)
+        last_name = graphene.String(required=True)
+        user_id = graphene.Int(required=True)
+        preferred_style_climbing = graphene.String()
+        skills = graphene.List(SkillInput)
+
+    profile = graphene.Field(lambda: Profile)
+
+    def mutate(self, info, first_name, last_name, user_id, preferred_style_climbing, skills):
+        user = UserModel.query.get(user_id)
+
+        profile = ProfileModel(first_name=first_name, last_name=last_name,
+                               preferred_style_climbing=preferred_style_climbing)
+
+        skill_list = [SkillModel(
+            name=input_skill.name) for input_skill in skills]
+
+        profile.skills.extend(skill_list)
+
+        db.session.add(profile)
+
+        user.profile = profile
+        db.session.commit()
+
+        return ProfileMutation(profile=profile)
+
+
 class Mutation(graphene.ObjectType):
     mutate_user = UserMutation.Field()
+    mutate_profile = ProfileMutation.Field()
