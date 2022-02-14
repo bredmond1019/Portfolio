@@ -16,6 +16,8 @@ class RoleObject(SQLAlchemyObjectType):
 
 
 class UserObject(SQLAlchemyObjectType):
+    user_id = graphene.Int(source='id')
+
     class Meta:
         model = UserModel
         interfaces = (relay.Node, )
@@ -51,4 +53,4 @@ class SkillObject(SQLAlchemyObjectType):
 
 class SkillInput(graphene.InputObjectType):
     name = graphene.String()
-    prefer = graphene.Boolean()
+    preferred_skill = graphene.Boolean()

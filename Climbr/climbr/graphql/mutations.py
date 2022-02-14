@@ -39,7 +39,8 @@ class ProfileMutation(graphene.Mutation):
                                preferred_style_climbing=preferred_style_climbing)
 
         skill_list = [SkillModel(
-            name=input_skill.name) for input_skill in skills]
+            name=input_skill.name,
+            preferred_skill=input_skill.preferred_skill) for input_skill in skills]
 
         profile.skills.extend(skill_list)
 

@@ -25,7 +25,7 @@ class User(db.Model):
     profile_id = db.Column(
         db.Integer, db.ForeignKey('profiles.id'))
     profile = db.relationship(
-        "Profile", backref='profile')
+        "Profile", backref='user')
 
     def __repr__(self):
         return f"<User {self.email} >"

@@ -17,7 +17,7 @@ class Query(graphene.ObjectType):
     node = relay.Node.Field()
 
     users = graphene.List(
-        lambda: User, email=graphene.String())
+        lambda: User, email=graphene.String(), user_id=graphene.Int())
 
     roles = graphene.List(
         lambda: Role, name=graphene.String()
@@ -51,5 +51,3 @@ class Query(graphene.ObjectType):
 
     all_users = SQLAlchemyConnectionField(User.connection)
     all_roles = SQLAlchemyConnectionField(Role.connection)
-
-    # skills = SQLAlchemyConnectionField(Skill)
