@@ -1,15 +1,18 @@
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 from flask_marshmallow import Marshmallow
+from flask_login import LoginManager
 # from flask_cors import CORS
 
 from flask_graphql import GraphQLView
 
+from flask_graphql_auth import GraphQLAuth
 
+auth = GraphQLAuth()
 db = SQLAlchemy()
 ma = Marshmallow()
+login_manager = LoginManager()
 
 
 def create_app(config_name):
@@ -18,8 +21,10 @@ def create_app(config_name):
     config[config_name].init_app(app)
     app.config.from_pyfile("../config.py")
 
+    auth.init_app(app)
     db.init_app(app)
     ma.init_app(app)
+    login_manager.init_app(app)
 
     from .schema import schema
 

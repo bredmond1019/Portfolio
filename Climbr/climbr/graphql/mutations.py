@@ -1,6 +1,6 @@
 
-import profile
 import graphene
+from flask_graphql_auth import create_access_token, create_refresh_token
 
 from climbr import db
 from ..graphql.objects import UserObject as User, ProfileObject as Profile, SkillInput
@@ -10,11 +10,13 @@ from ..models import User as UserModel, Profile as ProfileModel, Skill as SkillM
 class UserMutation(graphene.Mutation):
     class Arguments:
         email = graphene.String(required=True)
+        password = graphene.String(required=True)
 
     user = graphene.Field(lambda: User)
 
-    def mutate(self, info, email):
-        user = UserModel(email=email, role_id=2)
+    def mutate(self, info, email, password):
+        user = UserModel(
+            email=email, password=password, role_id=2)
 
         db.session.add(user)
         db.session.commit()
@@ -52,6 +54,29 @@ class ProfileMutation(graphene.Mutation):
         return ProfileMutation(profile=profile)
 
 
+class AuthMutation(graphene.Mutation):
+    access_token = graphene.String()
+    refresh_token = graphene.String()
+
+    class Arguments:
+        email = graphene.String()
+        password = graphene.String()
+
+    def mutate(self, info, email, password):
+        user = UserModel.query.filter_by(
+            email=email, password=password).first()
+        print(user)
+        if not user:
+            raise Exception(
+                'Authentication Failure : User is not registered')
+
+        return AuthMutation(
+            access_token=create_access_token(email),
+            refresh_token=create_refresh_token(email)
+        )
+
+
 class Mutation(graphene.ObjectType):
     mutate_user = UserMutation.Field()
     mutate_profile = ProfileMutation.Field()
+    mutate_auth = AuthMutation.Field()
