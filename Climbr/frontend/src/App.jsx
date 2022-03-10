@@ -6,6 +6,7 @@ import Home from "./components/LandingPage/Home";
 import Navigation from "./components/NavBar";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
 import Users from "./components/UsersPage/Users";
+import LoginPage from "./components/Auth/LoginPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
         <Route path="/profile-page" element={<ProfilePage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </div>
   );

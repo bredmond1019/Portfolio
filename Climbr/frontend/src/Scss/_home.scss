@@ -1,7 +1,9 @@
 @use "variables" as var;
 
 .home-wrapper {
-  height: 100vh;
+  height: calc(100vh-60px);
+  margin-left: -5px;
+  padding: 10px 15px;
 
   background: url("./../images/mountaineering.png");
   background-repeat: no-repeat;
@@ -12,9 +14,12 @@
   align-items: center;
   justify-content: space-around;
 
-  color: var.$light-purple;
+  color: var.$secondary;
+  text-shadow: -3px 3px 1px var.$primary;
+  text-align: center;
+
   // font-family: "Amatic SC", cursive;
-  font-family: "Righteous", cursive;
+  font-family: var.$righteous;
   //   font-family: "Viga", sans-serif;
 }
 
@@ -23,28 +28,52 @@
 // }
 
 .home-title {
-  transform: translateX(15%);
-  font-size: 5.5rem;
+  font-size: 3rem;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
 
-  // margin-bottom: 10vh;
+.climbr-title {
+  font-size: 5.5rem;
+  color: var.$white;
+  text-shadow: -3px 3px 1px var.$primary;
 }
 
 .home-sub-title {
-  transform: translateX(-15%);
-
-  font-size: 3.5rem;
-  margin-bottom: 5vh;
-  margin-left: auto;
-
-  color: var.$purple;
-  text-shadow: -0.01em 0.01em 0.1em var.$light-blue;
+  font-size: 2rem;
+  // text-shadow: 1px 1px 1px var.$primary;
 }
 
-.home-wrapper {
-  font-size: 3.5rem;
-
-  margin-left: auto;
-
-  color: var.$purple;
-  text-shadow: -0.01em 0.01em 0.1em var.$light-blue;
+.home-btn {
+  font-family: "Cuprum", sans-serif;
+  letter-spacing: 1px;
 }
+
+// @media screen and (min-width: 1200px) {
+//   .home-title {
+//     transform: translateX(15%);
+//     font-size: 5.5rem;
+
+//     // margin-bottom: 10vh;
+//   }
+
+//   .home-sub-title {
+//     transform: translateX(-15%);
+
+//     font-size: 3.5rem;
+//     margin-bottom: 5vh;
+//     margin-left: auto;
+
+//     color: var.$purple;
+//     text-shadow: -0.01em 0.01em 0.1em var.$light-blue;
+//   }
+
+//   .home-wrapper {
+//     font-size: 3.5rem;
+
+//     margin-left: auto;
+
+//     color: var.$purple;
+//     text-shadow: -0.01em 0.01em 0.1em var.$light-blue;
+//   }
+// }
