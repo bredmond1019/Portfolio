@@ -5,6 +5,8 @@ from flask_graphql_auth import (
     create_refresh_token,
     AuthInfoField,
     mutation_jwt_required,
+    mutation_jwt_refresh_token_required,
+    get_jwt_identity
 )
 
 from climbr import db
@@ -90,7 +92,20 @@ class AuthMutation(graphene.Mutation):
         )
 
 
+class RefreshMutation(graphene.Mutation):
+    class Arguments:
+        refresh_token = graphene.String()
+
+    new_token = graphene.String()
+
+    @mutation_jwt_refresh_token_required
+    def mutate(self):
+        current_user = get_jwt_identity()
+        return RefreshMutation(new_token=create_access_token(identity=current_user))
+
+
 class Mutation(graphene.ObjectType):
     mutate_user = UserMutation.Field()
     mutate_profile = ProfileMutation.Field()
     mutate_auth = AuthMutation.Field()
+    refresh = RefreshMutation.Field()
