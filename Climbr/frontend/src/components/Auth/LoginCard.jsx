@@ -15,8 +15,8 @@ function LoginCard() {
 
   const [login] = useMutation(LOGIN, {
     variables: { email, password },
-    onCompleted: (data) => {
-      console.log(data);
+    onCompleted: ({ mutateAuth }) => {
+      localStorage.setItem("auth-token", mutateAuth.accessToken);
     },
   });
 
