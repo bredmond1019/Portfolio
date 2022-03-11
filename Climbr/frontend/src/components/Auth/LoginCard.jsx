@@ -6,8 +6,10 @@ import { Button, Card, Nav } from "react-bootstrap";
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
 import { LOGIN } from "../../mutations";
+import { useUser } from "./UserProvider";
 
 function LoginCard() {
+  const { saveToken, setUserId, setProfileId } = useUser();
   const [isRegister, setIsRegister] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,8 +18,11 @@ function LoginCard() {
   const [login] = useMutation(LOGIN, {
     variables: { email, password },
     onCompleted: ({ mutateAuth }) => {
-      localStorage.setItem("auth-token", mutateAuth.accessToken);
-      console.log(mutateAuth.userId, mutateAuth.profileId);
+      const token = mutateAuth.accessToken;
+      localStorage.setItem("auth-token", token);
+      saveToken(token);
+      setUserId(mutateAuth.userId);
+      setProfileId(mutateAuth.profileId);
     },
   });
 
