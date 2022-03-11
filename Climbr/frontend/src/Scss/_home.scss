@@ -5,7 +5,9 @@
   margin-left: -5px;
   padding: 10px 15px;
 
-  background: url("./../images/mountaineering.png");
+  background: linear-gradient(var.$primary-rgba, var.$primary-light-rgba),
+    url("./../images/mountaineering.png");
+
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -14,8 +16,8 @@
   align-items: center;
   justify-content: space-around;
 
-  color: var.$secondary;
-  text-shadow: -3px 3px 1px var.$primary;
+  color: var.$white;
+  text-shadow: -2px 2px 4px var.$primary;
   text-align: center;
 
   // font-family: "Amatic SC", cursive;
@@ -28,15 +30,15 @@
 // }
 
 .home-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding: 0 20px;
   margin-bottom: 30px;
 }
 
 .climbr-title {
-  font-size: 5.5rem;
-  color: var.$white;
-  text-shadow: -3px 3px 1px var.$primary;
+  font-size: 5.8rem;
+  color: var.$secondary-light;
+  text-shadow: -4px 3px 3px var.$primary;
 }
 
 .home-sub-title {

@@ -1,0 +1,35 @@
+@use "login_card";
+
+@use "../variables" as var;
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 15px;
+  height: calc(100vh-60px);
+  min-height: 550px;
+  margin-left: -5px;
+
+  background: linear-gradient(var.$primary-rgba, var.$primary-light-rgba),
+    url("./../images/mountaineering.png");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-title-container {
+  display: none;
+  margin-left: 5px;
+  text-align: center;
+  font-family: var.$righteous;
+  color: var.$white;
+}
+
+.login-title {
+  font-size: 2.8rem;
+  text-shadow: -1px 1px 1px var.$primary;
+}

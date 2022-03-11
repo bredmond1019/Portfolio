@@ -1,41 +1,40 @@
+import { useMutation } from "@apollo/client";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Card, Nav } from "react-bootstrap";
 
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
+import { LOGIN } from "../../mutations";
 
 function LoginCard() {
-  const [isRegister, setIsRegister] = useState(true);
+  const [isRegister, setIsRegister] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [login] = useMutation(LOGIN, {
+    variables: { email, password },
+    onCompleted: (data) => {
+      console.log(data);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    isRegister === "login" ? login() : signup();
+  };
+
   const inputInfo = [
-    { title: "Email", useHook: setEmail },
-    { title: "Password", useHook: setPassword },
-    { title: "Confirm Password", useHook: setConfirmPassword },
+    { title: "Email", setProperty: setEmail, type: "text" },
+    { title: "Password", setProperty: setPassword, type: "password" },
+    { title: "Confirm Password", setProperty: setConfirmPassword, type: "password" },
   ];
 
   const [loginState, setLoginState] = useState(inputInfo);
-  console.log(inputInfo);
   useEffect(() => {
-    if (isRegister) {
-      setLoginState(inputInfo);
-    } else {
-      setLoginState(inputInfo.slice(0, 2));
-    }
+    isRegister === "register" ? setLoginState(inputInfo) : setLoginState(inputInfo.slice(0, 2));
   }, [isRegister]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    let response;
-    const credentials = {
-      email,
-      password,
-    };
-  };
 
   return (
     <Card className="login-info-wrapper">
@@ -43,12 +42,12 @@ function LoginCard() {
         <Nav
           variant="tabs"
           defaultActiveKey="login"
-          onSelect={() => {
-            setIsRegister(!isRegister);
+          onSelect={(eventKey) => {
+            setIsRegister(eventKey);
           }}
         >
           <Nav.Item>
-            <Nav.Link eventKey="tokens">Log In</Nav.Link>
+            <Nav.Link eventKey="login">Log In</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="register">Register</Nav.Link>
@@ -63,10 +62,14 @@ function LoginCard() {
         <div className="login-form">
           <form onSubmit={handleSubmit}>
             <div className="form-wrapper">
-              {loginState.map(({ title }) => (
-                <label className="input">
-                  <p className="input-title">{title}</p>
-                  <input type="text" />
+              {loginState.map(({ title, type, setProperty }, i) => (
+                <label className="login-input-container" key={i}>
+                  <p className="login-input-title">{title}</p>
+                  <input
+                    className="login-input"
+                    type={type}
+                    onChange={(e) => setProperty(e.target.value)}
+                  />
                 </label>
               ))}
 

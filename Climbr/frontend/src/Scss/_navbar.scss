@@ -3,26 +3,32 @@
 #navbar-container {
   background-color: black;
   letter-spacing: 5px;
-  //   font-family: "Architects Daughter", cursive;
-  font-family: "Righteous", cursive;
-  //   font-family: "Bebas Neue", cursive;
+
+  font-family: var.$righteous;
+
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.3rem;
+  text-shadow: -1px 1px 3px var.$primary;
 }
 
 #navbar {
-  background-color: var.$dark-background;
+  background-color: var.$primary-light;
   height: 60px;
 }
 
 .nav-link {
-  color: rgb(182, 12, 182) !important;
+  color: var.$secondary-bright !important;
+
   margin-left: 1.25vw !important;
 }
 
 .nav-link.active {
-  color: rgb(236, 102, 236) !important;
+  color: var.$secondary-light !important;
+}
+
+.nav-link:hover {
+  opacity: 0.65;
 }
 
 .navbar-brand {
@@ -32,8 +38,7 @@
 
   border-radius: 50%;
 
-  background: linear-gradient(var.$purple-rgba, var.$purple-rgba),
-    url("./../images/logo.jpg");
+  background: linear-gradient(var.$primary-rgba, var.$primary-rgba), url("./../images/logo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

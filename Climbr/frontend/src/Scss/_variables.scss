@@ -2,16 +2,24 @@
 
 $primary: #0028c9;
 $primary-light: #5995ed;
-$white: #fff;
-$secondary: #53dd6c;
+
+$white: #ebf2fa;
+$secondary-light: #46ba5b;
+$secondary-bright: #53dd6c;
+$secondary: #3e760e;
 $highlight: #ffad05;
 $third: #63a088;
 
-$primary-rgba: rgba(0, 40, 201, 0.6);
+$background-rgba: rgba(0, 40, 201, 0.8);
+$primary-rgba: rgba(0, 40, 201, 0.5);
 $primary-light-rgba: rgba(89, 149, 237, 0.4);
-$secondary-rgba: rgba(83, 221, 108, 0.4);
+$secondary-light-rgba: rgba(83, 221, 108, 0.8);
 $highlight-rgba: rgba(255, 173, 5, 0.8);
 $third-rgba: rgba(99, 160, 136, 0.8);
+
+// FONT FAMILY
+$righteous: "Righteous", cursive;
+$bebas: "Bebas Neue", cursive;
 
 // OLD COLORS
 
@@ -26,9 +34,6 @@ $purple-rgba: rgba(112, 43, 158, 0.6);
 $blue-rgba: rgba(62, 171, 244, 0.4);
 $dark-rgba: rgba(43, 45, 66, 0.8);
 $light-blue-rgba: rgba(62, 171, 244, 0.5);
-
-// FONT FAMILY
-$righteous: "Righteous", cursive;
 
 // font-family: 'Amatic SC', cursive;
 

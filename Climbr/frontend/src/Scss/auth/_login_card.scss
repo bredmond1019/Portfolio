@@ -1,0 +1,38 @@
+@use "../variables" as var;
+
+.login-info-wrapper {
+  font-family: var.$bebas !important;
+  letter-spacing: 1px;
+  margin-left: 5px;
+
+  color: var.$dark-background;
+
+  .nav-link {
+    color: black !important;
+    font-size: 1.3rem;
+  }
+}
+
+.login-info-title {
+  font-size: 1rem;
+  //   text-align: center;
+  margin-bottom: 20px;
+  text-shadow: none;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.login-input-container {
+  margin-bottom: 20px;
+}
+
+.login-input-title {
+  margin-bottom: 3px;
+}
+
+.login-input {
+  width: 100%;
+}
