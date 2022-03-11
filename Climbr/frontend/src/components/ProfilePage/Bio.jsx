@@ -16,7 +16,7 @@ function Bio() {
   if (error) return <p>Error :( {console.log(error)}</p>;
 
   const { firstName, lastName, preferredStyleClimbing } = data?.profiles;
-  console.log(firstName, lastName, preferredStyleClimbing);
+  console.log(data?.profiles.message);
   if (data?.profiles.__typename === "ProfileObject") {
     return (
       <div className="profile-bio-wrapper">
@@ -38,7 +38,11 @@ function Bio() {
       </div>
     );
   } else {
-    return <div className="bio-error"></div>;
+    return (
+      <div className="bio-error">
+        <h1>{data?.profiles.message}</h1>
+      </div>
+    );
   }
 }
 

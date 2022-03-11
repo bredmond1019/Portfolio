@@ -5,6 +5,8 @@ export const LOGIN = gql`
     mutateAuth(email: $email, password: $password) {
       accessToken
       refreshToken
+      userId
+      profileId
     }
   }
 `;

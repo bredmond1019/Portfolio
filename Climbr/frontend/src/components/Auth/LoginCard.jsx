@@ -17,6 +17,7 @@ function LoginCard() {
     variables: { email, password },
     onCompleted: ({ mutateAuth }) => {
       localStorage.setItem("auth-token", mutateAuth.accessToken);
+      console.log(mutateAuth.userId, mutateAuth.profileId);
     },
   });
 

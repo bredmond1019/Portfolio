@@ -1,4 +1,5 @@
 
+import profile
 import graphene
 from flask_graphql_auth import (
     create_access_token,
@@ -72,6 +73,8 @@ class ProfileMutation(graphene.Mutation):
 class AuthMutation(graphene.Mutation):
     access_token = graphene.String()
     refresh_token = graphene.String()
+    user_id = graphene.Int()
+    profile_id = graphene.Int()
 
     class Arguments:
         email = graphene.String()
@@ -88,7 +91,9 @@ class AuthMutation(graphene.Mutation):
 
         return AuthMutation(
             access_token=create_access_token(email),
-            refresh_token=create_refresh_token(email)
+            refresh_token=create_refresh_token(email),
+            user_id=user.id,
+            profile_id=user.profile_id
         )
 
 
