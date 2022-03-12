@@ -13,7 +13,7 @@ function UserProvider({ children }) {
 
   const [token, setToken] = useState(getToken()?.userToken);
   const [tokenExpirationTime, setTokenExpirationTime] = useState(
-    getToken()?.expirationTime && new Date(getToken.apply().expirationTime) > new Date()
+    getToken()?.expirationTime && new Date(getToken().expirationTime) > new Date()
       ? new Date(getToken().expirationTime)
       : null
   );

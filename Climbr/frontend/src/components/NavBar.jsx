@@ -3,17 +3,15 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 
-import { useUser } from "./Auth/UserProvider";
+import { reduxStoreMain } from "../redux/storeMain";
 
 import logo2 from "../images/logo2.jpeg";
 
 const Navigation = (props) => {
-  const location = useLocation();
+  const authTokenState = reduxStoreMain.getState().authToken;
+  const token = authTokenState.token;
 
-  const { token } = useUser();
-  console.log(token);
-  console.log(!token);
-  console.log(!!token);
+  const location = useLocation();
 
   return (
     <div id="navbar-container">

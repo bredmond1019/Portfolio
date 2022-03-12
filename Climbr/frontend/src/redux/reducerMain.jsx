@@ -19,4 +19,4 @@ const rootReducerMain = combineReducers({
   authToken: persistReducer(persistConfigAuthToken, authTokenSlice.reducer),
 });
 
-export const persistedReducerMain = persist(persistConfigMain, rootReducerMain);
+export const persistedReducerMain = persistReducer(persistConfigMain, rootReducerMain);

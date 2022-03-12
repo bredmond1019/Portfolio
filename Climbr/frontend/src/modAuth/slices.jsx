@@ -4,12 +4,29 @@ export const authTokenSlice = createSlice({
   name: "authToken",
   initialState: {
     token: null,
-    payload: null,
-    refreshExpiresIn: null,
+    refreshToken: null,
+    userId: null,
+    profileId: 1,
+    expirationTime: null,
   },
   reducers: {
     setAuthToken: (state, { payload }) => {
-      (state.token = null), (state.payload = null), (state.refreshExpiresIn = null);
+      state.token = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
+      state.userId = payload.userId;
+      state.profileId = payload.profileId;
+      state.expirationTime = payload.expirationTime;
+    },
+    setRefreshToken: (state, { payload }) => {
+      state.token = payload.newToken;
+    },
+
+    logOut: (state, { payload }) => {
+      state.token = null;
+      state.refreshToken = null;
+      state.userId = null;
+      state.profileId = null;
+      state.expirationTime = null;
     },
   },
 });

@@ -2,12 +2,13 @@ import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
 import { linkError, linkMain, linkAuth, linkTokenHeader } from "./links";
 
 const inMemoryCache = new InMemoryCache();
-export const apolloClientAuth = new ApolloClient({
-  //DEV connectToDevTools to false in production
-  connectToDevTools: true,
-  link: linkAuth,
-  cache: inMemoryCache,
-});
+
+// export const apolloClientAuth = new ApolloClient({
+//   //DEV connectToDevTools to false in production
+//   connectToDevTools: true,
+//   link: linkAuth,
+//   cache: inMemoryCache,
+// });
 
 const options = {
   watchQuery: {

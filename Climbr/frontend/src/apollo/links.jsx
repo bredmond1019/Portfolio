@@ -25,11 +25,11 @@ export const linkMain = createHttpLink({
 });
 
 export const linkTokenHeader = setContext(async (_, { headers }) => {
-  const accessToken = await getAccessTokenPromise();
+  const token = await getAccessTokenPromise();
   return {
     headers: {
       ...headers,
-      authorization: accessToken ? `Bearer ${accessToken}` : "",
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });

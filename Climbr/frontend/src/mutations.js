@@ -10,3 +10,11 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const REFRESH = gql`
+  mutation Refresh($refreshToken: String!) {
+    refresh(refreshToken: $refreshToken) {
+      newToken
+    }
+  }
+`;
