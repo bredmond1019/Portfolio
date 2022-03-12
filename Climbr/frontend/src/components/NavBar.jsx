@@ -10,7 +10,10 @@ import logo2 from "../images/logo2.jpeg";
 const Navigation = (props) => {
   const location = useLocation();
 
-  const { token } = useUser;
+  const { token } = useUser();
+  console.log(token);
+  console.log(!token);
+  console.log(!!token);
 
   return (
     <div id="navbar-container">
@@ -28,6 +31,10 @@ const Navigation = (props) => {
                   Home
                 </Nav.Link>
                 {!token ? (
+                  <Nav.Link as={NavHashLink} to="/login">
+                    LOGIN
+                  </Nav.Link>
+                ) : (
                   <>
                     <Nav.Link as={NavHashLink} to="/profile-page">
                       Profile
@@ -37,10 +44,6 @@ const Navigation = (props) => {
                       Users
                     </Nav.Link>
                   </>
-                ) : (
-                  <Nav.Link as={NavHashLink} to="/login">
-                    LOGIN
-                  </Nav.Link>
                 )}
               </Nav>
             </Navbar.Collapse>

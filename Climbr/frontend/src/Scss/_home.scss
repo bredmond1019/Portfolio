@@ -51,6 +51,41 @@
   letter-spacing: 1px;
 }
 
+@media screen and (min-width: 550px) {
+  .home-title {
+    font-size: 3.5rem;
+  }
+
+  .climbr-title {
+    font-size: 7rem;
+  }
+
+  .home-sub-title {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .title-container {
+    width: 100%;
+    max-width: 1050px;
+  }
+
+  .home-title {
+    font-size: 5rem;
+    text-align: left;
+  }
+
+  .climbr-title {
+    font-size: 8rem;
+  }
+
+  .home-sub-title {
+    width: 60%;
+    margin-left: auto;
+  }
+}
+
 // @media screen and (min-width: 1200px) {
 //   .home-title {
 //     transform: translateX(15%);

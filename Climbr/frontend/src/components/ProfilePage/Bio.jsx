@@ -2,9 +2,9 @@ import React from "react";
 
 import logo2 from "./../../images/logo2.jpeg";
 
-function Bio(props) {
-  console.log(props);
-  const { firstName, lastName, preferredStyleClimbing } = props?.userData;
+function Bio({ userData }) {
+  console.log(userData);
+  const { firstName, lastName, preferredStyleClimbing } = userData;
   return (
     <div className="profile-bio-wrapper">
       <div className="profile-pic-wrapper">
