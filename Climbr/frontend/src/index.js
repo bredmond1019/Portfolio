@@ -2,6 +2,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import ReactDOM from "react-dom";
 
 import App from "./App";
+import { Provider } from "react-redux";
+
 import UserProvider from "./components/Auth/UserProvider";
 import { useUser } from "./components/Auth/UserProvider";
 
@@ -31,12 +33,12 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <UserProvider>
+  <Provider>
     <ApolloProvider client={client}>
       <Router>
         <App />
       </Router>
     </ApolloProvider>
-  </UserProvider>,
+  </Provider>,
   document.getElementById("root")
 );
