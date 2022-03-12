@@ -19,7 +19,6 @@ function LoginCard() {
     variables: { email, password },
     onCompleted: ({ mutateAuth }) => {
       const token = mutateAuth.accessToken;
-      // localStorage.setItem("auth-token", token);
       saveToken(token);
       setUserId(mutateAuth.userId);
       setProfileId(mutateAuth.profileId);

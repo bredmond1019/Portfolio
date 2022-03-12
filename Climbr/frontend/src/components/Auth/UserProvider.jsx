@@ -8,15 +8,12 @@ export const useUser = () => useContext(UserContext);
 function UserProvider({ children }) {
   const getToken = () => {
     const authToken = localStorage.getItem("auth-token");
-    console.log(authToken);
     return authToken;
   };
 
-  //
-
   const [token, setToken] = useState(getToken());
   const [userId, setUserId] = useState(null);
-  const [profileId, setProfileId] = useState(null);
+  const [profileId, setProfileId] = useState(1);
 
   const saveToken = (userToken) => {
     setToken(userToken);
