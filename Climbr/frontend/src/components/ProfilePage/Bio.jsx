@@ -4,8 +4,11 @@ import logo2 from "./../../images/logo2.jpeg";
 import { useQuery } from "@apollo/client";
 import { PROFILE_INFO } from "../../queries";
 
+import { useUser } from "../Auth/UserProvider";
+
 function Bio() {
-  const profileId = 1;
+  const { profileId } = useUser();
+  console.log(profileId);
   const { loading, error, data } = useQuery(PROFILE_INFO, {
     variables: { profileId },
   });

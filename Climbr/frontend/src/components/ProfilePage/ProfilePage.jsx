@@ -3,15 +3,25 @@ import React from "react";
 import Bio from "./Bio";
 import HomeCragCard from "./HomeCragCard";
 
+import { useUser } from "../Auth/UserProvider";
+
 function ProfilePage() {
+  const { profileId } = useUser();
   return (
     <div className="profile-wrapper">
-      <Bio />
+      {profileId ? (
+        <>
+          <Bio />
 
-      <div className="profile-home-crag-wrapper">
-        <HomeCragCard />
-        <HomeCragCard />
-      </div>
+          <div className="profile-home-crag-wrapper">
+            <HomeCragCard />
+            <HomeCragCard />
+          </div>
+        </>
+      ) : (
+        //   TODO: CREATE PROFILE FORM
+        <></>
+      )}
     </div>
   );
 }
