@@ -6,11 +6,10 @@ import LoginCard from "./LoginCard";
 import Logout from "./Logout";
 
 import { reduxStoreMain } from "../../redux/storeMain";
+import { useSelector } from "react-redux";
 
 function LoginPage() {
-  const authTokenState = reduxStoreMain.getState().authToken;
-
-  const token = authTokenState.token;
+  const token = useSelector((state) => state.authToken.token);
 
   return (
     <div className="login-wrapper">
@@ -18,8 +17,10 @@ function LoginPage() {
         <h1 className="login-title">Welcome to Climbr</h1>
       </div>
 
-      <LoginCard />
       {/* {!token ? <LoginCard /> : <Logout />} */}
+
+      <LoginCard />
+      <Logout />
     </div>
   );
 }

@@ -17,23 +17,6 @@ export const possibleAccessTokenErrors = [
   "Signature has expired", // access token is expired
 ];
 
-async function getRefreshedAccessTokenPromise() {
-  const authTokenState = reduxStoreMain.getState().authToken;
-  console.log(authTokenState.refreshToken);
-  try {
-    const { data } = await apolloClientMain.mutate({
-      mutation: REFRESH,
-      variables: { refreshToken: authTokenState.refreshToken },
-    });
-    if (data && data.refresh) authTokenActions.setRefreshToken(data.refresh);
-    return data.refresh.newToken;
-  } catch (error) {
-    authTokenActions.logOut();
-    console.log(error);
-    return error;
-  }
-}
-
 let pendingAccessTokenPromise = null;
 
 export function getAccessTokenPromise() {
@@ -52,20 +35,38 @@ export function getAccessTokenPromise() {
     return new Promise((resolve) => resolve(authTokenState.token));
   }
 
-  // if (authTokenState && authTokenState.refreshToken) {
-  //   const data = apolloClientMain.mutate({
-  //     mutation: REFRESH,
-  //     variables: { refreshToken: authTokenState.refreshToken },
-  //   });
-
-  //   data ? console.log(data) : console.log("no data");
-  //   return data ? data : "no data";
-  // }
-
-  // if (!pendingAccessTokenPromise)
-  //   pendingAccessTokenPromise = getRefreshedAccessTokenPromise().finally(
-  //     () => (pendingAccessTokenPromise = null)
-  //   );
-  // console.log(pendingAccessTokenPromise);
   return pendingAccessTokenPromise;
 }
+
+// async function getRefreshedAccessTokenPromise() {
+//   const authTokenState = reduxStoreMain.getState().authToken;
+//   console.log(authTokenState.refreshToken);
+//   try {
+//     const { data } = await apolloClientMain.mutate({
+//       mutation: REFRESH,
+//       variables: { refreshToken: authTokenState.refreshToken },
+//     });
+//     if (data && data.refresh) authTokenActions.setRefreshToken(data.refresh);
+//     return data.refresh.newToken;
+//   } catch (error) {
+//     authTokenActions.logOut();
+//     console.log(error);
+//     return error;
+//   }
+// }
+
+// if (authTokenState && authTokenState.refreshToken) {
+//   const data = apolloClientMain.mutate({
+//     mutation: REFRESH,
+//     variables: { refreshToken: authTokenState.refreshToken },
+//   });
+
+//   data ? console.log(data) : console.log("no data");
+//   return data ? data : "no data";
+// }
+
+// if (!pendingAccessTokenPromise)
+//   pendingAccessTokenPromise = getRefreshedAccessTokenPromise().finally(
+//     () => (pendingAccessTokenPromise = null)
+//   );
+// console.log(pendingAccessTokenPromise);

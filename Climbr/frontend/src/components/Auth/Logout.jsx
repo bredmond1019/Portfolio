@@ -1,14 +1,16 @@
 import React from "react";
 
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
-import { useUser } from "./UserProvider";
+import { logOut } from "../../modAuth/slices";
+// import { useUser } from "./UserProvider";
 
 export default function Logout() {
-  const { isLoggedIn, tokenExpirationTime, token, logout } = useUser();
+  const dispatch = useDispatch();
 
   let navigate = useNavigate();
   const routeChange = () => {
@@ -16,14 +18,17 @@ export default function Logout() {
     navigate(path);
   };
 
-  if (isLoggedIn) {
-    return (
-      <div>
-        <h2>Press LOG OUT to completely log out.</h2>
-        <button onClick={logout}>LOG OUT</button>
-      </div>
-    );
-  }
+  const logout = () => {
+    console.log(logOut);
+    dispatch(logout());
+  };
+
+  return (
+    <div>
+      <h2>Press LOG OUT to completely log out.</h2>
+      <button onClick={() => dispatch(logOut())}>LOG OUT</button>
+    </div>
+  );
 
   return routeChange();
 }

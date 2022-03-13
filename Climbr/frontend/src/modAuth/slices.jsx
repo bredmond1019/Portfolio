@@ -30,3 +30,5 @@ export const authTokenSlice = createSlice({
     },
   },
 });
+
+export const { logOut } = authTokenSlice.actions;

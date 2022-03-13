@@ -7,10 +7,7 @@ import { useSelector } from "react-redux";
 import Bio from "./Bio";
 import HomeCragCard from "./HomeCragCard";
 
-// import { useUser } from "../Auth/UserProvider";
-
 function ProfilePage() {
-  // const { token } = useUser();
   const { profileId } = useSelector((state) => state.authToken);
 
   let navigate = useNavigate();
@@ -27,9 +24,6 @@ function ProfilePage() {
       routeChange();
     }
   }, [data?.profiles.__typename]);
-
-  // const { profileId } = useUser();
-  // const profileId = 1;
 
   const { loading, error, data } = useQuery(PROFILE_INFO, {
     variables: { profileId },
