@@ -10,32 +10,12 @@ import { reduxStoreMain, reduxStoreMainPersistor } from "./redux";
 
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-// import { apolloClientMain } from "./apollo/clients";
-
-const httpLink = createHttpLink({
-  uri: "/graphql",
-});
-
-const authLink = setContext(async (_, { headers }) => {
-  const token = await getAccessTokenPromise();
-  console.log(token);
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+import { apolloClientMain } from "./apollo/clients";
 
 ReactDOM.render(
   <Provider store={reduxStoreMain}>
     <PersistGate loading={<p>loading...</p>} persistor={reduxStoreMainPersistor}>
-      <ApolloProvider client={client}>
+      <ApolloProvider client={apolloClientMain}>
         <Router>
           <App />
         </Router>
@@ -44,3 +24,23 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+// const httpLink = createHttpLink({
+//   uri: "/graphql",
+// });
+
+// const authLink = setContext(async (_, { headers }) => {
+//   const token = await getAccessTokenPromise();
+//   console.log(token);
+//   return {
+//     headers: {
+//       ...headers,
+//       authorization: token ? `Bearer ${token}` : "",
+//     },
+//   };
+// });
+
+// const client = new ApolloClient({
+//   link: authLink.concat(httpLink),
+//   cache: new InMemoryCache(),
+// });

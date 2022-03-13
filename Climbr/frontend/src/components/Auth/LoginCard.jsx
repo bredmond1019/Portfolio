@@ -29,9 +29,6 @@ function LoginCard() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(isRegister);
-    console.log(email);
-    console.log(password);
     isRegister === "login" ? login() : signup();
   };
 
