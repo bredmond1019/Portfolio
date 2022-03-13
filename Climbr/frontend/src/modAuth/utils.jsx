@@ -27,27 +27,30 @@ async function getRefreshedAccessTokenPromise() {
   }
 }
 
+const expiration = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();
+
 let pendingAccessTokenPromise = null;
 
 export function getAccessTokenPromise() {
   const authTokenState = reduxStoreMain.getState().authToken;
-  const currentNumericDate = Math.round(Date.now() / 1000);
+  const currentTime = new Date();
 
+  console.log(authTokenState);
   if (
     authTokenState &&
     authTokenState.token &&
     authTokenState.expirationTime &&
-    currentNumericDate + 1 * 60 <= authTokenState.expirationTime
+    new Date(currentTime.getTime() + 1 * 60 * 1000) <= authTokenState.expirationTime
   ) {
-    if (currentNumericDate + 3 * 60 >= authTokenState.expirationTime)
+    if (new Date(currentTime.getTime() + 3 * 60 * 1000) >= authTokenState.expirationTime)
       getRefreshedAccessTokenPromise();
     return new Promise((resolve) => resolve(authTokenState.token));
   }
 
-  if (!pendingAccessTokenPromise)
-    pendingAccessTokenPromise = getRefreshedAccessTokenPromise().finally(
-      () => (pendingAccessTokenPromise = null)
-    );
-
+  //   if (!pendingAccessTokenPromise)
+  //     pendingAccessTokenPromise = getRefreshedAccessTokenPromise().finally(
+  //       () => (pendingAccessTokenPromise = null)
+  //     );
+  console.log(pendingAccessTokenPromise);
   return pendingAccessTokenPromise;
 }

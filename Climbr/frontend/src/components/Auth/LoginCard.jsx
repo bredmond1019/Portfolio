@@ -6,10 +6,11 @@ import { Button, Card, Nav } from "react-bootstrap";
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
 import { LOGIN } from "../../mutations";
-import { useUser } from "./UserProvider";
+
+import { authTokenActions } from "../../modAuth/actions";
+// import { apolloClientMain } from "../../apollo";
 
 function LoginCard() {
-  const { saveToken, setUserId, setProfileId } = useUser();
   const [isRegister, setIsRegister] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,16 +18,20 @@ function LoginCard() {
 
   const [login] = useMutation(LOGIN, {
     variables: { email, password },
+    // client: apolloClientMain,
     onCompleted: ({ mutateAuth }) => {
-      const token = mutateAuth.accessToken;
-      saveToken(token);
-      setUserId(mutateAuth.userId);
-      setProfileId(mutateAuth.profileId);
+      const expiration = new Date(new Date().getTime() + 15 * 60 * 1000).toISOString();
+      const payload = { ...mutateAuth, expirationTime: expiration };
+      authTokenActions.setAuthToken(payload);
     },
+    onError: (error) => console.log(error),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(isRegister);
+    console.log(email);
+    console.log(password);
     isRegister === "login" ? login() : signup();
   };
 

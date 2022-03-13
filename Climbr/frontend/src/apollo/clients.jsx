@@ -1,5 +1,5 @@
 import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
-import { linkError, linkMain, linkAuth, linkTokenHeader } from "./links";
+import { linkError, linkMain, linkTokenHeader } from "./links";
 
 const inMemoryCache = new InMemoryCache();
 

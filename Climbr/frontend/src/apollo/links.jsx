@@ -21,7 +21,7 @@ export const linkError = onError(errorHandler);
 export const linkMain = createHttpLink({
   uri: "/graphql",
   // DEV purpose of credential header and CORS... check before production release
-  credentials: "same-origin",
+  // credentials: "same-origin",
 });
 
 export const linkTokenHeader = setContext(async (_, { headers }) => {
