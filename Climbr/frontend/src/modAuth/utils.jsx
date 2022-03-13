@@ -36,13 +36,14 @@ export function getAccessTokenPromise() {
   const currentTime = new Date();
 
   console.log(authTokenState);
+  console.log(new Date(currentTime.getTime() + 1 * 60 * 1000) <= authTokenState.expirationTime);
   if (
     authTokenState &&
     authTokenState.token &&
     authTokenState.expirationTime &&
-    new Date(currentTime.getTime() + 1 * 60 * 1000) <= authTokenState.expirationTime
+    new Date(currentTime.getTime() + 1 * 60 * 1000) <= new Date(authTokenState.expirationTime)
   ) {
-    if (new Date(currentTime.getTime() + 3 * 60 * 1000) >= authTokenState.expirationTime)
+    if (new Date(currentTime.getTime() + 3 * 60 * 1000) >= new Date(authTokenState.expirationTime))
       getRefreshedAccessTokenPromise();
     return new Promise((resolve) => resolve(authTokenState.token));
   }
