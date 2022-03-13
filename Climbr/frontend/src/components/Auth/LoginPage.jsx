@@ -17,7 +17,9 @@ function LoginPage() {
       <div className="login-title-container">
         <h1 className="login-title">Welcome to Climbr</h1>
       </div>
-      {!token ? <LoginCard /> : <Logout />}
+
+      <LoginCard />
+      {/* {!token ? <LoginCard /> : <Logout />} */}
     </div>
   );
 }

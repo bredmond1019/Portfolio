@@ -12,7 +12,7 @@ const persistConfigMain = {
 const persistConfigAuthToken = {
   key: "authToken",
   storage,
-  blacklist: ["token", "refreshToken"],
+  blacklist: ["refreshToken"],
 };
 
 const rootReducerMain = combineReducers({

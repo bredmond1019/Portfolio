@@ -6,10 +6,10 @@ import { NavHashLink } from "react-router-hash-link";
 import { reduxStoreMain } from "../redux/storeMain";
 
 import logo2 from "../images/logo2.jpeg";
+import { useSelector } from "react-redux";
 
 const Navigation = (props) => {
-  const authTokenState = reduxStoreMain.getState().authToken;
-  const token = authTokenState.token;
+  const token = useSelector((state) => state.authToken.token);
 
   const location = useLocation();
 

@@ -19,6 +19,7 @@ export const possibleAccessTokenErrors = [
 
 async function getRefreshedAccessTokenPromise() {
   const authTokenState = reduxStoreMain.getState().authToken;
+  console.log(authTokenState.refreshToken);
   try {
     const { data } = await apolloClientMain.mutate({
       mutation: REFRESH,
@@ -46,15 +47,25 @@ export function getAccessTokenPromise() {
     authTokenState.expirationTime &&
     new Date(currentTime.getTime() + 1 * 60 * 1000) <= new Date(authTokenState.expirationTime)
   ) {
-    if (new Date(currentTime.getTime() + 3 * 60 * 1000) >= new Date(authTokenState.expirationTime))
-      getRefreshedAccessTokenPromise();
+    // if (new Date(currentTime.getTime() + 3 * 60 * 1000) >= new Date(authTokenState.expirationTime))
+    //   getRefreshedAccessTokenPromise();
     return new Promise((resolve) => resolve(authTokenState.token));
   }
 
-  if (!pendingAccessTokenPromise)
-    pendingAccessTokenPromise = getRefreshedAccessTokenPromise().finally(
-      () => (pendingAccessTokenPromise = null)
-    );
-  console.log(pendingAccessTokenPromise);
+  // if (authTokenState && authTokenState.refreshToken) {
+  //   const data = apolloClientMain.mutate({
+  //     mutation: REFRESH,
+  //     variables: { refreshToken: authTokenState.refreshToken },
+  //   });
+
+  //   data ? console.log(data) : console.log("no data");
+  //   return data ? data : "no data";
+  // }
+
+  // if (!pendingAccessTokenPromise)
+  //   pendingAccessTokenPromise = getRefreshedAccessTokenPromise().finally(
+  //     () => (pendingAccessTokenPromise = null)
+  //   );
+  // console.log(pendingAccessTokenPromise);
   return pendingAccessTokenPromise;
 }

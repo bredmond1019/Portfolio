@@ -5,10 +5,12 @@ import { Button, Card, Nav } from "react-bootstrap";
 
 // Need this import to use async functions with babel
 import regeneratorRuntime from "regenerator-runtime";
-import { LOGIN } from "../../mutations";
+import { LOGIN, REFRESH } from "../../mutations";
 
 import { authTokenActions } from "../../modAuth/actions";
 // import { apolloClientMain } from "../../apollo";
+
+import { useSelector } from "react-redux";
 
 function LoginCard() {
   const [isRegister, setIsRegister] = useState("login");
@@ -18,11 +20,21 @@ function LoginCard() {
 
   const [login] = useMutation(LOGIN, {
     variables: { email, password },
-    // client: apolloClientMain,
+
     onCompleted: ({ mutateAuth }) => {
       const expiration = new Date(new Date().getTime() + 15 * 60 * 1000).toISOString();
       const payload = { ...mutateAuth, expirationTime: expiration };
       authTokenActions.setAuthToken(payload);
+    },
+    onError: (error) => console.log(error),
+  });
+
+  const [refresh] = useMutation(REFRESH, {
+    variables: { refreshToken: useSelector((state) => state.authToken.refreshToken) },
+    onCompleted: ({ refresh }) => {
+      const payload = refresh;
+      console.log(payload);
+      authTokenActions.setRefreshToken(payload);
     },
     onError: (error) => console.log(error),
   });
@@ -82,6 +94,9 @@ function LoginCard() {
 
               <Button variant="primary" type="submit">
                 SUBMIT
+              </Button>
+              <Button variant="primary" onClick={refresh}>
+                REFRESH
               </Button>
             </div>
           </form>
