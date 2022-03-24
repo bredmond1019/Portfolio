@@ -8,7 +8,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://brandon:Asdqwe11@localhost:5432/flaskql'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://brandon:*****@localhost:5432/flaskql'
 
 
 config = {
