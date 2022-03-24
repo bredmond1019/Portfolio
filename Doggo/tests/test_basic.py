@@ -25,7 +25,7 @@ class BasicsTestCase(unittest.TestCase):
         self.assertTrue(
             current_app.config['DEBUG'])
         self.assertTrue(current_app.config['SQLALCHEMY_DATABASE_URI']
-                        == 'postgresql://brandon:Asdqwe11@localhost:5432/doggoTest')
+                        == 'postgresql://brandon:*****@localhost:5432/doggoTest')
         self.assertFalse(
             current_app.config['SECRET_KEY'] == 'does not exist')
 
