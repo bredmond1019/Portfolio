@@ -1,5 +1,4 @@
 
-import profile
 import graphene
 from flask_graphql_auth import (
     create_access_token,

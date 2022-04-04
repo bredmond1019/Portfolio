@@ -60,6 +60,7 @@ class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(20))
     last_name = db.Column(db.String(20))
+    about_me = db.Column(db.String(1000))
 
     # Prefer Trad, Sport, or Top Rope Climbing
     preferred_style_climbing = db.Column(
